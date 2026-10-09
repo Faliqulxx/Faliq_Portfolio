@@ -31,7 +31,7 @@ Anda bisa melihat detail seluruh proyeknya di bagian **Projects**!`,
     `Pengalamannya di bidang Data dan AI sangat komprehensif:
 
 1. **AI Automation Developer (Freelance)**: Merancang *workflow* otomatis menggunakan **n8n** dan membuat chatbot pintar berbasis RAG untuk menangani kebutuhan tanya-jawab akademik menggunakan OpenAI API dan Vector Database.
-2. **Data Scientist (Kampus Merdeka di PT Time Excelindo)**: Menganalisis data kehadiran dan kinerja pegawai untuk membangun fitur analitik (*data-driven*) pada aplikasi HR Tools.
+2. **Data Scientist (Kampus Merdeka di Telkom Indonesia)**: Menganalisis data kehadiran dan kinerja pegawai untuk membangun fitur analitik (*data-driven*) pada aplikasi HR Tools.
 3. **Machine Learning & Computer Vision**: Berpengalaman melatih model *Deep Learning* (CNN, MobileNetV2, ResNet50) seperti klasifikasi ras kucing dengan akurasi 82%, serta mendeploy model tersebut menjadi API backend menggunakan **FastAPI** dan antarmuka web interaktif.`,
 
   "Teknologi dan bahasa pemrograman apa saja yang dikuasai oleh nya?":

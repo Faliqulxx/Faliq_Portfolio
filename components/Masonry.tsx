@@ -260,7 +260,7 @@ const Masonry = ({
             style={{ backgroundImage: `url(${item.img})` }}
           >
             {colorShiftOnHover && (
-              <div className="color-overlay absolute inset-0 rounded-[10px] bg-gradient-to-tr from-pink-500/50 to-sky-500/50 opacity-0 pointer-events-none" />
+              <div className="color-overlay absolute inset-0 rounded-[10px] bg-gradient-to-tr from-white/20 to-black/20 opacity-0 pointer-events-none" />
             )}
             {item.caption && (
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-5 pt-12 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out pointer-events-none flex items-end">

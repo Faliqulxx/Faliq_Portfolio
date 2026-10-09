@@ -26,14 +26,14 @@ export default function ClearChatDialog({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 8 }}
         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-[280px] rounded-2xl bg-white p-5 text-center shadow-2xl dark:bg-[#232D3F]"
+        className="w-full max-w-[280px] rounded-2xl bg-white p-5 text-center shadow-2xl dark:bg-[#161616] border border-neutral-200 dark:border-neutral-800"
       >
-        <p id="clear-chat-title" className="text-sm font-semibold dark:text-white">
+        <p id="clear-chat-title" className="text-sm font-semibold text-neutral-900 dark:text-white">
           Clear this conversation?
         </p>
         <p
           id="clear-chat-description"
-          className="mt-1 text-xs text-black dark:text-gray-400"
+          className="mt-1 text-xs text-neutral-600 dark:text-neutral-400"
         >
           This action cannot be undone.
         </p>
@@ -42,14 +42,14 @@ export default function ClearChatDialog({
             type="button"
             onClick={onCancel}
             autoFocus
-            className="flex-1 rounded-full border border-black/10 py-2 text-xs font-medium text-black transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 dark:border-white/10 dark:text-gray-200 dark:hover:bg-white/10"
+            className="flex-1 rounded-full border border-neutral-300 py-2 text-xs font-medium text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onConfirm}
-            className="flex-1 rounded-full bg-red-600 py-2 text-xs font-medium text-white transition hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+            className="flex-1 rounded-full bg-neutral-900 py-2 text-xs font-medium text-white transition hover:bg-black focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
           >
             Clear Chat
           </button>

@@ -34,8 +34,8 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
           href={markdownLinkMatch[2]}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: '#3b82f6', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
-          className="hover:text-blue-700"
+          style={{ textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
+          className="text-neutral-900 dark:text-neutral-100 hover:opacity-75"
         >
           {markdownLinkMatch[1]}
         </a>
@@ -50,8 +50,8 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
           href={part}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: '#3b82f6', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
-          className="hover:text-blue-700"
+          style={{ textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
+          className="text-neutral-900 dark:text-neutral-100 hover:opacity-75"
         >
           {part}
         </a>
@@ -64,8 +64,8 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
         <a
           key={`${keyPrefix}-email-${i}`}
           href={`mailto:${part}`}
-          style={{ color: '#3b82f6', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
-          className="hover:text-blue-700"
+          style={{ textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
+          className="text-neutral-900 dark:text-neutral-100 hover:opacity-75"
         >
           {part}
         </a>

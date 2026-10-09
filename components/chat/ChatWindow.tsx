@@ -51,17 +51,17 @@ export default function ChatWindow({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.95 }}
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed bottom-[9.5rem] right-5 z-[70] flex h-[65vh] max-h-[560px] w-[calc(100vw-2.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-black/10 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-gray-900/80"
+      className="fixed bottom-[9.5rem] right-5 z-[70] flex h-[65vh] max-h-[560px] w-[calc(100vw-2.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/90 shadow-2xl backdrop-blur-xl dark:bg-[#121212]/95"
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-black/10 bg-white/70 px-4 py-3 backdrop-blur-md dark:border-white/10 dark:bg-[#192D3E]/70">
+      <div className="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 bg-white/70 px-4 py-3 backdrop-blur-md dark:bg-[#161616]/80">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white dark:bg-white dark:bg-opacity-10">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black">
             <HiOutlineSparkles className="text-base" />
           </span>
           <div>
-            <p className="text-sm font-semibold dark:text-white">AI Assistant</p>
-            <p className="text-xs text-black dark:text-gray-400">
+            <p className="text-sm font-semibold text-neutral-900 dark:text-white">AI Assistant</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400">
               Ask about Faliqul
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function ChatWindow({
               type="button"
               onClick={() => setConfirmingClear(true)}
               aria-label="Clear chat"
-              className="flex items-center gap-1 rounded-full px-2 py-1.5 text-xs font-medium text-black transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 dark:text-gray-300 dark:hover:bg-white/10 dark:focus-visible:ring-white/40"
+              className="flex items-center gap-1 rounded-full px-2 py-1.5 text-xs font-medium text-neutral-600 transition hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:text-neutral-300 dark:hover:bg-neutral-800"
             >
               <HiOutlineTrash className="text-base" />
               <span className="hidden sm:inline">Clear Chat</span>
@@ -82,7 +82,7 @@ export default function ChatWindow({
           <button
             onClick={onClose}
             aria-label="Tutup chat"
-            className="rounded-full p-1.5 text-black transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 dark:text-gray-300 dark:hover:bg-white/10 dark:focus-visible:ring-white/40"
+            className="rounded-full p-1.5 text-neutral-600 transition hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:text-neutral-300 dark:hover:bg-neutral-800"
           >
             <IoClose className="text-lg" />
           </button>
@@ -114,7 +114,7 @@ export default function ChatWindow({
                 <ChatMessage key={i} message={message} />
               ))}
               {/* Follow-up suggestions removed per user request */}
-              {error && <p className="text-xs text-red-500">{error}</p>}
+              {error && <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center">{error}</p>}
             </motion.div>
           )}
         </AnimatePresence>
@@ -129,7 +129,7 @@ export default function ChatWindow({
       {/* Input */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-2 border-t border-black/10 bg-white/70 p-3 backdrop-blur-md dark:border-white/10 dark:bg-[#192D3E]/70"
+        className="flex items-center gap-2 border-t border-neutral-200 dark:border-neutral-800 bg-white/70 p-3 backdrop-blur-md dark:bg-[#161616]/80"
       >
         <input
           value={input}
@@ -137,13 +137,13 @@ export default function ChatWindow({
           placeholder="Tulis pertanyaan..."
           aria-label="Tulis pertanyaan untuk AI Assistant"
           disabled={isLoading}
-          className="flex-1 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm outline-none transition focus:border-gray-400 disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-white"
+          className="flex-1 rounded-full border border-neutral-300 bg-white/60 px-4 py-2 text-sm text-neutral-900 outline-none transition focus:border-neutral-900 disabled:opacity-60 dark:border-neutral-700 dark:bg-white/5 dark:text-white dark:focus:border-white"
         />
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
           aria-label="Kirim pesan"
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gray-900 text-white transition-all hover:-translate-y-0.5 hover:shadow-md disabled:opacity-40 disabled:hover:-translate-y-0 disabled:hover:shadow-none dark:bg-white dark:bg-opacity-10"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white transition-all hover:-translate-y-0.5 hover:shadow-md disabled:opacity-40 disabled:hover:-translate-y-0 disabled:hover:shadow-none dark:bg-white dark:text-black"
         >
           <IoSend className="text-sm" />
         </button>

@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import SectionHeading from "./section-heading";
 import { skilss } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
 import Image from "next/image";
-import BurstBload2 from "./burst-bload-2";
 
 type MarqueeSkillRowProps = {
-  skills: typeof skilss;
+  skills: typeof skilss | (typeof skilss)[number][];
   direction: 1 | -1;
   speed?: number;
   offset?: number;
@@ -20,7 +17,7 @@ function AnimatedSkillIcon({ skill }: { skill: any }) {
   useEffect(() => {
     // Random delay awal agar tidak semua berjalan bersamaan
     const initialDelay = Math.random() * 5000;
-    
+
     const timeout = setTimeout(() => {
       // Loop pengecekan secara acak
       const interval = setInterval(() => {
@@ -48,11 +45,10 @@ function AnimatedSkillIcon({ skill }: { skill: any }) {
         quality={95}
         priority={true}
         draggable={false}
-        className={`w-6 sm:w-8 md:w-12 lg:w-16 xl:w-20 transition-all duration-1000 ${
-          isHighlighted
-            ? "grayscale-0 opacity-100 scale-110 drop-shadow-[0_0_12px_rgba(6,182,212,0.7)]"
+        className={`w-6 sm:w-8 md:w-12 lg:w-16 xl:w-20 transition-all duration-1000 ${isHighlighted
+            ? "grayscale-0 opacity-100 scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_12px_rgba(255,255,255,0.15)]"
             : "grayscale opacity-40 scale-100"
-        } hover:grayscale-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(6,182,212,0.5)] hover:duration-300`}
+          } hover:grayscale-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_4px_16px_rgba(0,0,0,0.2)] dark:hover:drop-shadow-[0_4px_16px_rgba(255,255,255,0.2)] hover:duration-300`}
       />
     </div>
   );
@@ -152,9 +148,8 @@ function MarqueeSkillRow({
   return (
     <div
       ref={containerRef}
-      className={`flex gap-8 md:gap-12 w-full overflow-x-hidden select-none no-scrollbar py-4 ${
-        isDragging ? "cursor-grabbing" : "cursor-grab"
-      }`}
+      className={`flex gap-8 md:gap-12 w-full overflow-x-hidden select-none no-scrollbar py-4 ${isDragging ? "cursor-grabbing" : "cursor-grab"
+        }`}
       onMouseDown={handlePointerDown}
       onMouseMove={handlePointerMove}
       onMouseUp={endDrag}
@@ -174,27 +169,31 @@ function MarqueeSkillRow({
   );
 }
 
-export default function Skills() {
-  const { ref } = useSectionInView("Skills");
+interface SkillsProps {
+  variant?: "full" | "preview";
+  previewCount?: number;
+}
+
+export default function Skills({
+  variant = "full",
+  previewCount = 16,
+}: SkillsProps = {}) {
+  const displaySkills =
+    variant === "preview" ? skilss.slice(0, previewCount) : skilss;
 
   return (
     <section
       id="skills"
-      ref={ref}
       className="w-full mb-28 sm:mb-32 lg:mb-40 xl:mb-48 overflow-hidden scroll-mt-28 text-center"
     >
-      <div className="flex justify-center items-center mb-10 gap-2">
-        <SectionHeading>Tech Stacks</SectionHeading>
-        <BurstBload2 />
-      </div>
-
       <div className="flex flex-col gap-6 mt-8">
         {/* Baris 1: Ke kiri */}
-        <MarqueeSkillRow skills={skilss} direction={1} speed={1.2} />
-        
+        <MarqueeSkillRow skills={displaySkills} direction={1} speed={1.2} />
+
         {/* Baris 2: Ke kanan */}
-        <MarqueeSkillRow skills={skilss} direction={-1} speed={1} offset={1} />
+        <MarqueeSkillRow skills={displaySkills} direction={-1} speed={1} offset={1} />
       </div>
+
     </section>
   );
 }

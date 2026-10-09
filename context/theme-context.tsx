@@ -39,13 +39,11 @@ export default function ThemeContextProvider({
       return;
     }
 
-    // Tentukan titik asal animasi berdasarkan posisi tombol
-    // Di mobile: pojok kiri atas. Di desktop (sm+): pojok kanan atas
-    const isMobile = window.innerWidth < 640;
-    const x = isMobile ? 48 : window.innerWidth - 48; // ~lokasi tombol
-    const y = 48;
+    // Titik asal animasi: Tengah atas di belakang navbar
+    const x = window.innerWidth / 2;
+    const y = 36; // Posisi vertikal navbar di bagian atas
 
-    // Hitung jarak maksimum dari titik ke pojok terjauh layar
+    // Hitung jarak maksimum dari titik (x, y) ke sudut terjauh layar (sudut bawah)
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
@@ -64,8 +62,8 @@ export default function ThemeContextProvider({
       document.documentElement.animate(
         { clipPath },
         {
-          duration: 600,
-          easing: "ease-in-out",
+          duration: 650,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
           pseudoElement: "::view-transition-new(root)",
         }
       );

@@ -23,16 +23,16 @@ export default function ThemeSwitch() {
         fixed top-[0.85rem] left-4 sm:top-6 sm:left-auto sm:right-8 z-[999]
         p-3 sm:p-0 sm:w-[3rem] sm:h-[3rem]
         rounded-full
-        bg-white/90 dark:bg-black/80
-        border border-brand-violet/30
-        text-[1.35rem] sm:text-base text-black dark:text-white
+        bg-white/90 dark:bg-neutral-900/90
+        border border-neutral-300 dark:border-neutral-700
+        text-[1.35rem] sm:text-base text-neutral-900 dark:text-neutral-100
         backdrop-blur-md
-        shadow-sm dark:shadow-glow-soft
+        shadow-sm
         flex items-center justify-center
         transition-all
-        hover:scale-105 sm:hover:scale-100 sm:hover:-translate-y-0.5 hover:shadow-glow-violet hover:border-brand-violet/60
+        hover:scale-105 sm:hover:scale-100 sm:hover:-translate-y-0.5 hover:border-neutral-500
         active:-translate-y-0
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2
       "
     >
       {theme === "light" ? <BsSun /> : <BsMoon />}

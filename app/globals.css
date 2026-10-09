@@ -3,41 +3,40 @@
 @tailwind utilities;
 
 /* ==================== VIEW TRANSITION — CIRCULAR THEME REVEAL ==================== */
-/* Nonaktifkan default cross-fade bawaan browser agar clip-path circle kita bekerja */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
-/* Pastikan snapshot lama tetap di bawah snapshot baru */
+
 ::view-transition-old(root) {
   z-index: 1;
 }
+
 ::view-transition-new(root) {
   z-index: 2;
 }
 
-/* ==================== BRAND PALETTE TOKENS ==================== */
+/* ==================== MONOCHROME PALETTE TOKENS ==================== */
 :root {
-  --brand-lavender: #E6FFFA;
-  --brand-blush:    #ECFDF5;
-  --brand-violet:   #06b6d4;
-  --brand-electric: #10b981;
-  --brand-deep:     #047857;
-  --brand-navy:     #082f49;
+  --brand-lavender: #f5f5f5;
+  --brand-blush: #fafafa;
+  --brand-violet: #737373;
+  --brand-electric: #a3a3a3;
+  --brand-deep: #404040;
+  --brand-navy: #171717;
 
-  --line-color: rgba(6, 182, 212, 0.15);
+  --line-color: rgba(0, 0, 0, 0.1);
 }
 
 html.dark {
-  --line-color: rgba(6, 182, 212, 0.2);
+  --line-color: rgba(255, 255, 255, 0.1);
 }
 
 /* ==================== UTILITY CLASSES ==================== */
 
-/* In light mode, just use black text. In dark mode, use gradient */
 .text-gradient {
-  color: #000000;
+  color: #171717;
   font-weight: bold;
 }
 
@@ -51,8 +50,6 @@ html.dark {
   width: fit-content;
   font-weight: 900;
   text-transform: uppercase;
-  /* paint-order: stroke fill → stroke digambar di BELAKANG fill,
-     mencegah garis stroke menyilang di dalam counter huruf (A, Q, B, dll) */
   paint-order: stroke fill;
   color: #0000;
   -webkit-text-stroke: 1.5px #000;
@@ -61,9 +58,18 @@ html.dark {
     radial-gradient(0.71em at 50% -0.5em, #0000 99%, #000 101%) 50% 1.5em / 2em 200% repeat-x text;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: 
+  animation:
     l10-0 0.8s linear infinite alternate,
     l10-1 4s linear infinite;
+}
+
+.dark .liquid-text-loader {
+  -webkit-text-stroke: 1.5px #fff;
+  background:
+    radial-gradient(0.71em at 50% 1em, #fff 99%, #0000 101%) calc(50% - 1em) 1em / 2em 200% repeat-x text,
+    radial-gradient(0.71em at 50% -0.5em, #0000 99%, #fff 101%) 50% 1.5em / 2em 200% repeat-x text;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 @keyframes l10-0 {
@@ -78,9 +84,8 @@ html.dark {
   }
 }
 
-/* Soft gradient text — lavender → violet → electric */
 .text-gradient-soft {
-  color: #000000;
+  color: #171717;
   font-weight: bold;
 }
 
@@ -89,66 +94,80 @@ html.dark {
   font-weight: bold;
 }
 
-/* Brand primary button */
+/* Monochrome Primary Button */
 .btn-brand {
-  background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
-  color: #fff;
-  transition: box-shadow 0.25s ease, transform 0.15s ease;
+  background: #171717;
+  color: #ffffff;
+  transition: all 0.25s ease;
 }
+
+.dark .btn-brand {
+  background: #ffffff;
+  color: #000000;
+}
+
 .btn-brand:hover {
-  box-shadow: 0 0 28px rgba(6, 182, 212, 0.5);
+  opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Brand glass card */
+.dark .btn-brand:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Monochrome Glass Card */
 .card-brand {
-  background: rgba(6, 182, 212, 0.05);
-  border: 1px solid rgba(6, 182, 212, 0.15);
+  background: #f7f7f7;
+  border: 1px solid #d4d4d4;
   backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
 }
+
+.dark .card-brand {
+  background: #151515;
+  border: 1px solid #2a2a2a;
+}
+
 .card-brand:hover {
-  border-color: rgba(6, 182, 212, 0.35);
-  box-shadow: 0 4px 32px rgba(6, 182, 212, 0.12);
+  border-color: #a3a3a3;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* Brand border */
+.dark .card-brand:hover {
+  border-color: #404040;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Monochrome Border */
 .border-brand {
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  border: 1px solid #d4d4d4;
 }
 
-/* Glow orb background decoration */
+.dark .border-brand {
+  border: 1px solid #2a2a2a;
+}
+
+/* Subtle Monochrome Glow Orbs */
 .glow-orb-violet {
-  background: radial-gradient(ellipse, rgba(6, 182, 212, 0.25), transparent 65%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-.glow-orb-electric {
-  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.2), transparent 65%);
-  filter: blur(40px);
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.05), transparent 65%);
+  filter: blur(60px);
   pointer-events: none;
 }
 
+.glow-orb-electric {
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.03), transparent 65%);
+  filter: blur(60px);
+  pointer-events: none;
+}
 
 .borderBlack {
-  @apply border border-black/10;
+  @apply border border-black/10 dark:border-white/10;
 }
 
-/* CSS */
 .blur-background {
-  backdrop-filter: blur(8px); /* Menambahkan efek blur pada latar belakang */
-  background: rgba(0, 0, 0, 0.5); /* Menambahkan latar belakang transparan */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000; /* Memastikan z-index lebih tinggi dari elemen lain */
-}
-
-/* CSS */
-.modal-overlay {
-  /* backdrop-filter: blur(1px);
-  background: rgba(0, 0, 0, 0.5); */
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   left: 0;
@@ -157,71 +176,91 @@ html.dark {
   z-index: 1000;
 }
 
-/* CSS */
-.image-modal-overlay {
-  backdrop-filter: blur(8px); /* Menambahkan efek blur pada latar belakang */
-  background: rgba(0, 0, 0, 0.5); /* Menambahkan latar belakang transparan */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1500; /* Memastikan z-index lebih tinggi dari elemen lain */
+  z-index: 1000;
 }
-/* ================= SCROLLBAR CERTIFICATE ================= */
+
+.image-modal-overlay {
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1500;
+}
+
+/* ================= SCROLLBAR ================= */
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 9999px;
 }
 
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 9999px;
   transition: 0.3s;
 }
 
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
 }
 
 /* FIREFOX */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25)
-    rgba(255, 255, 255, 0.05);
+  scrollbar-color: rgba(128, 128, 128, 0.3) transparent;
 }
 
-/* ================= HORIZONTAL PROJECT SCROLLER ================= */
-/* Hides the native scrollbar while keeping native scroll/swipe behavior */
+/* ================= HORIZONTAL SCROLLER ================= */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* ================= PROJECT MARQUEE (TWO ROWS) ================= */
-/* Track is duplicated content (2x the project list) sized to its content
-   via w-max. Animating exactly -50% moves it by precisely one full copy
-   of the list, so the loop restarts on an identical frame -> no visible jump. */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================= MARQUEE ================= */
 @keyframes marquee-left {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
 }
+
 @keyframes marquee-right {
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -229,7 +268,7 @@ html.dark {
 
 .marquee-row {
   width: 100%;
-  touch-action: pan-y; /* keep vertical page scroll usable on touch */
+  touch-action: pan-y;
 }
 
 .marquee-track {
@@ -241,27 +280,21 @@ html.dark {
   animation-name: marquee-right;
 }
 
-/* Pause only the row being hovered; the other row keeps moving */
 .marquee-row:hover .marquee-track {
   animation-play-state: paused;
 }
 
-/* Subtle left/right fade so cards appear to enter and leave naturally */
 .marquee-fade {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 6%,
-    black 94%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 6%,
-    black 94%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent);
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

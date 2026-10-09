@@ -1,13 +1,10 @@
 import About from "@/components/about";
-import Contact from "@/components/contact";
 import Experience from "@/components/experience";
 import Intro from "@/components/intro";
 import Skills from "@/components/skills";
 import ProjectSection from "@/components/project-section";
 import SectionDivider from "@/components/section-divider";
 import MaintenanceMode from "../components/MaintenanceMode";
-
-
 
 export default function Home() {
   const isMaintenanceMode = false;
@@ -21,19 +18,21 @@ export default function Home() {
       {/* ================= INTRO / HERO (FULL BLEED) ================= */}
       <Intro />
 
-      {/* ================= REST OF CONTENT (CONTAINER) ================= */}
+      {/* ================= ABOUT SECTION ================= */}
       <div className="relative w-[92vw] max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center">
         <SectionDivider />
 
-        <About />
+        <About variant="preview" />
+      </div>
 
-        <ProjectSection />
+      {/* ================= SELECTED WORKS (FULL BLEED) ================= */}
+      <ProjectSection variant="preview" previewLimit={4} />
 
-        <Skills />
+      {/* ================= REST OF CONTENT (CONTAINER) ================= */}
+      <div className="relative w-[92vw] max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center">
+        <Skills variant="preview" previewCount={16} />
 
-        <Experience />
-
-        <Contact />
+        <Experience variant="preview" />
       </div>
     </main>
   );

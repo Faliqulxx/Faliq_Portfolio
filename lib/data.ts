@@ -1,35 +1,28 @@
-// Icons will be mapped in components/experience.tsx
-import chatbotAiImg from "@/public/images/project/chatbot_ai/1.png";
-import dispartaImg from "@/public/images/Experience/disparta.png";
-import autogateImg from "@/public/images/project/autogate/1.png";
-import automationAiImg from "@/public/images/project/automation-ai/1.png";
-import hrtoolsImg from "@/public/images/project/hr-tools/1.png";
-
 // ─── NAVBAR LINKS ────────────────────────────────────────────────────────────
 export const links = [
   {
     name: "Home",
-    hash: "#home",
+    hash: "/",
   },
   {
     name: "About",
-    hash: "#about",
+    hash: "/about",
   },
   {
     name: "Projects",
-    hash: "#projects",
+    hash: "/projects",
   },
   {
-    name: "Skills",
-    hash: "#skills",
+    name: "Gallery",
+    hash: "/gallery",
   },
   {
     name: "Experience",
-    hash: "#experience",
+    hash: "/experience",
   },
   {
     name: "Contact",
-    hash: "#contact",
+    hash: "/contact",
   },
   {
     name: "AI Assistant",
@@ -44,7 +37,7 @@ export const personalData = {
   title: "Data Scientist & AI Automation Engineer",
   location: "Gresik, Indonesia",
   email: "faliqul.isback@gmail.com",
-  profileImage: "/images/profile2.png",
+  profileImage: "/images/profile.png",
   cvUrl: "/cv/RESUME_FALIQUL ISHBAH.pdf",
   bio: "Hello, I'm Faliq! My primary interests and expertise are in Data Science, supported by skills in Data Analysis, AI Automation, and Internet of Things (IoT). I have experience in data processing, data analysis, data visualization, and machine learning, transforming raw data into valuable insights using Python, Pandas, Scikit-learn, and SQL. In the field of AI Automation, I design and develop automated workflows using n8n, integrate RESTful APIs, and automate data pipelines to improve operational efficiency. I also have a strong interest and hands-on experience in developing IoT systems, sensor-based device monitoring, and implementing smart technologies for livestock farming and smart agriculture. My goal is to create impactful data-driven, AI-powered, and IoT-based solutions through innovative automation that delivers real-world value.",
   expertise: [
@@ -118,81 +111,150 @@ export const educationData = [
 
 export const certificatesData = [
   {
-    name: "Cisco Packet Tracer / Networking",
-    image: "/images/certificate/ciscop.jpg",
-    issuer: "Cisco",
+    name: "IT Support",
+    image: "/images/certificate/IT suport.png",
+    issuer: "Google / Coursera",
+    category: "Programming",
+    issued: "2025",
   },
   {
-    name: "Udemy Course Certificate #1",
-    image: "/images/certificate/udemy.jpg",
-    issuer: "Udemy",
+    name: "P2KK (Pembentukan Kepribadian dan Kepemimpinan)",
+    image: "/images/certificate/P2KK.png",
+    issuer: "Universitas Muhammadiyah Malang",
+    category: "Other",
+    issued: "2023",
   },
   {
-    name: "Udemy Course Certificate #2",
-    image: "/images/certificate/udemy1.jpg",
-    issuer: "Udemy",
+    name: "PMM (Pengabdian Masyarakat oleh Mahasiswa)",
+    image: "/images/certificate/PMM.png",
+    issuer: "DPPM UMM",
+    category: "Other",
+    issued: "2024",
   },
   {
-    name: "Dicoding Certificate #1",
+    name: "TAEP (Test of Academic English Proficiency)",
+    image: "/images/certificate/TAEP Certificate.png",
+    issuer: "Language Center UMM",
+    category: "Other",
+    issued: "2024",
+  },
+  {
+    name: "Belajar Machine Learning untuk Pemula",
     image: "/images/certificate/dicoding.jpg",
-    issuer: "Dicoding",
+    issuer: "Dicoding Indonesia",
+    category: "AI",
+    issued: "2025",
   },
   {
-    name: "Dicoding Certificate #2",
+    name: "Pengembangan Aplikasi Machine Learning",
     image: "/images/certificate/dicoding1.jpg",
-    issuer: "Dicoding",
+    issuer: "Dicoding Indonesia",
+    category: "AI",
+    issued: "2024",
   },
   {
-    name: "ITS Certificate",
-    image: "/images/certificate/its.png",
-    issuer: "Institut Teknologi Sepuluh Nopember (ITS)",
-  },
-  {
-    name: "Meta Certificate",
-    image: "/images/certificate/meta.png",
-    issuer: "Meta",
-  },
-  {
-    name: "Asean Data Science",
-    image: "/images/certificate/Asean Data Science.png",
-    issuer: "SAP Analytics Cloud",
+    name: "Google Data Analytics Professional Certificate",
+    image: "/images/certificate/Getting Started with Data.png",
+    issuer: "Google",
+    category: "Data",
+    issued: "2024",
   },
   {
     name: "Classifying Data Using IBM Granite",
     image: "/images/certificate/Classifying Data Using IBM Granite.png",
     issuer: "IBM SkillsBuild",
+    category: "AI",
+    issued: "2024",
   },
   {
-    name: "Getting Started with Data",
-    image: "/images/certificate/Getting Started with Data.png",
-    issuer: "IBM SkillsBuild",
+    name: "Asean Data Science Explorers",
+    image: "/images/certificate/Asean Data Science.png",
+    issuer: "SAP Analytics Cloud",
+    category: "Data",
+    issued: "2024",
+  },
+  {
+    name: "The Complete Web Development Bootcamp",
+    image: "/images/certificate/udemy.jpg",
+    issuer: "Udemy",
+    category: "Web",
+    issued: "2024",
+  },
+  {
+    name: "Building Interactive Web Apps",
+    image: "/images/certificate/udemy1.jpg",
+    issuer: "Udemy",
+    category: "Web",
+    issued: "2023",
+  },
+  {
+    name: "IoT Fundamentals & Networking",
+    image: "/images/certificate/ciscop.jpg",
+    issuer: "Cisco Networking Academy",
+    category: "Programming",
+    issued: "2023",
+  },
+  {
+    name: "Meta Front-End Developer Specialization",
+    image: "/images/certificate/meta.png",
+    issuer: "Meta",
+    category: "Web",
+    issued: "2023",
   },
 ] as const;
 
 export const galleryData = [
   {
-    src: "/images/gallery/1.png",
-    caption: "Gallery Photo 1",
+    src: "/images/gallery/G1.JPG",
+    caption: "Moments & Memories",
   },
   {
-    src: "/images/gallery/2.png",
-    caption: "Gallery Photo 2",
+    src: "/images/gallery/G2.JPG",
+    caption: "Campus & Activities",
   },
   {
-    src: "/images/gallery/3.jpg",
-    caption: "Gallery Photo 3",
+    src: "/images/gallery/G3.jpeg",
+    caption: "Team & Journey",
   },
   {
-    src: "/images/gallery/4.jpg",
-    caption: "Gallery Photo 4",
+    src: "/images/gallery/G4.jpeg",
+    caption: "Collaboration",
   },
   {
-    src: "/images/gallery/5.jpg",
-    caption: "Gallery Photo 5",
+    src: "/images/gallery/G5.jpg",
+    caption: "Learning & Growth",
   },
   {
-    src: "/images/gallery/6.jpg",
-    caption: "Gallery Photo 6",
+    src: "/images/gallery/K1.jpeg",
+    caption: "Community & Events",
+  },
+  {
+    src: "/images/gallery/P1.JPG",
+    caption: "Projects & Discussions",
+  },
+  {
+    src: "/images/gallery/P2.JPG",
+    caption: "Presentation & Work",
+  },
+  {
+    src: "/images/gallery/R1.jpeg",
+    caption: "Personal Journey",
+  },
+  {
+    src: "/images/gallery/R2.JPG",
+    caption: "Milestones",
+  },
+  {
+    src: "/images/gallery/Profil.jpg",
+    caption: "Profile Moment",
+  },
+  {
+    src: "/images/gallery/Profil1.png",
+    caption: "Workspace & Portrait",
+  },
+  {
+    src: "/images/gallery/gontor.jpeg",
+    caption: "Pondok Modern Gontor",
   },
 ] as const;
 
@@ -938,7 +1000,7 @@ export const experiencesData = [
       "Worked as an AI Automation Intern focusing on the development of an AI-based chatbot for the Informatics Study Program. Designed and implemented automated workflows, integrated APIs, and supported chatbot functionality to provide academic information and improve user interaction efficiency.",
     icon: "CgWorkAlt",
     date: "Jul 2025 - Present",
-    image: automationAiImg,
+    image: "/images/Experience/AI Automation Engineer/1.png",
   },
   {
     title: "Web Programmer (Intern)",
@@ -947,7 +1009,7 @@ export const experiencesData = [
       "Maintained and improved official websites for DISPARTA and OnTrip, including bug fixing, feature enhancements, performance optimization, and resolving user-reported issues. Collaborated with stakeholders to ensure system reliability, usability, and alignment with organizational requirements.",
     icon: "CgWorkAlt",
     date: "Jul 2025 - Aug 2025",
-    image: dispartaImg,
+    image: "/images/Experience/Web Programmer (Intern)/1.png",
   },
   {
     title: "Software Engineer (Freelance)",
@@ -956,16 +1018,16 @@ export const experiencesData = [
       "Worked as a freelance web developer supporting UMKM and small online businesses by developing, customizing, and maintaining websites and online stores. Handled feature implementation, bug fixing, UI improvements, and basic system optimization to ensure usability, reliability, and alignment with client requirements.",
     icon: "CgWorkAlt",
     date: "Mar 2022 - Dec 2022",
-    image: autogateImg,
+    image: "/images/Experience/Software Engineer/1.png",
   },
   {
-    title: "Data Scientist (Cooursework)",
-    location: "PT Time Excelindo",
+    title: "Data Scientist (Kampus Merdeka)",
+    location: "Telkom Indonesia",
     description:
       "Worked as a Data Scientist through the Kampus Merdeka program, focusing on data analysis and data-driven feature development for HR tools. Performed data processing, analysis, and visualization related to employee attendance, shift patterns, leave and overtime records, and employee performance assessments to support operational and decision-making processes.",
     icon: "CgWorkAlt",
-    date: "Aug 2021 - Feb 2022",
-    image: hrtoolsImg,
+    date: "Aug 2024 - Feb 2025",
+    image: "/images/Experience/Data Analyst/1.png",
   },
 ] as const;
 

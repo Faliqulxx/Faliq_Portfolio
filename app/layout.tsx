@@ -3,7 +3,6 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import ToasterProvider from "@/components/ToasterProvider";
 import { Analytics } from "@vercel/analytics/react";
@@ -11,6 +10,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import LoadingScreen from "@/components/loading/LoadingScreen";
 import { CVPreviewProvider } from "@/context/cv-preview-context";
 import CVPreviewModal from "@/components/cv/CVPreviewModal";
+import { LanguageProvider } from "@/context/language-context";
+import SoundEffectsProvider from "@/components/SoundEffectsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const baseUrlMeta = `${new URL("https://faliqulisback.my.id/")}`;
@@ -104,19 +105,21 @@ export default function RootLayout({
         </div>
 
         <LoadingScreen />
+        <SoundEffectsProvider />
 
         <ThemeContextProvider>
-          <CVPreviewProvider>
-            <ActiveSectionContextProvider>
-              <Header />
-              {children}
-              <Footer />
-              <CVPreviewModal />
+          <LanguageProvider>
+            <CVPreviewProvider>
+              <ActiveSectionContextProvider>
+                <Header />
+                {children}
+                <Footer />
+                <CVPreviewModal />
 
-              <ToasterProvider />
-              <ThemeSwitch />
-            </ActiveSectionContextProvider>
-          </CVPreviewProvider>
+                <ToasterProvider />
+              </ActiveSectionContextProvider>
+            </CVPreviewProvider>
+          </LanguageProvider>
         </ThemeContextProvider>
         <Analytics />
         <SpeedInsights />

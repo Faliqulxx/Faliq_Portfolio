@@ -7,6 +7,7 @@ import { FiMail, FiGithub, FiLinkedin, FiInstagram, FiFileText, FiArrowUp } from
 import Link from "next/link";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useCVPreview } from "@/context/cv-preview-context";
+import { useLanguage } from "@/context/language-context";
 
 const socialLinks = [
   { name: "Email", icon: <FiMail />, url: `mailto:${contactData.email}`, isResume: false },
@@ -30,6 +31,7 @@ export default function Footer() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const { openPreview } = useCVPreview();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +73,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-gray-50 dark:bg-black text-black dark:text-white border-t border-brand-violet/20 relative overflow-hidden">
+    <footer className="w-full bg-neutral-50 dark:bg-[#0a0a0a] text-neutral-900 dark:text-white border-t border-neutral-200 dark:border-neutral-800 relative overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -84,28 +86,27 @@ export default function Footer() {
 
           {/* Column 1: CTA */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left lg:pr-12">
-            <h2 className="text-3xl font-bold text-gradient">
-              Let's Create Something Amazing Together
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white">
+              {t("contact.subtitle")}
             </h2>
-            <p className="text-sm text-black dark:text-white/60 leading-relaxed">
-              I'm passionate about building impactful digital products, exploring AI, and solving AI-powered solutions. Whether you have a project, internship opportunity, freelance work, or simply want to connect, I'd love to hear from you.
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              {t("about.bio").slice(0, 180)}...
             </p>
             <Link
-              href="#contact"
+              href="/contact"
               onClick={() => {
                 setActiveSection("Contact");
                 setTimeOfLastClick(Date.now());
               }}
-              className="btn-brand group relative inline-flex items-center justify-center px-8 py-3 font-semibold rounded-full overflow-hidden w-full md:w-fit focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-violet focus:ring-offset-brand-navy"
+              className="group relative inline-flex items-center justify-center px-8 py-3 font-semibold rounded-full overflow-hidden w-full md:w-fit bg-neutral-900 text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-400"
             >
-              <span className="relative z-10">Contact Me</span>
-              <div className="absolute inset-0 h-full w-full bg-white/20 dark:bg-black/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out" />
+              <span className="relative z-10">{t("intro.contactMe")}</span>
             </Link>
           </motion.div>
 
           {/* Column 2: Quick Links */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left lg:pl-12">
-            <h3 className="text-xl font-bold text-black dark:text-white">Quick Links</h3>
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Quick Links</h3>
             <ul className="flex flex-col gap-3 items-center md:items-start">
               {links.map((link) => (
                 <li key={link.name}>
@@ -115,10 +116,10 @@ export default function Footer() {
                       setActiveSection(link.name);
                       setTimeOfLastClick(Date.now());
                     }}
-                    className="group relative text-black dark:text-white/50 hover:text-black dark:hover:text-white transition-colors duration-300 w-fit block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-violet rounded"
+                    className="group relative text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors duration-300 w-fit block focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded"
                   >
                     {link.name}
-                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-brand-violet transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-neutral-900 dark:bg-white transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -127,7 +128,7 @@ export default function Footer() {
 
           {/* Column 3: Connect */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left">
-            <h3 className="text-xl font-bold text-black dark:text-white">Connect</h3>
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Connect</h3>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               {socialLinks.map((social) =>
                 social.isResume ? (
@@ -142,12 +143,12 @@ export default function Footer() {
                     }
                     aria-label={social.name}
                     title={social.name}
-                    className="group relative flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-white/5 border border-brand-violet/20 text-black dark:text-white/50 rounded-full hover:bg-brand-violet/10 hover:text-black dark:hover:text-white hover:border-brand-violet/50 hover:shadow-glow-violet transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-violet"
+                    className="group relative flex items-center justify-center w-12 h-12 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-neutral-400"
                   >
                     <span className="text-xl">{social.icon}</span>
-                    <span className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform duration-200 bg-brand-violet text-white text-xs py-1 px-2 rounded font-medium shadow-lg pointer-events-none origin-bottom whitespace-nowrap z-10">
+                    <span className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform duration-200 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black text-xs py-1 px-2 rounded font-medium shadow-lg pointer-events-none origin-bottom whitespace-nowrap z-10">
                       {social.name}
-                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-brand-violet" />
+                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-neutral-900 dark:border-t-neutral-100" />
                     </span>
                   </button>
                 ) : (
@@ -158,12 +159,12 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     aria-label={social.name}
                     title={social.name}
-                    className="group relative flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-white/5 border border-brand-violet/20 text-black dark:text-white/50 rounded-full hover:bg-brand-violet/10 hover:text-black dark:hover:text-white hover:border-brand-violet/50 hover:shadow-glow-violet transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-violet"
+                    className="group relative flex items-center justify-center w-12 h-12 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-neutral-400"
                   >
                     <span className="text-xl">{social.icon}</span>
-                    <span className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform duration-200 bg-brand-violet text-white text-xs py-1 px-2 rounded font-medium shadow-lg pointer-events-none origin-bottom whitespace-nowrap z-10">
+                    <span className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform duration-200 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black text-xs py-1 px-2 rounded font-medium shadow-lg pointer-events-none origin-bottom whitespace-nowrap z-10">
                       {social.name}
-                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-brand-violet" />
+                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-neutral-900 dark:border-t-neutral-100" />
                     </span>
                   </a>
                 )
@@ -172,10 +173,10 @@ export default function Footer() {
 
             {/* MAP */}
             <div className="w-full mt-2">
-              <p className="mb-2 text-sm font-medium text-black dark:text-white/50">
+              <p className="mb-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
                 📍 Tegal sari, Pangkahkulon – Gresik, Jawa Timur
               </p>
-              <div className="w-full h-[180px] rounded-xl overflow-hidden border border-brand-violet/15">
+              <div className="w-full h-[180px] rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
                 <iframe
                   title="Google Maps Location"
                   src="https://www.google.com/maps?q=-6.913708,112.543351&z=16&output=embed"
@@ -191,11 +192,11 @@ export default function Footer() {
 
         {/* TECH STACK BADGES */}
         <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-12">
-          <span className="text-sm font-medium text-black dark:text-white/40 mr-2">Built with</span>
+          <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mr-2">{t("footer.builtWith")}</span>
           {techStack.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-xs font-medium bg-brand-violet/10 text-black dark:text-white rounded-full border border-brand-violet/20"
+              className="px-3 py-1 text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-full border border-neutral-200 dark:border-neutral-700"
             >
               {tech}
             </span>
@@ -203,10 +204,10 @@ export default function Footer() {
         </motion.div>
 
         {/* BOTTOM SECTION */}
-        <motion.div variants={itemVariants} className="flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 pt-8 border-t border-brand-violet/15 text-sm text-black dark:text-white/40">
-          <p>&copy; {currentYear} Faliqul Ishbah. All Rights Reserved.</p>
+        <motion.div variants={itemVariants} className="flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 pt-8 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400">
+          <p>&copy; {currentYear} Faliqul Ishbah. {t("footer.rights")}.</p>
           <p>
-            Designed with purpose. <span className="font-bold text-black dark:text-white animate-pulse inline-block">and</span> Built with precision.
+            Designed with purpose. <span className="font-bold text-neutral-900 dark:text-white inline-block">and</span> Built with precision.
           </p>
         </motion.div>
       </motion.div>
@@ -222,7 +223,7 @@ export default function Footer() {
             whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="fixed bottom-6 right-6 z-50 p-3 btn-brand rounded-full shadow-glow-violet hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-violet focus:ring-offset-brand-navy"
+            className="fixed bottom-6 right-6 z-50 p-3 bg-neutral-900 dark:bg-white text-white dark:text-black border border-neutral-800 dark:border-neutral-200 rounded-full shadow-lg hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neutral-400"
           >
             <FiArrowUp className="text-xl" />
           </motion.button>

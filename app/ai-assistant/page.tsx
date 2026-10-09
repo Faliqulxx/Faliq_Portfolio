@@ -7,43 +7,49 @@ import { IoSend, IoSparkles } from "react-icons/io5";
 import { useChat } from "@/components/chat/useChat";
 import ChatMessage from "@/components/chat/ChatMessage";
 import ClearChatDialog from "@/components/chat/ClearChatDialog";
+import PromptBar from "@/components/chat/PromptBar";
 import { useActiveSectionContext } from "@/context/active-section-context";
-
-const QUICK_PROMPTS = [
-  {
-    title: "Skills & Expertise",
-    description: "Ceritakan tentang dia dan keahlian yang dimilikinya",
-    icon: "⚡",
-  },
-  {
-    title: "Projects Overview",
-    description: "Apa saja proyek yang telah dibangun oleh nya",
-    icon: "🚀",
-  },
-  {
-    title: "AI & ML Experience",
-    description: "Jelaskan pengalaman nya di bidang Artificial Intelligence, Data Science, dan Machine Learning",
-    icon: "🧠",
-  },
-  {
-    title: "Tech Stack",
-    description: "Teknologi dan bahasa pemrograman apa saja yang dikuasai oleh nya?",
-    icon: "🛠️",
-  },
-  {
-    title: "Best Project",
-    description: "Tunjukkan dan jelaskan proyek terbaik yang pernah dibangun oleh nya?",
-    icon: "⭐",
-  },
-];
+import { useLanguage } from "@/context/language-context";
+import { useTheme } from "@/context/theme-context";
 
 export default function AIAssistantPage() {
+  const { t } = useLanguage();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const chat = useChat();
   const { messages, sendMessage, isLoading, error, resetChat } = chat;
   const [input, setInput] = useState("");
   const [confirmingClear, setConfirmingClear] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { setActiveSection } = useActiveSectionContext();
+
+  const quickPrompts = [
+    {
+      title: t("ai.prompt1.title"),
+      description: t("ai.prompt1.desc"),
+      icon: "⚡",
+    },
+    {
+      title: t("ai.prompt2.title"),
+      description: t("ai.prompt2.desc"),
+      icon: "🚀",
+    },
+    {
+      title: t("ai.prompt3.title"),
+      description: t("ai.prompt3.desc"),
+      icon: "🧠",
+    },
+    {
+      title: t("ai.prompt4.title"),
+      description: t("ai.prompt4.desc"),
+      icon: "🛠️",
+    },
+    {
+      title: t("ai.prompt5.title"),
+      description: t("ai.prompt5.desc"),
+      icon: "⭐",
+    },
+  ];
 
   useEffect(() => {
     setActiveSection("AI Assistant");
@@ -76,28 +82,26 @@ export default function AIAssistantPage() {
   const isEmpty = messages.length === 0;
 
   return (
-    <div className="fixed inset-0 top-0 sm:top-[5.5rem] pt-16 sm:pt-4 pb-4 px-4 sm:px-6 lg:px-8 flex flex-col items-center overflow-hidden z-[100] bg-gray-50 dark:bg-gray-950">
+    <div className="fixed inset-0 top-0 sm:top-[5.5rem] pt-16 sm:pt-4 pb-4 px-4 sm:px-6 lg:px-8 flex flex-col items-center overflow-hidden z-[100] bg-neutral-50 dark:bg-[#0a0a0a]">
       {/* DYNAMIC FIT CHAT CONTAINER */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full h-full max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-gray-900/60 backdrop-blur-xl shadow-2xl overflow-hidden"
+        className="w-full h-full max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl shadow-2xl overflow-hidden"
       >
         {/* TOP BAR */}
-        <div className="px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-white/10 bg-white/50 dark:bg-gray-900/50 flex items-center justify-between backdrop-blur-md flex-shrink-0">
+        <div className="px-4 sm:px-6 py-3 border-b border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-[#141414]/60 flex items-center justify-between backdrop-blur-md flex-shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-r from-[#06b6d4] to-[#10b981] p-0.5 shadow-md">
-              <div className="w-full h-full rounded-[14px] bg-white dark:bg-gray-950 flex items-center justify-center">
-                <IoSparkles className="text-[#06b6d4] text-base sm:text-lg" />
-              </div>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-neutral-900 text-white dark:bg-white dark:text-black p-0.5 shadow-md flex items-center justify-center">
+              <IoSparkles className="text-base sm:text-lg" />
             </div>
             <div>
-              <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                Faliqul AI Assistant
+              <h2 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+                {t("ai.title")}
               </h2>
-              <p className="text-[11px] sm:text-xs text-gray-500 dark:text-white/40">
-                Respon instan & akurat mengenai Portofolio
+              <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400">
+                {t("ai.subtitle")}
               </p>
             </div>
           </div>
@@ -107,10 +111,10 @@ export default function AIAssistantPage() {
               <button
                 type="button"
                 onClick={() => setConfirmingClear(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-white/10 text-xs font-medium text-gray-600 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer shadow-sm"
               >
-                <HiOutlineTrash className="text-sm text-red-500" />
-                <span className="hidden sm:inline">Bersihkan Chat</span>
+                <HiOutlineTrash className="text-sm text-neutral-600 dark:text-neutral-400" />
+                <span className="hidden sm:inline">{t("ai.clear")}</span>
               </button>
             )}
           </div>
@@ -128,38 +132,38 @@ export default function AIAssistantPage() {
               transition={{ duration: 0.3 }}
               className="h-full flex flex-col items-center justify-center text-center py-2"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-100 dark:border-cyan-500/20 flex items-center justify-center text-[#06b6d4] text-2xl mb-2 sm:mb-3 shadow-inner">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 flex items-center justify-center text-neutral-900 dark:text-white text-2xl mb-2 sm:mb-3 shadow-inner">
                 <HiOutlineLightBulb />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1">
-                Halo! Ada yang bisa saya bantu hari ini?
+              <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-1">
+                {t("ai.welcomeTitle")}
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-white/50 max-w-md mb-4 sm:mb-6">
-                Pilih topik di bawah ini atau tulis pertanyaan Anda sendiri tentang latar belakang, proyek, dan keahlian Faliqul.
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-md mb-4 sm:mb-6">
+                {t("ai.welcomeDesc")}
               </p>
 
               {/* QUICK PROMPTS GRID */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 w-full max-w-3xl">
-                {QUICK_PROMPTS.map((item, idx) => (
+                {quickPrompts.map((item, idx) => (
                   <motion.button
                     key={idx}
                     whileHover={{ y: -2, scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handlePromptSelect(item.description)}
-                    className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5 hover:bg-cyan-50/50 dark:hover:bg-cyan-500/10 hover:border-cyan-300 dark:hover:border-cyan-500/30 text-left transition-all group shadow-sm flex flex-col justify-between"
+                    className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-[#161616] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 text-left transition-all group shadow-sm flex flex-col justify-between"
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-xl sm:text-2xl">{item.icon}</span>
-                      <span className="text-[11px] font-semibold text-[#06b6d4] opacity-0 group-hover:opacity-100 transition-opacity">
-                        Tanyakan →
+                      <span className="text-[11px] font-semibold text-neutral-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                        {t("ai.askPrompt")}
                       </span>
                     </div>
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-0.5">
+                      <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white mb-0.5">
                         {item.title}
                       </h4>
-                      <p className="text-[11px] sm:text-xs text-gray-500 dark:text-white/50 line-clamp-2 leading-snug">
-                        "{item.description}"
+                      <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-snug">
+                        &ldquo;{item.description}&rdquo;
                       </p>
                     </div>
                   </motion.button>
@@ -172,7 +176,7 @@ export default function AIAssistantPage() {
                 <ChatMessage key={i} message={message} />
               ))}
               {error && (
-                <div className="p-3 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-xs text-red-600 dark:text-red-400 text-center">
+                <div className="p-3 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-xs text-neutral-900 dark:text-white text-center">
                   {error}
                 </div>
               )}
@@ -180,27 +184,24 @@ export default function AIAssistantPage() {
           )}
         </div>
 
-        {/* INPUT BAR */}
-        <div className="p-3 sm:p-4 border-t border-gray-100 dark:border-white/10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md flex-shrink-0">
-          <form
-            onSubmit={handleSubmit}
-            className="flex items-center gap-2.5 max-w-3xl mx-auto"
-          >
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ketik pertanyaan Anda tentang Faliqul..."
-              disabled={isLoading}
-              className="flex-1 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 outline-none transition focus:border-[#06b6d4] shadow-inner disabled:opacity-60"
-            />
-            <button
-              type="submit"
-              disabled={isLoading || !input.trim()}
-              className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#06b6d4] to-[#10b981] hover:opacity-90 text-white flex items-center justify-center transition-all shadow-md hover:shadow-lg disabled:opacity-40 disabled:hover:opacity-40 cursor-pointer flex-shrink-0"
-            >
-              <IoSend className="text-sm sm:text-base" />
-            </button>
-          </form>
+        {/* INPUT BAR (PROMPTBAR) */}
+        <div className="p-3 sm:p-4 border-t border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-[#141414]/80 backdrop-blur-md flex-shrink-0 flex items-center justify-center">
+          <PromptBar
+            placeholder={t("ai.inputPlaceholder")}
+            busy={isLoading}
+            onSend={(text) => {
+              if (text.trim() && !isLoading) {
+                sendMessage(text);
+              }
+            }}
+            background={isDark ? "#181818" : "#f4f4f4"}
+            color={isDark ? "#ffffff" : "#171717"}
+            menuBackground={isDark ? "#222222" : "#ffffff"}
+            sparkColor={isDark ? "#ffffff" : "#000000"}
+            width={768}
+            radius={18}
+            className="w-full max-w-3xl shadow-sm"
+          />
         </div>
       </motion.div>
 

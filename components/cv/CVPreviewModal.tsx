@@ -54,16 +54,16 @@ export default function CVPreviewModal() {
             className="fixed inset-0 z-[201] flex items-center justify-center p-4 sm:p-6 pointer-events-none"
           >
             <div
-              className="pointer-events-auto w-full max-w-4xl h-[90vh] flex flex-col bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-white/8 overflow-hidden"
+              className="pointer-events-auto w-full max-w-4xl h-[90vh] flex flex-col bg-white dark:bg-[#121212] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Top bar */}
-              <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 dark:border-white/8 bg-gray-50 dark:bg-gray-900 flex-shrink-0">
+              <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#161616] flex-shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                  <span className="ml-2 text-sm font-medium text-gray-600 dark:text-white/60 hidden sm:block">
+                  <div className="w-3 h-3 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                  <div className="w-3 h-3 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                  <div className="w-3 h-3 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                  <span className="ml-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hidden sm:block">
                     {title}
                   </span>
                 </div>
@@ -74,7 +74,7 @@ export default function CVPreviewModal() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Open in new tab"
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-600 dark:text-white/60 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
                   >
                     <FiExternalLink size={13} />
                     <span className="hidden sm:inline">Open</span>
@@ -82,7 +82,7 @@ export default function CVPreviewModal() {
                   <a
                     href={downloadUrl}
                     download
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#06b6d4] to-[#10b981] hover:opacity-90 text-white text-xs font-semibold transition-opacity shadow-sm"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 text-xs font-semibold transition-colors shadow-sm"
                   >
                     <FiDownload size={13} />
                     <span>Download</span>
@@ -90,7 +90,7 @@ export default function CVPreviewModal() {
                   <button
                     onClick={closePreview}
                     title="Close (Esc)"
-                    className="flex items-center justify-center w-8 h-8 rounded-lg text-gray-500 dark:text-white/50 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors ml-1"
+                    className="flex items-center justify-center w-8 h-8 rounded-lg text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors ml-1"
                   >
                     <FiX size={16} />
                   </button>
@@ -98,12 +98,12 @@ export default function CVPreviewModal() {
               </div>
 
               {/* PDF Viewer */}
-              <div className="flex-1 relative bg-gray-100 dark:bg-gray-950 overflow-hidden">
+              <div className="flex-1 relative bg-neutral-100 dark:bg-neutral-950 overflow-hidden">
                 {/* Loading skeleton */}
                 {!iframeLoaded && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10">
-                    <div className="w-10 h-10 rounded-full border-4 border-cyan-200 border-t-[#06b6d4] animate-spin" />
-                    <p className="text-sm text-gray-400 dark:text-white/40">Loading PDF...</p>
+                    <div className="w-10 h-10 rounded-full border-4 border-neutral-300 dark:border-neutral-700 border-t-neutral-900 dark:border-t-white animate-spin" />
+                    <p className="text-sm text-neutral-400 dark:text-neutral-500">Loading PDF...</p>
                   </div>
                 )}
 
