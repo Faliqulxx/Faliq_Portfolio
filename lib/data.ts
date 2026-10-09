@@ -229,6 +229,22 @@ export const galleryData = [
     caption: "Community & Events",
   },
   {
+    src: "/images/gallery/K2.webp",
+    caption: "Event Organizing & Campus Life",
+  },
+  {
+    src: "/images/gallery/K3.webp",
+    caption: "Workshop & Engagement",
+  },
+  {
+    src: "/images/gallery/K4.webp",
+    caption: "Campus Gathering",
+  },
+  {
+    src: "/images/gallery/K5.webp",
+    caption: "Social Activities",
+  },
+  {
     src: "/images/gallery/P1.webp",
     caption: "Projects & Discussions",
   },
@@ -237,12 +253,36 @@ export const galleryData = [
     caption: "Presentation & Work",
   },
   {
+    src: "/images/gallery/P3.webp",
+    caption: "Creative Production",
+  },
+  {
+    src: "/images/gallery/P4.webp",
+    caption: "Media & Documentation",
+  },
+  {
+    src: "/images/gallery/P5.webp",
+    caption: "Visual Storytelling",
+  },
+  {
+    src: "/images/gallery/P6.webp",
+    caption: "Broadcast & Tech Setup",
+  },
+  {
+    src: "/images/gallery/P7.webp",
+    caption: "Field Documentation",
+  },
+  {
     src: "/images/gallery/R1.webp",
     caption: "Personal Journey",
   },
   {
     src: "/images/gallery/R2.webp",
     caption: "Milestones",
+  },
+  {
+    src: "/images/gallery/R3.webp",
+    caption: "Achievement & Recognition",
   },
   {
     src: "/images/gallery/Profil.webp",

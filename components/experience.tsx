@@ -274,6 +274,8 @@ const EXPERIENCES: ExperienceItem[] = [
     image: "/images/Experience/Photo & Video Grapher/1.webp",
     images: [
       "/images/Experience/Photo & Video Grapher/1.webp",
+      "/images/Experience/Photo & Video Grapher/2.webp",
+      "/images/Experience/Photo & Video Grapher/3.webp",
     ],
     projectUrl: "/experience",
   },
