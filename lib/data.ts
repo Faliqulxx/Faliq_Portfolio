@@ -994,6 +994,15 @@ export const skilss = [
 // ─── EXPERIENCE ────────────────────────────────────────────────────────────
 export const experiencesData = [
   {
+    title: "Teaching Assistant, Information Systems",
+    location: "Universitas Muhammadiyah Malang (UMM)",
+    description:
+      "Supported lecturers and students in the Information Systems course, from preparing lab materials to guiding students through assignments and projects.",
+    icon: "CgWorkAlt",
+    date: "Jan 2026 - May 2026",
+    image: "/images/Experience/Teaching Assistant, Information Systems/1.jfif",
+  },
+  {
     title: "AI Automation  (Freelance)",
     location: "Gresik",
     description:
@@ -1012,6 +1021,15 @@ export const experiencesData = [
     image: "/images/Experience/Web Programmer (Intern)/1.png",
   },
   {
+    title: "Data Scientist (Kampus Merdeka)",
+    location: "Telkom Indonesia",
+    description:
+      "Worked as a Data Scientist through the Kampus Merdeka program, focusing on data analysis and data-driven feature development for HR tools. Performed data processing, analysis, and visualization related to employee attendance, shift patterns, leave and overtime records, and employee performance assessments to support operational and decision-making processes.",
+    icon: "CgWorkAlt",
+    date: "Aug 2024 - Feb 2025",
+    image: "/images/Experience/Data Analyst/1.png",
+  },
+  {
     title: "Software Engineer (Freelance)",
     location: "Gresik",
     description:
@@ -1021,13 +1039,22 @@ export const experiencesData = [
     image: "/images/Experience/Software Engineer/1.png",
   },
   {
-    title: "Data Scientist (Kampus Merdeka)",
-    location: "Telkom Indonesia",
+    title: "Photo & Video Grapher",
+    location: "Pondok Modern Darussalam Gontor",
     description:
-      "Worked as a Data Scientist through the Kampus Merdeka program, focusing on data analysis and data-driven feature development for HR tools. Performed data processing, analysis, and visualization related to employee attendance, shift patterns, leave and overtime records, and employee performance assessments to support operational and decision-making processes.",
+      "Documented campus life and official events at Pondok Modern Darussalam Gontor, from shooting and editing through to final delivery of photo and video content.",
     icon: "CgWorkAlt",
-    date: "Aug 2024 - Feb 2025",
-    image: "/images/Experience/Data Analyst/1.png",
+    date: "2020 - 2021",
+    image: "/images/Experience/Photo & Video Grapher/1.png",
+  },
+  {
+    title: "Building Secretary (Sekretaris Gedung)",
+    location: "Pondok Modern Darussalam Gontor",
+    description:
+      "Handled the administration of a student dormitory building, keeping records, correspondence, and daily coordination running smoothly.",
+    icon: "CgWorkAlt",
+    date: "2020",
+    image: "/images/Experience/Building Secretary/1.JPG",
   },
 ] as const;
 

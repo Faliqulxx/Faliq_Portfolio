@@ -26,6 +26,52 @@ interface ExperienceItem {
 
 const EXPERIENCES: ExperienceItem[] = [
   {
+    id: "teaching-assistant",
+    role: {
+      id: "Teaching Assistant, Information Systems",
+      en: "Teaching Assistant, Information Systems",
+    },
+    company: {
+      id: "Universitas Muhammadiyah Malang (UMM)",
+      en: "Universitas Muhammadiyah Malang (UMM)",
+    },
+    location: "Malang, Indonesia",
+    period: {
+      id: "Jan – Mei 2026",
+      en: "Jan – May 2026",
+    },
+    summary: {
+      id: "Mendukung dosen dan mahasiswa dalam mata kuliah Sistem Informasi, mulai dari penyiapan materi praktikum hingga bimbingan tugas dan proyek.",
+      en: "Supported lecturers and students in the Information Systems course, from preparing lab materials to guiding students through assignments and projects.",
+    },
+    points: {
+      id: [
+        "Mendampingi dosen dalam pelaksanaan perkuliahan dan sesi praktikum, termasuk persiapan materi serta aktivitas kelas.",
+        "Membimbing mahasiswa dalam pengerjaan tugas dan proyek, menjawab pertanyaan seputar konsep maupun praktik langsung.",
+        "Membantu penilaian tugas serta memberikan masukan agar pemahaman dan capaian mahasiswa meningkat.",
+      ],
+      en: [
+        "Assisted the lecturer in running lectures and practical sessions, including preparing materials and class activities.",
+        "Guided students through assignments and projects, answering questions on concepts and hands-on practice.",
+        "Helped assess coursework and give feedback so students could improve their understanding and results.",
+      ],
+    },
+    tags: [
+      "Teaching Assistant",
+      "Information Systems",
+      "Mentoring",
+      "Coursework Assessment",
+      "Technical Communication",
+    ],
+    image: "/images/Experience/Teaching Assistant, Information Systems/1.jfif",
+    images: [
+      "/images/Experience/Teaching Assistant, Information Systems/1.jfif",
+      "/images/Experience/Teaching Assistant, Information Systems/2.jfif",
+      "/images/Experience/Teaching Assistant, Information Systems/3.jpeg",
+    ],
+    projectUrl: "/experience",
+  },
+  {
     id: "ai-automation",
     role: {
       id: "AI Automation Engineer",
@@ -107,6 +153,46 @@ const EXPERIENCES: ExperienceItem[] = [
     projectUrl: "/projects",
   },
   {
+    id: "data-analyst",
+    role: {
+      id: "Data Analyst / Scientist",
+      en: "Data Analyst / Scientist",
+    },
+    company: {
+      id: "Telkom Indonesia",
+      en: "Telkom Indonesia",
+    },
+    location: "Yogyakarta, Indonesia",
+    period: {
+      id: "Agt 2024 – Feb 2025",
+      en: "Aug 2024 – Feb 2025",
+    },
+    summary: {
+      id: "Fokus pada analisis data dan pengembangan fitur data-driven untuk tool HR manajemen kinerja karyawan.",
+      en: "Focused on data analysis and data-driven feature development for enterprise HR attendance and performance tools.",
+    },
+    points: {
+      id: [
+        "Melakukan pengolahan, pembersihan data, dan analisis eksplorasi terhadap data absensi, pola shift, dan cuti karyawan.",
+        "Membangun visualisasi interaktif dan model prediksi performa untuk mendukung pengambilan keputusan operasional.",
+        "Menghasilkan dashboard insight berbasis Python dan SQL untuk optimasi efisiensi manajemen sumber daya manusia.",
+      ],
+      en: [
+        "Conducted exploratory data analysis and data preprocessing on employee attendance, shift patterns, and leave records.",
+        "Developed interactive visual dashboards and predictive models to assist operational workforce decision-making.",
+        "Automated reporting workflows using Python, Pandas, and SQL for actionable HR analytics.",
+      ],
+    },
+    tags: ["Python", "Pandas", "Scikit-learn", "SQL", "Data Analytics", "Streamlit"],
+    image: "/images/Experience/Data Analyst/1.png",
+    images: [
+      "/images/Experience/Data Analyst/1.png",
+      "/images/Experience/Data Analyst/2.png",
+      "/images/Experience/Data Analyst/3.jfif",
+    ],
+    projectUrl: "/projects",
+  },
+  {
     id: "software-engineer",
     role: {
       id: "Software Engineer / Web Dev",
@@ -147,44 +233,95 @@ const EXPERIENCES: ExperienceItem[] = [
     projectUrl: "/projects",
   },
   {
-    id: "data-analyst",
+    id: "photo-videographer",
     role: {
-      id: "Data Analyst / Scientist",
-      en: "Data Analyst / Scientist",
+      id: "Photo & Video Grapher",
+      en: "Photo & Video Grapher",
     },
     company: {
-      id: "Telkom Indonesia",
-      en: "Telkom Indonesia",
+      id: "Pondok Modern Darussalam Gontor",
+      en: "Pondok Modern Darussalam Gontor",
     },
-    location: "Yogyakarta, Indonesia",
+    location: "Ponorogo, Indonesia",
     period: {
-      id: "Agt 2024 – Feb 2025",
-      en: "Aug 2024 – Feb 2025",
+      id: "2020 – 2021",
+      en: "2020 – 2021",
     },
     summary: {
-      id: "Fokus pada analisis data dan pengembangan fitur data-driven untuk tool HR manajemen kinerja karyawan.",
-      en: "Focused on data analysis and data-driven feature development for enterprise HR attendance and performance tools.",
+      id: "Mendokumentasikan kehidupan kampus dan acara resmi di Pondok Modern Darussalam Gontor, mulai dari pengambilan gambar, editing, hingga publikasi konten foto dan video.",
+      en: "Documented campus life and official events at Pondok Modern Darussalam Gontor, from shooting and editing through to final delivery of photo and video content.",
     },
     points: {
       id: [
-        "Melakukan pengolahan, pembersihan data, dan analisis eksplorasi terhadap data absensi, pola shift, dan cuti karyawan.",
-        "Membangun visualisasi interaktif dan model prediksi performa untuk mendukung pengambilan keputusan operasional.",
-        "Menghasilkan dashboard insight berbasis Python dan SQL untuk optimasi efisiensi manajemen sumber daya manusia.",
+        "Mengambil foto dan video untuk aktivitas harian, upacara, dan acara-acara besar di seluruh kampus.",
+        "Mengedit serta melakukan color grading rekaman dan foto menjadi konten yang rapi untuk dokumentasi dan publikasi.",
+        "Mengelola arsip aset visual agar seluruh materi tersimpan rapi dan mudah ditemukan kembali.",
       ],
       en: [
-        "Conducted exploratory data analysis and data preprocessing on employee attendance, shift patterns, and leave records.",
-        "Developed interactive visual dashboards and predictive models to assist operational workforce decision-making.",
-        "Automated reporting workflows using Python, Pandas, and SQL for actionable HR analytics.",
+        "Captured photos and videos of daily activities, ceremonies, and major events across the campus.",
+        "Edited and color-graded footage and photos into polished content for documentation and publication.",
+        "Managed the archive of visual assets so material stayed organized and easy to retrieve.",
       ],
     },
-    tags: ["Python", "Pandas", "Scikit-learn", "SQL", "Data Analytics", "Streamlit"],
-    image: "/images/Experience/Data Analyst/1.png",
-    images: [
-      "/images/Experience/Data Analyst/1.png",
-      "/images/Experience/Data Analyst/2.png",
-      "/images/Experience/Data Analyst/3.jfif",
+    tags: [
+      "Photography",
+      "Videography",
+      "Video Editing",
+      "Color Grading",
+      "Documentation",
+      "Content Creation",
     ],
-    projectUrl: "/projects",
+    image: "/images/Experience/Photo & Video Grapher/1.png",
+    images: [
+      "/images/Experience/Photo & Video Grapher/1.png",
+    ],
+    projectUrl: "/experience",
+  },
+  {
+    id: "building-secretary",
+    role: {
+      id: "Building Secretary (Sekretaris Gedung)",
+      en: "Building Secretary (Sekretaris Gedung)",
+    },
+    company: {
+      id: "Pondok Modern Darussalam Gontor",
+      en: "Pondok Modern Darussalam Gontor",
+    },
+    location: "Ponorogo, Indonesia",
+    period: {
+      id: "2020",
+      en: "2020",
+    },
+    summary: {
+      id: "Menangani administrasi asrama santri/mahasiswa, memastikan pencatatan data, surat-menyurat, dan koordinasi harian berjalan lancar.",
+      en: "Handled the administration of a student dormitory building, keeping records, correspondence, and daily coordination running smoothly.",
+    },
+    points: {
+      id: [
+        "Mengelola administrasi gedung asrama, mencakup pendataan penghuni, absensi, serta laporan kegiatan.",
+        "Menyusun surat resmi, pengumuman, dan notula rapat bagi jajaran pimpinan asrama.",
+        "Berkoordinasi dengan ketua bagian dan organisasi santri untuk memastikan program serta jadwal terlaksana tepat waktu.",
+      ],
+      en: [
+        "Managed building administration, including residents’ data, attendance records, and activity reports.",
+        "Drafted official letters, announcements, and meeting minutes for the building’s leadership.",
+        "Coordinated with section heads and the student organization to keep programs and schedules on track.",
+      ],
+    },
+    tags: [
+      "Administration",
+      "Record Keeping",
+      "Correspondence",
+      "Coordination",
+      "Organization",
+      "Communication",
+    ],
+    image: "/images/Experience/Building Secretary/1.JPG",
+    images: [
+      "/images/Experience/Building Secretary/1.JPG",
+      "/images/Experience/Building Secretary/2.JPG",
+    ],
+    projectUrl: "/experience",
   },
 ];
 
@@ -233,9 +370,9 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
             </Link>
           </div>
 
-          {/* ── RIGHT COLUMN: EXPERIENCE LIST ── */}
+          {/* ── RIGHT COLUMN: EXPERIENCE LIST (TOP 3) ── */}
           <div className="flex flex-col border-t border-neutral-300 dark:border-neutral-800">
-            {EXPERIENCES.map((exp, idx) => {
+            {EXPERIENCES.slice(0, 3).map((exp, idx) => {
               const numberStr = String(idx + 1).padStart(2, "0");
               return (
                 <Link
@@ -493,7 +630,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
           {/* Col 1 */}
           <div className="flex flex-col items-center justify-center px-4 pt-2 md:pt-0">
             <span className="text-4xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1.5 tracking-tight">
-              4
+              7
             </span>
             <span className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
               {isIndo ? "Peran & proyek riwayat" : "Roles & projects"}
