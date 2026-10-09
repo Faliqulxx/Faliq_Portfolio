@@ -250,7 +250,7 @@ function AboutFullView({
         {/* Hero Background Mountain Asset */}
         <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
           <Image
-            src="/images/about/footer-mountain.jpg"
+            src="/images/about/footer-mountain.webp"
             alt="Mountain Journey"
             fill
             priority
@@ -315,7 +315,7 @@ function AboutFullView({
             >
               <div className="relative w-full max-w-lg aspect-[16/11] rounded-3xl overflow-hidden shadow-2xl border border-white/60 dark:border-neutral-800 group">
                 <Image
-                  src="/images/about/hero-mountain.jpeg"
+                  src="/images/about/hero-mountain.webp"
                   alt="Every journey starts somewhere"
                   fill
                   priority
@@ -480,7 +480,7 @@ function AboutFullView({
                 <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xl group">
                   <div className="relative aspect-[16/10] w-full">
                     <Image
-                      src="/images/about/gontor.jpeg"
+                      src="/images/about/gontor.webp"
                       alt="Pondok Modern Darussalam Gontor"
                       fill
                       sizes="(max-width: 1024px) 100vw, 500px"
@@ -574,7 +574,7 @@ function AboutFullView({
                 <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xl group">
                   <div className="relative aspect-[16/10] w-full">
                     <Image
-                      src="/images/about/mts.jpg"
+                      src="/images/about/mts.webp"
                       alt="MTs Islamiyah"
                       fill
                       sizes="(max-width: 1024px) 100vw, 500px"
@@ -589,7 +589,7 @@ function AboutFullView({
                 <div className="flex flex-col items-center justify-center gap-4">
                   <div className="w-16 h-16 rounded-2xl bg-white dark:bg-neutral-900 p-2 border border-neutral-200 dark:border-neutral-800 shadow-md flex items-center justify-center">
                     <Image
-                      src="/images/education/islamiyah.png"
+                      src="/images/education/islamiyah.webp"
                       alt="MTs Islamiyah"
                       width={52}
                       height={52}
@@ -615,7 +615,7 @@ function AboutFullView({
                 <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xl group">
                   <div className="relative aspect-[16/10] w-full">
                     <Image
-                      src="/images/about/mi.jpg"
+                      src="/images/about/mi.webp"
                       alt="MI Islamiyah"
                       fill
                       sizes="(max-width: 1024px) 100vw, 500px"
@@ -661,7 +661,7 @@ function AboutFullView({
                 <div className="flex flex-col items-center justify-center gap-4">
                   <div className="w-16 h-16 rounded-2xl bg-white dark:bg-neutral-900 p-2 border border-neutral-200 dark:border-neutral-800 shadow-md flex items-center justify-center">
                     <Image
-                      src="/images/education/islamiyah.png"
+                      src="/images/education/islamiyah.webp"
                       alt="MI Islamiyah"
                       width={52}
                       height={52}
@@ -683,7 +683,7 @@ function AboutFullView({
       <section className="relative w-full overflow-hidden py-24 sm:py-32 bg-black text-white">
         <div className="absolute inset-0 -z-10 overflow-hidden opacity-30 pointer-events-none grayscale">
           <Image
-            src="/images/about/footer-mountain.jpg"
+            src="/images/about/footer-mountain.webp"
             alt="Scenic Mountain Horizon"
             fill
             className="object-cover object-center"
@@ -883,7 +883,7 @@ export default function About({ variant = "full" }: AboutProps = {}) {
               className="relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#141414] min-h-[280px] lg:min-h-0 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300"
             >
               <Image
-                src="/images/gallery/Profil1.png"
+                src="/images/gallery/Profil1.webp"
                 alt={personalData.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 320px"

@@ -309,6 +309,8 @@ const DriftWall: React.FC<DriftWallProps> = ({
         <img
           src={item.image}
           alt={item.title ?? ""}
+          width={tileWidth}
+          height={tileHeight}
           loading="lazy"
           decoding="async"
           draggable={false}

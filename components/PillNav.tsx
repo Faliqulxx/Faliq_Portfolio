@@ -274,7 +274,14 @@ export default function PillNav({
             }}
           >
             {typeof logo === "string" ? (
-              <img src={logo} alt={logoAlt} ref={logoImgRef} />
+              <img
+                src={logo}
+                alt={logoAlt}
+                ref={logoImgRef}
+                width={28}
+                height={28}
+                loading="eager"
+              />
             ) : (
               logo
             )}

@@ -9,6 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
+import Image from "next/image";
 import SectionHeading from "./section-heading";
 import { useLanguage } from "@/context/language-context";
 import {
@@ -298,12 +299,17 @@ function MarqueeRow({
           style={{ cursor: isDragging ? "grabbing" : "pointer" }}
           className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] xl:w-[480px] 2xl:w-[560px] relative overflow-hidden rounded-2xl bg-white dark:bg-[#141414] backdrop-blur-md border border-neutral-200 dark:border-neutral-800 shadow-sm hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-xl transition-all"
         >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full aspect-video object-cover"
-            draggable={false}
-          />
+          <div className="relative w-full aspect-video overflow-hidden">
+            <Image
+              src={project.image.startsWith("/") ? project.image : `/${project.image}`}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 320px, 480px"
+              loading="lazy"
+              className="object-cover"
+              draggable={false}
+            />
+          </div>
           <div className="p-4">
             <h3 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-white">
               {project.title}
@@ -311,11 +317,14 @@ function MarqueeRow({
             <div className="flex justify-between items-end">
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech: string, techIndex: number) => (
-                  <img
+                  <Image
                     key={techIndex}
-                    src={tech}
+                    src={tech.startsWith("/") || tech.startsWith("http") ? tech : `/${tech}`}
                     alt={`Tech ${techIndex}`}
-                    className="h-6"
+                    width={24}
+                    height={24}
+                    loading="lazy"
+                    className="h-6 w-auto object-contain"
                     draggable={false}
                   />
                 ))}
@@ -658,10 +667,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                     >
                       {/* Top Preview Image */}
                       <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-neutral-100 dark:bg-black/40 border border-neutral-200 dark:border-neutral-800 mb-4">
-                        <img
-                          src={project.image}
+                        <Image
+                          src={project.image.startsWith("/") ? project.image : `/${project.image}`}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          loading="lazy"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
 
@@ -806,13 +818,16 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                       {/* RIGHT: screenshot */}
                       <div className="w-full lg:w-[48%] xl:w-[46%] flex-shrink-0">
                         <div
-                          className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 cursor-pointer group/img shadow-xl hover:shadow-2xl transition-all duration-500"
+                          className="relative aspect-video rounded-2xl sm:rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 cursor-pointer group/img shadow-xl hover:shadow-2xl transition-all duration-500"
                           onClick={() => handleProjectClick(rawProject)}
                         >
-                          <img
-                            src={project.image}
+                          <Image
+                            src={project.image.startsWith("/") ? project.image : `/${project.image}`}
                             alt={project.title}
-                            className="w-full aspect-video object-cover group-hover/img:scale-105 transition-transform duration-500"
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 600px"
+                            loading="lazy"
+                            className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                             <span className="opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-black text-white text-xs font-bold px-4 py-2 rounded-full shadow">
@@ -870,35 +885,35 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               {/* ── LEFT: Image Slider ── */}
               <div className="lg:w-1/2 flex flex-col bg-neutral-100 dark:bg-black/40">
                 <div className="relative w-full aspect-video overflow-hidden">
-                  <motion.img
+                  <Image
                     key={activeSlide}
-                    src={[
-                      activeProject.image,
-                      ...activeProject.screenshots,
-                    ][activeSlide]}
+                    src={(() => {
+                      const list = [activeProject.image, ...activeProject.screenshots];
+                      const s = list[activeSlide] || list[0];
+                      return s.startsWith("/") ? s : `/${s}`;
+                    })()}
                     alt={`slide-${activeSlide}`}
-                    className="w-full h-full object-cover"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25 }}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                    className="object-cover"
                   />
                   {[activeProject.image, ...activeProject.screenshots].length > 1 && (
                     <>
                       <button
                         onClick={() => setActiveSlide((p) => (p === 0 ? [activeProject.image, ...activeProject.screenshots].length - 1 : p - 1))}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
                       >
                         ‹
                       </button>
                       <button
                         onClick={() => setActiveSlide((p) => (p === [activeProject.image, ...activeProject.screenshots].length - 1 ? 0 : p + 1))}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
                       >
                         ›
                       </button>
                     </>
                   )}
-                  <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono">
+                  <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono z-10">
                     {activeSlide + 1} / {[activeProject.image, ...activeProject.screenshots].length}
                   </div>
                 </div>
@@ -908,13 +923,20 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                     <button
                       key={i}
                       onClick={() => setActiveSlide(i)}
-                      className={`flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
+                      className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
                         i === activeSlide
                           ? "border-neutral-900 dark:border-white"
                           : "border-transparent opacity-50 hover:opacity-100"
                       }`}
                     >
-                      <img src={src} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                      <Image
+                        src={src.startsWith("/") ? src : `/${src}`}
+                        alt={`thumb-${i}`}
+                        fill
+                        sizes="64px"
+                        loading="lazy"
+                        className="object-cover"
+                      />
                     </button>
                   ))}
                 </div>

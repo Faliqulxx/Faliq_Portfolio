@@ -77,10 +77,11 @@ export default function Intro() {
 
               {/* Profile photo */}
               <Image
-                src="/images/profile.png"
+                src="/images/profile.webp"
                 alt="Faliqul Ishbah"
                 width={256}
                 height={256}
+                priority
                 className="w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full object-cover border-[0.35rem] border-white shadow-lg dark:border-neutral-800 dark:shadow-none z-10 relative"
               />
             </div>

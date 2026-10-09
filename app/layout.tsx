@@ -63,15 +63,15 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: `${baseUrlMeta}images/profile_2.jpg`,
+        url: `${baseUrlMeta}images/profile_2.webp`,
         alt: "Faliqul Ishbah",
       },
       {
-        url: `${baseUrlMeta}images/project/cekresi/1.png`,
+        url: `${baseUrlMeta}images/project/cekresi/1.webp`,
         alt: "Portofolio Cek Resi CGN",
       },
       {
-        url: `${baseUrlMeta}images/project/ikanme/1.png`,
+        url: `${baseUrlMeta}images/project/ikanme/1.webp`,
         alt: "Portofolio Ikan Me",
       },
     ],
@@ -83,7 +83,7 @@ export const metadata = {
     title: "Faliqul Ishbah - Fullstack Engineer",
     type: "website",
     image: {
-      url: `${baseUrlMeta}images/profile_2.jpg`,
+      url: `${baseUrlMeta}images/profile_2.webp`,
       alt: "Faliqul Ishbah",
     },
   },
