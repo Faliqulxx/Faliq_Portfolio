@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -14,80 +15,63 @@ import { LanguageProvider } from "@/context/language-context";
 import SoundEffectsProvider from "@/components/SoundEffectsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
-const baseUrlMeta = `${new URL("https://faliqulisback.my.id/")}`;
-export const metadata = {
-  metadataBase: new URL("https://faliqulisback.my.id/"),
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://faliq-portfolio.vercel.app"),
   title: "Faliqul Ishbah | Portfolio",
   description:
-    "Faliqul Ishbah is a web developer with 2 years of experience.",
+    "Faliqul Ishbah is a Full-Stack Developer & AI Automation Engineer building modern, fast, and scalable digital solutions.",
   icons: {
     icon: "/favicon.svg?v=3",
     shortcut: "/favicon.svg?v=3",
     apple: "/favicon.svg?v=3",
   },
-  author: "Faliqul Ishbah",
-  subject: "Web Development",
-  copyright: "© Faliqul Ishbah",
+  authors: [{ name: "Faliqul Ishbah" }],
   keywords: [
     "Faliqul Ishbah",
+    "Portfolio",
+    "Full-Stack Developer",
+    "Software Engineer",
+    "AI Automation Engineer",
+    "Data Scientist",
     "Next.js",
     "React",
-    "JavaScript",
-    "Laravel",
-    "Codeigniter",
-    "PHP",
-    "HTML",
-    "Web developer",
-    "coding services",
-    "website development services",
-    "IT assignment services",
-    "Information Systems",
-    "Jasa buat website",
-    "joki tugas IT",
-    "Joki buat website",
-    "Joki Coding",
-    "Joki coding jogja",
-    "joki murah",
+    "TypeScript",
+    "Tailwind CSS",
+    "Python",
   ],
   generator: "Next.js",
-  applicationName: "Faliqul Ishbah | Portfolio",
+  applicationName: "Faliqul Ishbah Portfolio",
   referrer: "origin-when-cross-origin",
-  colorScheme: "dark",
   creator: "Faliqul Ishbah",
   publisher: "Faliqul Ishbah",
-  language: "id",
-  geo: {
-    country: "ID",
-    placename: "Gresik",
-  },
   openGraph: {
+    title: "Faliqul Ishbah | Portfolio",
+    description:
+      "Faliqul Ishbah is a Full-Stack Developer & AI Automation Engineer building modern, fast, and scalable digital solutions.",
+    url: "https://faliq-portfolio.vercel.app",
+    siteName: "Faliqul Ishbah Portfolio",
+    locale: "id_ID",
+    type: "website",
     images: [
       {
-        url: `${baseUrlMeta}images/profile_2.webp`,
-        alt: "Faliqul Ishbah",
-      },
-      {
-        url: `${baseUrlMeta}images/project/cekresi/1.webp`,
-        alt: "Portofolio Cek Resi CGN",
-      },
-      {
-        url: `${baseUrlMeta}images/project/ikanme/1.webp`,
-        alt: "Portofolio Ikan Me",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Faliq Portfolio",
       },
     ],
-    description:
-      "Faliqul Ishbah is a web developer with 2 years of experience.",
-    author: "Faliqul Ishbah",
   },
-  basic: {
-    title: "Faliqul Ishbah - Fullstack Engineer",
-    type: "website",
-    image: {
-      url: `${baseUrlMeta}images/profile_2.webp`,
-      alt: "Faliqul Ishbah",
-    },
+  twitter: {
+    card: "summary_large_image",
+    title: "Faliqul Ishbah | Portfolio",
+    description:
+      "Faliqul Ishbah is a Full-Stack Developer & AI Automation Engineer building modern, fast, and scalable digital solutions.",
+    images: ["/og-image.png"],
   },
 };
+
 export default function RootLayout({
   children,
 }: {
