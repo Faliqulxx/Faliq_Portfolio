@@ -12,6 +12,8 @@ import ScrollVelocity from "@/app/components/ScrollVelocity/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
 import TechText from "./TechText";
+import profileImg from "@/public/images/profile.webp";
+import WebThreads from "./WebThreads";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -23,10 +25,39 @@ export default function Intro() {
     <section
       id="home"
       ref={ref}
-      className="w-full mb-8 sm:mb-10 lg:mb-12 scroll-mt-[28rem]
-        min-h-[calc(100vh-2.5rem)] md:min-h-[calc(100vh-9rem)]
-        flex flex-col justify-between"
+      className="relative w-full mb-8 sm:mb-10 lg:mb-12 scroll-mt-[28rem]
+        -mt-10 md:-mt-36 pt-24 sm:pt-28 md:pt-36
+        min-h-screen
+        flex flex-col justify-between overflow-hidden"
     >
+      {/* ── BACKGROUND WEBTHREADS ── */}
+      <div className="absolute inset-0 -z-10 pointer-events-none opacity-90 dark:opacity-90">
+        <WebThreads
+          color1={isDark ? "#b2afc2" : "#64748b"}
+          color2={isDark ? "#94a3b8" : "#94a3b8"}
+          color3={isDark ? "#ffffff" : "#1e293b"}
+          speed={0.22}
+          threadCount={8}
+          frequency={3.6}
+          spread={0.65}
+          taper={1.8}
+          position={0.5}
+          fanMode="center"
+          glow={0.025}
+          falloff={0.55}
+          thickness={1.2}
+          brightness={isDark ? 0.65 : 0.55}
+          opacity={1.0}
+          mirror={true}
+          shimmer={true}
+          grain={true}
+          grainIntensity={0.05}
+          mouseInteraction={true}
+          mouseStrength={0.35}
+          lightMode={!isDark}
+          backgroundColor={isDark ? "#09090b" : "#ffffff"}
+        />
+      </div>
       {/* ── HERO CONTENT ── */}
       <div className="flex-1 flex items-center w-full px-4 sm:px-8 lg:px-12">
         <div className="w-full max-w-[1600px] mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16 text-center lg:text-left">
@@ -77,10 +108,8 @@ export default function Intro() {
 
               {/* Profile photo */}
               <Image
-                src="/images/profile.webp"
+                src={profileImg}
                 alt="Faliqul Ishbah"
-                width={256}
-                height={256}
                 priority
                 className="w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full object-cover border-[0.35rem] border-white shadow-lg dark:border-neutral-800 dark:shadow-none z-10 relative"
               />
