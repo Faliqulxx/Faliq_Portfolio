@@ -26,12 +26,12 @@ export default function Intro() {
       id="home"
       ref={ref}
       className="relative w-full mb-8 sm:mb-10 lg:mb-12 scroll-mt-[28rem]
-        -mt-10 md:-mt-36 pt-24 sm:pt-28 md:pt-36
         min-h-screen
-        flex flex-col justify-between overflow-hidden"
+        pt-24 sm:pt-28 md:pt-32
+        flex flex-col justify-between"
     >
       {/* ── BACKGROUND WEBTHREADS ── */}
-      <div className="absolute inset-0 -z-10 pointer-events-none opacity-90 dark:opacity-90">
+      <div className="absolute inset-0 -z-10 pointer-events-none w-full h-full opacity-90 dark:opacity-90">
         <WebThreads
           color1={isDark ? "#b2afc2" : "#64748b"}
           color2={isDark ? "#94a3b8" : "#94a3b8"}

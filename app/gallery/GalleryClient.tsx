@@ -35,7 +35,7 @@ export default function GalleryClient() {
   const isDark = theme === "dark";
 
   return (
-    <main className="relative w-full h-screen min-h-[700px] -mt-10 md:-mt-36 overflow-hidden select-none">
+    <main className="relative w-full h-screen min-h-[700px] overflow-hidden select-none">
       {/* ── Full-bleed Full-screen DriftWall Background (Starts at top: 0 behind Navbar) ── */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <DriftWall

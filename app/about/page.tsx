@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="relative flex flex-col items-center w-full min-h-screen -mt-10 md:-mt-36 overflow-x-hidden">
+    <main className="relative flex flex-col items-center w-full min-h-screen overflow-x-hidden">
       <About variant="full" />
     </main>
   );

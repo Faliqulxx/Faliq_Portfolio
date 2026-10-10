@@ -80,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth">
       <body
-        className={`${inter.className} bg-white dark:bg-black text-gray-900 dark:text-white relative pt-10 md:pt-36 transition-colors duration-300 overflow-x-hidden`}
+        className={`${inter.className} bg-white dark:bg-black text-gray-900 dark:text-white relative transition-colors duration-300 overflow-x-hidden`}
       >
         {/* Ambient background glow orbs — dark mode only */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden hidden dark:block">

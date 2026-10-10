@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="relative flex flex-col items-center w-full min-h-screen -mt-2 sm:-mt-6 md:-mt-8 pt-0 pb-16 overflow-x-hidden">
+    <main className="relative flex flex-col items-center w-full min-h-screen pt-24 sm:pt-28 md:pt-32 pb-16 overflow-x-hidden">
       <div className="relative w-[92vw] max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center">
         <ProjectSection variant="full" />
       </div>
