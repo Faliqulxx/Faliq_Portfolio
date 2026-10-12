@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { contactData, personalData, links } from "@/lib/data";
 import { FiMail, FiGithub, FiLinkedin, FiInstagram, FiFileText, FiArrowUp } from "react-icons/fi";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useCVPreview } from "@/context/cv-preview-context";
 import { useLanguage } from "@/context/language-context";
@@ -27,6 +28,7 @@ const techStack = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
@@ -44,6 +46,10 @@ export default function Footer() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname === "/ai-assistant") {
+    return null;
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

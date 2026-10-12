@@ -53,6 +53,7 @@ export default function AIAssistantPage() {
 
   useEffect(() => {
     setActiveSection("AI Assistant");
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [setActiveSection]);
 
   useEffect(() => {
@@ -82,13 +83,13 @@ export default function AIAssistantPage() {
   const isEmpty = messages.length === 0;
 
   return (
-    <div className="fixed inset-0 top-0 sm:top-[5.5rem] pt-16 sm:pt-4 pb-4 px-4 sm:px-6 lg:px-8 flex flex-col items-center overflow-hidden z-[100] bg-neutral-50 dark:bg-[#0a0a0a]">
+    <div className="relative min-h-screen w-full flex flex-col items-center pt-[100px] sm:pt-[110px] pb-4 sm:pb-6 px-3 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-[#0a0a0a] z-10 overflow-hidden">
       {/* DYNAMIC FIT CHAT CONTAINER */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full h-full max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl shadow-2xl overflow-hidden"
+        className="w-full h-[calc(100dvh-120px)] sm:h-[calc(100dvh-135px)] max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-xl shadow-2xl overflow-hidden"
       >
         {/* TOP BAR */}
         <div className="px-4 sm:px-6 py-3 border-b border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-[#141414]/60 flex items-center justify-between backdrop-blur-md flex-shrink-0">
