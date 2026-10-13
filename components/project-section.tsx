@@ -146,6 +146,9 @@ const getProjectBadges = (project: any, lang: "en" | "id" = "en") => {
   } else if (title.includes("signalhr")) {
     rawBadge = "AI PLATFORM";
     color = "blue";
+  } else if (title.includes("stickman") || title.includes("troll") || desc.includes("troll platformer")) {
+    rawBadge = "GAME DEV";
+    color = "purple";
   } else if (project.category?.includes("data")) {
     rawBadge = "DATA SCIENCE";
     color = "blue";

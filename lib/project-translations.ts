@@ -350,6 +350,26 @@ export const PROJECT_TRANSLATIONS: Record<string, ProjectTranslation> = {
       ],
     },
   },
+  "Stickman: The Trap Door": {
+    description: {
+      en: "Stickman: The Trap Door is an engaging 2D troll platformer web game built with TypeScript and HTML5 Canvas. Inspired by games like Cat Mario and Level Devil, players navigate treacherous levels packed with deceptive traps, disappearing floors, trick doors, and surprise spikes. The game features precision physics, custom avatar creation with camera photo crop, dynamic Web Audio sound synthesis, and local progress tracking.",
+      id: "Stickman: The Trap Door adalah game web 2D troll platformer interaktif berbasis TypeScript dan HTML5 Canvas. Terinspirasi dari game ala Cat Mario dan Level Devil, pemain mengendalikan stickman melewati berbagai level penuh jebakan licik seperti lantai runtuh, duri tersembunyi, pintu palsu yang kabur, hingga checkpoint menipu. Game ini dilengkapi fisika platformer yang adil, kustomisasi kepala stickman via kamera/foto, efek suara sintesis Web Audio API, serta penyimpanan progres lokal.",
+    },
+    features: {
+      en: [
+        "Troll Mechanics & Traps: Features challenging 2D platformer puzzles with sneaky surprises including pop-up spikes, crumbling tiles, collapsing floors, and deceptive exit doors.",
+        "Fair Platformer Physics: Implements responsive physics tuning with coyote time and jump buffering to keep movement and jumps feeling tight and fair.",
+        "Custom Stickman Head: Empowers players to customize their stickman avatar by taking a live webcam photo or uploading an image with automatic face cropping.",
+        "Procedural Web Audio & Storage: Synthesizes dynamic sound effects and death jingles natively via Web Audio API, with instant respawns and localStorage progress tracking.",
+      ],
+      id: [
+        "Mekanik & Jebakan Troll: Menyajikan teka-teki platformer 2D menantang dengan kejutan licik seperti duri tersembunyi, ubin runtuh, balok penghimpit, dan pintu keluar yang kabur.",
+        "Fisika Platformer Responsif: Mengimplementasikan kontrol pergerakan presisi yang dilengkapi coyote time dan jump buffering agar gameplay tetap adil dan nyaman dikendalikan.",
+        "Kustomisasi Kepala Stickman: Memungkinkan pemain mengubah wajah stickman menggunakan foto selfie kamera (webcam) langsung atau unggahan file dengan fitur pemotongan (crop) wajah.",
+        "Audio Prosedural & Penyimpanan Lokal: Menghasilkan efek suara interaktif secara langsung melalui Web Audio API, fitur respawn instan, serta pencatatan skor kematian via localStorage.",
+      ],
+    },
+  },
 };
 
 export const SUBCATEGORY_TRANSLATIONS: Record<string, { en: string; id: string }> = {
@@ -377,6 +397,7 @@ export const BADGE_TRANSLATIONS: Record<string, { en: string; id: string }> = {
   "DATA SCIENCE": { en: "DATA SCIENCE", id: "SAINS DATA" },
   "AI PLATFORM": { en: "AI PLATFORM", id: "PLATFORM AI" },
   "WEB DEV": { en: "WEB DEV", id: "PENGEMBANGAN WEB" },
+  "GAME DEV": { en: "GAME DEV", id: "GAME DEV" },
 };
 
 export function getTranslatedProject(project: any, language: "en" | "id") {

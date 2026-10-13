@@ -939,6 +939,41 @@ export const projectsData = [
       "Recharts",
     ],
   },
+  {
+    title: "Stickman: The Trap Door",
+    category: ["web"],
+    description:
+      "Stickman: The Trap Door is an engaging 2D troll platformer web game built with TypeScript and HTML5 Canvas. Inspired by games like Cat Mario and Level Devil, players navigate treacherous levels packed with deceptive traps, disappearing floors, trick doors, and surprise spikes. The game features precision physics, custom avatar creation with camera photo crop, dynamic Web Audio sound synthesis, and local progress tracking.",
+    image: "images/project/stikman2D/2.webp",
+    screenshots: [
+      "images/project/stikman2D/1.webp",
+      "images/project/stikman2D/3.webp",
+      "images/project/stikman2D/4.webp",
+    ],
+    tech: [
+      "/images/icon/typescript.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+      "/images/icon/javascript.svg",
+      "/images/icon/antigravity.svg",
+    ],
+    demoUrl: "https://trollgame-nu.vercel.app/",
+    githubUrl: "https://github.com/Faliqulxx/Trollgame",
+    features: [
+      "Troll Mechanics & Traps: Features challenging 2D platformer puzzles with sneaky surprises including pop-up spikes, crumbling tiles, collapsing floors, and deceptive exit doors.",
+      "Fair Platformer Physics: Implements responsive physics tuning with coyote time and jump buffering to keep movement and jumps feeling tight and fair.",
+      "Custom Stickman Head: Empowers players to customize their stickman avatar by taking a live webcam photo or uploading an image with automatic face cropping.",
+      "Procedural Web Audio & Storage: Synthesizes dynamic sound effects and death jingles natively via Web Audio API, with instant respawns and localStorage progress tracking.",
+    ],
+    languages: [
+      "TypeScript",
+      "HTML5 Canvas",
+      "Vite",
+      "Web Audio API",
+      "Antigravity",
+      "Game Dev",
+    ],
+  },
 ] as const;
 
 // ─── SKILLS ────────────────────────────────────────────────────────────────
