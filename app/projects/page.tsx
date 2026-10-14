@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectSection from "@/components/project-section";
+import ProjectSection from "@/components/sections/project-section";
 
 export const metadata = {
   title: "Projects | Faliqul Ishbah",

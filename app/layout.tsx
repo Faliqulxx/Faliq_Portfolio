@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import Header from "@/components/header";
+import Header from "@/components/layout/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
-import Footer from "@/components/footer";
+import Footer from "@/components/layout/footer";
 import ThemeContextProvider from "@/context/theme-context";
-import ToasterProvider from "@/components/ToasterProvider";
+import ToasterProvider from "@/components/providers/ToasterProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import LoadingScreen from "@/components/loading/LoadingScreen";
 import { CVPreviewProvider } from "@/context/cv-preview-context";
 import CVPreviewModal from "@/components/cv/CVPreviewModal";
 import { LanguageProvider } from "@/context/language-context";
-import SoundEffectsProvider from "@/components/SoundEffectsProvider";
+import SoundEffectsProvider from "@/components/providers/SoundEffectsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

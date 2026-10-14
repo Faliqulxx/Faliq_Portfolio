@@ -1,5 +1,5 @@
 import React from "react";
-import Experience from "@/components/experience";
+import Experience from "@/components/sections/experience";
 
 export const metadata = {
   title: "Experience | Faliqul Ishbah",

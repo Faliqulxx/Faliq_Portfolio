@@ -4,6 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineTrash, HiOutlineLightBulb } from "react-icons/hi";
 import { IoSend, IoSparkles } from "react-icons/io5";
+import {
+  BsLightningCharge,
+  BsRocketTakeoff,
+  BsCpu,
+  BsTools,
+  BsStar,
+} from "react-icons/bs";
 import { useChat } from "@/components/chat/useChat";
 import ChatMessage from "@/components/chat/ChatMessage";
 import ClearChatDialog from "@/components/chat/ClearChatDialog";
@@ -23,31 +30,35 @@ export default function AIAssistantPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { setActiveSection } = useActiveSectionContext();
 
-  const quickPrompts = [
+  const quickPrompts: {
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+  }[] = [
     {
       title: t("ai.prompt1.title"),
       description: t("ai.prompt1.desc"),
-      icon: "⚡",
+      icon: <BsLightningCharge />,
     },
     {
       title: t("ai.prompt2.title"),
       description: t("ai.prompt2.desc"),
-      icon: "🚀",
+      icon: <BsRocketTakeoff />,
     },
     {
       title: t("ai.prompt3.title"),
       description: t("ai.prompt3.desc"),
-      icon: "🧠",
+      icon: <BsCpu />,
     },
     {
       title: t("ai.prompt4.title"),
       description: t("ai.prompt4.desc"),
-      icon: "🛠️",
+      icon: <BsTools />,
     },
     {
       title: t("ai.prompt5.title"),
       description: t("ai.prompt5.desc"),
-      icon: "⭐",
+      icon: <BsStar />,
     },
   ];
 
@@ -155,8 +166,10 @@ export default function AIAssistantPage() {
                       idx === 4 ? "col-span-2 lg:col-span-1" : ""
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                      <span className="text-base sm:text-2xl">{item.icon}</span>
+                    <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200/80 dark:border-neutral-700/60 flex items-center justify-center text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm group-hover:scale-105 transition-transform shrink-0">
+                        {item.icon}
+                      </div>
                       <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity font-mono">
                         {t("ai.askPrompt")}
                       </span>

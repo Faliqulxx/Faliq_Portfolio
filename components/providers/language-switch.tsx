@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
-import SquishSwitch from "./SquishSwitch";
+import SquishSwitch from "@/components/ui/SquishSwitch";
 
 export default function LanguageSwitch() {
   const { language, setLanguage } = useLanguage();
@@ -29,7 +29,7 @@ export default function LanguageSwitch() {
     >
       <SquishSwitch
         checked={isId}
-        onChange={(checked) => setLanguage(checked ? "id" : "en")}
+        onChange={(checked: boolean) => setLanguage(checked ? "id" : "en")}
         ariaLabel="Toggle language between US and ID"
         leftLabel="US"
         rightLabel="ID"

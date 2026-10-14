@@ -1,5 +1,5 @@
 import React from "react";
-import About from "@/components/about";
+import About from "@/components/sections/about";
 
 export const metadata = {
   title: "About | Faliqul Ishbah",

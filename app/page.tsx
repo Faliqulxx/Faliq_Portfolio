@@ -1,10 +1,10 @@
-import About from "@/components/about";
-import Experience from "@/components/experience";
-import Intro from "@/components/intro";
-import Skills from "@/components/skills";
-import ProjectSection from "@/components/project-section";
-import SectionDivider from "@/components/section-divider";
-import MaintenanceMode from "../components/MaintenanceMode";
+import About from "@/components/sections/about";
+import Experience from "@/components/sections/experience";
+import Intro from "@/components/sections/intro";
+import Skills from "@/components/sections/skills";
+import ProjectSection from "@/components/sections/project-section";
+import SectionDivider from "@/components/ui/section-divider";
+import MaintenanceMode from "@/components/providers/MaintenanceMode";
 
 export default function Home() {
   const isMaintenanceMode = false;

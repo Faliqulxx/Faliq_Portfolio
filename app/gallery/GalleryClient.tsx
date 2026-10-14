@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@/context/theme-context";
-import DriftWall, { DriftWallItem } from "@/components/DriftWall";
+import DriftWall, { DriftWallItem } from "@/components/ui/DriftWall";
 
 const galleryItems: DriftWallItem[] = [
   { image: "/images/gallery/G1.webp", title: "Moments & Memories" },
