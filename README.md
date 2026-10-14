@@ -2,95 +2,168 @@
   
   # 🚀 Faliqul Ishbah - Personal Portfolio
   
-  **AI Engineer • Data Scientist • AI Automation Developer • Web Developer**
+  **AI Automation Engineer • Data Scientist • Fullstack & Frontend Web Developer**
   
-  [![Website](https://img.shields.io/badge/Website-faliq--portfolio.vercel.app-blue?style=for-the-badge&logo=vercel)](https://faliq-portfolio.vercel.app/)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Faliqul_Ishbah-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/faliqul-ishbah/)
+  [![Website](https://img.shields.io/badge/Website-faliq--portfolio.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://faliq-portfolio.vercel.app/)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Faliqul_Ishbah-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/faliqul-ishbah/)
+  [![GitHub](https://img.shields.io/badge/GitHub-Faliqulxx-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Faliqulxx)
   
-  *A digital representation of my professional journey, projects, and expertise.*
+  *A modern, interactive, and high-performance digital portfolio showcasing projects, professional journey, certifications, and AI innovations.*
 </div>
 
 ---
 
-## 📖 About This Project
+## 📖 Overview
 
-Welcome to my personal web portfolio! This repository contains the source code for my portfolio website, designed to showcase my experience, projects, and skills to recruiters, collaborators, and visitors. 
+Welcome to my personal web portfolio! This website is engineered from the ground up to showcase my work in **Artificial Intelligence, Data Science, AI Automation (n8n), and Modern Web Development**.
 
-Built with **User Experience (UX)**, **performance**, and a **minimalist design** in mind, it provides a seamless and interactive experience across both desktop and mobile devices.
+Designed with **performance, accessibility, fluid micro-interactions**, and a **sleek dark/light aesthetic**, this portfolio delivers a fast and memorable experience on both desktop and mobile devices.
 
 ---
 
-## ✨ Key Features
+## ✨ Key Features & Highlights
 
-- **👋 Hero Section**: A brief introduction, my current focus areas, and quick access to my CV and contact info.
-- **👨‍💻 About Me**: Insights into my background, interests, and professional journey.
-- **💼 Experience Timeline**: A structured timeline detailing my internships, organizational roles, and professional career.
-- **🚀 Project Showcase**: A display of my notable projects, complete with tech stacks, descriptions, and links (GitHub/Demo).
-- **🧠 Skills Breakdown**: Categorized expertise across Programming Languages, Frameworks, AI/Data Science, and Tools.
-- **🤖 AI Assistant (New!)**: An integrated AI chatbot powered by Google Gemini to answer questions about my portfolio interactively.
-- **📬 Contact & Socials**: An integrated contact form using Resend API and links to my professional networks.
+### 1. 🌐 Bi-Lingual Support (EN & ID)
+- Seamless real-time language switching between **English** and **Bahasa Indonesia** without page reloads.
+- Full localization across all sections: Hero, About, Projects, Gallery, Experience, and AI Assistant.
 
-### 🎨 Modern UX/UI Highlights
-- 📱 Fully Responsive & Mobile Friendly
-- 🌙 Dark Mode / Light Mode Support
-- ✨ Smooth Scrolling & Framer Motion Animations
+### 2. 🤖 Interactive AI Assistant (`/ai-assistant`)
+- Custom AI chatbot powered by the **Google Gemini API** (`@google/generative-ai`).
+- Smart pre-built query templates with intelligent fallback responses.
+- Quick prompt buttons with clean monochrome flat icons and Markdown rendering (code blocks, bullet points, formatting).
+
+### 3. 🚀 Dynamic Projects Showcase (`/projects`)
+- Categorized switcher: **General Dev** (Web, Full Stack, Frontend/Backend, IoT) and **Data Science** (Analytics, Visualization, AI/ML, Computer Vision).
+- Multi-faceted filter system: Subcategory pills, full-text live search, and sorting (Pinned, Featured, Newest, Oldest, Title A-Z).
+- Rich project detail modals with image carousels, live demo links, and GitHub repositories.
+
+### 4. 📜 Certificates & Credentials
+- Interactive horizontal carousel showcasing certified achievements (Dicoding, Coursera, IBM, etc.).
+- Direct credential verification links and preview modals.
+
+### 5. 💼 Experience Timeline (`/experience`)
+- Interactive vertical timeline covering freelance roles, internships, and educational milestones.
+- Real-time active status indicator (**Live** pulsing badge) for ongoing roles.
+
+### 6. 📸 Gallery Showcase (`/gallery`)
+- Interactive cards featuring campus leadership, hackathons, IoT prototyping, and event documentation.
+
+### 7. 🎨 Micro-Interactions & UX Polish
+- **Smart Session Intro**: Introductory animation plays strictly on the first visit per session using `sessionStorage`, keeping subsequent navigation instant and seamless.
+- **Theme Switching**: Dark / Light mode toggle with smooth color transitions.
+- **Sound Effects**: Optional interactive audio feedback for clicks and switches.
+- **Responsive Navigation**: Adaptive pill navigation bar with active section highlight.
 
 ---
 
 ## 🛠️ Tech Stack
 
-This project is built using modern web development technologies:
-
-### **Frontend**
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-
-### **Backend & APIs**
-![Next.js Server Actions](https://img.shields.io/badge/Server_Actions-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![Google Gemini API](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white)
-![Resend](https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=minutemailer&logoColor=white)
-
-### **Deployment**
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+| Domain | Technologies |
+| :--- | :--- |
+| **Framework & Runtime** | [Next.js 13](https://nextjs.org/) (App Router), [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/) |
+| **Styling & Design** | [Tailwind CSS](https://tailwindcss.com/), Vanilla CSS Modules, CSS Variables |
+| **Animations & 3D** | [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/), [Three.js](https://threejs.org/) / [React Three Fiber](https://r3f.docs.pmnd.rs/) |
+| **AI Integration** | [Google Generative AI SDK](https://www.npmjs.com/package/@google/generative-ai) (Gemini Models) |
+| **Email Service** | [Resend](https://resend.com/) & [React Email](https://react.email/) |
+| **Icons** | [React Icons](https://react-icons.github.io/react-icons/) (Bootstrap, FontAwesome, Feather, Heroicons) |
+| **Deployment & Hosting** | [Vercel](https://vercel.com/) with Speed Insights and Analytics |
 
 ---
 
-## 🚀 Future Roadmap
+## 📂 Project Structure
 
-I am continuously improving this portfolio. Here are some features planned for future releases:
+The project has been organized into modular, maintainable directories:
 
-- [x] 🤖 **AI Portfolio Assistant** (Integrated with Google Gemini)
-- [x] 📄 **Interactive CV Integration**
-- [ ] 🎓 **Thesis / Academic Papers Showcase**
-- [ ] 📜 **Dedicated Certificates Page**
-- [ ] 📝 **Tech Blog Section**
-- [ ] 🌍 **Multi-language Support (ID & EN)**
+```text
+Portfolio_v1/
+├── app/                      # Next.js App Router pages
+│   ├── about/                # About page
+│   ├── ai-assistant/         # AI Assistant Chat page
+│   ├── contact/              # Contact page
+│   ├── experience/           # Professional experience page
+│   ├── gallery/              # Gallery page
+│   ├── projects/             # Projects directory & showcase
+│   ├── skills/               # Skills breakdown page
+│   ├── layout.tsx            # Root layout & providers
+│   └── page.tsx              # Home page
+├── components/               # Modular UI components
+│   ├── chat/                 # Chat interface, prompt bar & templates
+│   ├── cv/                   # Interactive CV dialogs & viewer
+│   ├── layout/               # Header, Footer, PillNav
+│   ├── loading/              # First-session intro animation
+│   ├── providers/            # Theme, Language, Sound, Toaster providers
+│   ├── sections/             # Intro, About, Projects, Experience, Contact
+│   └── ui/                   # Reusable buttons, badges, headings, animations
+├── context/                  # React Contexts (Language, Theme, ActiveSection)
+├── lib/                      # Static datasets, hooks, types, translations
+├── public/                   # Static assets (images, icons, resume PDF)
+└── nextupdate.md             # Upcoming roadmap plan (Admin Panel architecture)
+```
 
 ---
 
-## 👨‍💻 About The Author
+## 🚀 Getting Started Locally
 
-I am an Informatics graduate with a strong passion for:
-- 🤖 Artificial Intelligence & Machine Learning
-- 📊 Data Science & Analytics
-- ⚙️ AI Automation
-- 🌐 Modern Web Development
-- 📱 Mobile Development
-- 🌱 Internet of Things (IoT)
+### Prerequisites
+- Node.js (version 18.x or higher)
+- npm, yarn, or pnpm
 
-I love building technology-driven solutions that improve efficiency and deliver exceptional user experiences.
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Faliqulxx/Portfolio_v1.git
+   cd Portfolio_v1
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory:
+   ```env
+   # Google Gemini API Key for AI Assistant
+   GEMINI_API_KEY=your_gemini_api_key_here
+
+   # Resend API Key for Contact Form
+   RESEND_API_KEY=your_resend_api_key_here
+   ```
+
+4. **Run development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open in browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 🌐 Connect With Me
+## 🗺️ Roadmap & Future Enhancements
 
-If you'd like to collaborate, discuss tech, or explore potential opportunities, feel free to reach out!
+- [x] 🤖 **AI Portfolio Assistant** (Google Gemini API with streaming & template fallbacks)
+- [x] 🌍 **Bilingual Localization** (English & Bahasa Indonesia)
+- [x] 📜 **Certificates & Credentials Showcase** (Interactive carousel & verification links)
+- [x] 📸 **Interactive Gallery Page** (Campus, achievements, and IoT builds)
+- [x] 🗂️ **Clean Component Restructuring** (`components/` modular architecture)
+- [x] 📱 **Responsive UI Refinements** (Mobile sort dropdowns & flat monochrome icons)
+- [ ] 🔐 **Admin Panel Integration** (Supabase PostgreSQL + Auth + Storage CRUD for Projects, Experience, and Certificates — *see details in [`nextupdate.md`](./nextupdate.md)*)
+- [ ] 📝 **Personal Tech Blog** (Markdown / MDX technical articles)
 
-- 🌍 **Website**: [faliq-portfolio.vercel.app](https://faliq-portfolio.vercel.app/)
-- 💼 **LinkedIn**: [in/faliqul-ishbah](https://www.linkedin.com/in/faliqul-ishbah/)
-- 🐙 **GitHub**: [@Faliqulxx](https://github.com/Faliqulxx)
+---
 
-<br>
+## 👨‍💻 Author
+
+**Faliqul Ishbah**
+- 🌐 Website: [faliq-portfolio.vercel.app](https://faliq-portfolio.vercel.app/)
+- 💼 LinkedIn: [linkedin.com/in/faliqul-ishbah](https://www.linkedin.com/in/faliqul-ishbah/)
+- 🐙 GitHub: [@Faliqulxx](https://github.com/Faliqulxx)
+- 📧 Email: [faliqul.isback@gmail.com](mailto:faliqul.isback@gmail.com)
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ using Next.js, TypeScript, and Tailwind CSS.</sub>
+</div>
