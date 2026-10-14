@@ -10,6 +10,26 @@ export interface ProjectTranslation {
 }
 
 export const PROJECT_TRANSLATIONS: Record<string, ProjectTranslation> = {
+  "CampRent": {
+    description: {
+      en: "CampRent is a specialized camping equipment rental management system designed for outdoor gear business operations. The platform features an intelligent date-and-unit-based availability engine, multi-tier role management (Customer, Staff, Owner), automated rental lifecycle tracking, and integrated inspection workflows.",
+      id: "CampRent adalah sistem manajemen operasional penyewaan peralatan camping yang dirancang khusus untuk pemilik usaha rental outdoor. Platform ini menghadirkan engine ketersediaan akurat berbasis rentang tanggal dan unit fisik individual, manajemen peran bertingkat (Customer, Staff, Owner), pelacakan siklus sewa menyeluruh (booking, pickup, return), serta pencatatan inspeksi fisik dan jaminan identitas.",
+    },
+    features: {
+      en: [
+        "Date-Based Availability: Calculates real-time gear availability based on exact rental date ranges and physical individual unit tracking rather than static stock counts.",
+        "Complete Rental Lifecycle: Manages end-to-end rental states from pending, waiting payment, confirmed, ready for pickup, rented, returning, to completed.",
+        "Role-Based Operations: Provides tailored interfaces and permission levels for Guests, Customers (booking & history), Staff (pickup, return & maintenance), and Owners (inventory, calendar & financial reports).",
+        "Gear Inspection & Guarantee: Tracks individual physical units with item condition inspection, identity deposit verification (KTP/SIM/KTM), and penalty calculations for damage or late returns.",
+      ],
+      id: [
+        "Ketersediaan Berbasis Tanggal: Menghitung ketersediaan peralatan secara real-time berdasarkan rentang tanggal sewa dan pelacakan unit fisik individual, bukan sekadar stok statis.",
+        "Siklus Sewa Menyeluruh: Mengelola alur status sewa terpadu dari pemesanan, menunggu pembayaran, konfirmasi, siap diambil, disewa, pengembalian, hingga selesai.",
+        "Operasional Berbasis Peran: Menyediakan antarmuka dan hak akses khusus untuk Guest, Customer (pemesanan & riwayat sewa), Staff (pickup, return & maintenance), dan Owner (inventaris, kalender & laporan).",
+        "Inspeksi & Jaminan Sewa: Mendukung pelacakan unit fisik spesifik dilengkapi dokumentasi inspeksi kondisi barang, penahanan jaminan identitas (KTP/SIM/KTM), dan kalkulasi denda.",
+      ],
+    },
+  },
   "SignalHR": {
     description: {
       en: "SignalHR is an AI-powered Applicant Tracking System designed to streamline modern recruitment workflows. It enables HR teams to manage vacancies, automate resume parsing, and evaluate candidate-job compatibility using intelligent scoring algorithms. The platform delivers end-to-end recruitment analytics to optimize hiring decisions efficiently.",

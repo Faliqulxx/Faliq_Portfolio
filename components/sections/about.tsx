@@ -540,7 +540,16 @@ function AboutFullView({
                   </p>
                 </div>
 
-                <div className="hidden lg:flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-white dark:bg-neutral-900 p-2 border border-neutral-200 dark:border-neutral-800 shadow-md flex items-center justify-center">
+                    <Image
+                      src="/images/education/virtuous.webp"
+                      alt="Modern Islamic Boarding School Darussalam Gontor"
+                      width={52}
+                      height={52}
+                      className="object-contain"
+                    />
+                  </div>
                   <HandwrittenScribble text={t("about.full.scribble2")} arrow="down-left" />
                 </div>
               </div>

@@ -371,6 +371,41 @@ export const galleryData = [
 // ─── PROJECTS ──────────────────────────────────────────────────────────────
 export const projectsData = [
   {
+    title: "CampRent",
+    category: ["web"],
+    description:
+      "CampRent is a specialized camping equipment rental management system designed for outdoor gear business operations. The platform features an intelligent date-and-unit-based availability engine, multi-tier role management (Customer, Staff, Owner), automated rental lifecycle tracking, and integrated inspection workflows.",
+    image: "images/project/CampRent/1.webp",
+    screenshots: [
+      "images/project/CampRent/2.webp",
+      "images/project/CampRent/3.webp",
+      "images/project/CampRent/4.webp",
+    ],
+    tech: [
+      "/images/icon/next-js.svg",
+      "/images/icon/typescript.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
+      "/images/icon/supabase.svg",
+    ],
+    demoUrl: null,
+    githubUrl: "https://github.com/Faliqulxx/CamRent",
+    features: [
+      "Date-Based Availability: Calculates real-time gear availability based on exact rental date ranges and physical individual unit tracking rather than static stock counts.",
+      "Complete Rental Lifecycle: Manages end-to-end rental states from pending, waiting payment, confirmed, ready for pickup, rented, returning, to completed.",
+      "Role-Based Operations: Provides tailored interfaces and permission levels for Guests, Customers (booking & history), Staff (pickup, return & maintenance), and Owners (inventory, calendar & financial reports).",
+      "Gear Inspection & Guarantee: Tracks individual physical units with item condition inspection, identity deposit verification (KTP/SIM/KTM), and penalty calculations for damage or late returns.",
+    ],
+    languages: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma ORM",
+      "Supabase",
+      "SQLite",
+    ],
+  },
+  {
     title: "SignalHR",
     category: ["web"],
     description:
