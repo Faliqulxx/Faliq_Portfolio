@@ -31,11 +31,11 @@ export default function Intro() {
         flex flex-col justify-between"
     >
       {/* ── BACKGROUND WEBTHREADS ── */}
-      <div className="absolute inset-0 -z-10 pointer-events-none w-full h-full opacity-90 dark:opacity-90">
+      <div className="absolute inset-0 -z-10 pointer-events-none w-full h-full opacity-75 dark:opacity-60">
         <WebThreads
-          color1={isDark ? "#b2afc2" : "#64748b"}
-          color2={isDark ? "#94a3b8" : "#94a3b8"}
-          color3={isDark ? "#ffffff" : "#1e293b"}
+          color1={isDark ? "#94a3b8" : "#64748b"}
+          color2={isDark ? "#64748b" : "#94a3b8"}
+          color3={isDark ? "#cbd5e1" : "#1e293b"}
           speed={0.22}
           threadCount={8}
           frequency={3.6}
@@ -43,11 +43,11 @@ export default function Intro() {
           taper={1.8}
           position={0.5}
           fanMode="center"
-          glow={0.025}
-          falloff={0.55}
-          thickness={1.2}
-          brightness={isDark ? 0.65 : 0.55}
-          opacity={1.0}
+          glow={0.016}
+          falloff={0.6}
+          thickness={1.1}
+          brightness={isDark ? 0.4 : 0.45}
+          opacity={0.85}
           mirror={true}
           shimmer={true}
           grain={true}
