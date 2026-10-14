@@ -18,7 +18,9 @@ import {
   BsCodeSlash,
   BsCpu,
   BsGlobe,
+  BsPuzzle,
 } from "react-icons/bs";
+import { SiPython } from "react-icons/si";
 import { IoClose } from "react-icons/io5";
 import { PiGraduationCapFill, PiBankLight } from "react-icons/pi";
 import { useSectionInView } from "@/lib/hooks";
@@ -416,21 +418,36 @@ function AboutFullView({
                       </h4>
                       <FiArrowUpRight className="text-neutral-500 dark:text-neutral-400" />
                     </div>
-                    <ul className="space-y-2 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
-                      <li className="flex items-center gap-2">
-                        <span className="text-neutral-500">📊</span> {t("about.full.cardData")}
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      <li className="flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 text-xs">
+                          <BsBarChartLine />
+                        </span>
+                        <span>{t("about.full.cardData")}</span>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-neutral-500">💻</span> {t("about.full.cardWeb")}
+                      <li className="flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 text-xs">
+                          <BsCodeSlash />
+                        </span>
+                        <span>{t("about.full.cardWeb")}</span>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-neutral-500">🐍</span> Python & SQL
+                      <li className="flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 text-xs">
+                          <SiPython />
+                        </span>
+                        <span>Python &amp; SQL</span>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-neutral-500">🤖</span> {t("about.full.cardAi")}
+                      <li className="flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 text-xs">
+                          <BsRobot />
+                        </span>
+                        <span>{t("about.full.cardAi")}</span>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-neutral-500">🔗</span> Problem Solving
+                      <li className="flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 text-xs">
+                          <BsPuzzle />
+                        </span>
+                        <span>Problem Solving</span>
                       </li>
                     </ul>
                   </div>
@@ -856,22 +873,23 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                 </p>
               </div>
 
-              <div className="relative flex flex-wrap items-center gap-3">
+              <div className="relative flex flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                 <a
                   href={personalData.cvUrl}
                   download
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-semibold hover:opacity-85 transition-all duration-200 hover:scale-105 shadow-md"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs sm:text-sm font-semibold hover:opacity-85 transition-all duration-200 hover:scale-105 shadow-md whitespace-nowrap"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
                   </svg>
-                  {t("intro.downloadCV")}
+                  <span>{t("intro.downloadCV")}</span>
                 </a>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-800 dark:text-neutral-200 text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-200 hover:scale-105"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-200 hover:scale-105 whitespace-nowrap"
                 >
-                  {t("about.viewMore")} <BsArrowRight className="text-xs" />
+                  <span>{t("about.viewMore")}</span>
+                  <BsArrowRight className="text-xs shrink-0" />
                 </Link>
               </div>
             </motion.div>
@@ -1037,7 +1055,7 @@ export default function About({ variant = "full" }: AboutProps = {}) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.4 }}
-            className="relative overflow-hidden rounded-3xl bg-neutral-100 dark:bg-[#121212] border border-neutral-200 dark:border-neutral-800 p-7 sm:p-9 shadow-sm"
+            className="relative overflow-hidden rounded-3xl bg-neutral-100 dark:bg-[#121212] border border-neutral-200 dark:border-neutral-800 p-5 sm:p-9 shadow-sm"
           >
             <div className="pointer-events-none absolute -top-12 -right-12 w-80 h-80 bg-gradient-radial from-neutral-200/50 dark:from-white/[0.03] to-transparent blur-3xl" />
 
@@ -1056,14 +1074,14 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                 </p>
               </div>
 
-              {/* Right Column: 5 Focus Pills in 2 Rows (3 on top, 2 on bottom) */}
-              <div className="flex flex-col gap-3.5 sm:gap-4 items-start xl:items-end w-full xl:w-auto">
-                {/* Top Row: 3 items */}
-                <div className="flex flex-wrap items-center justify-start xl:justify-end gap-3 sm:gap-3.5">
+              {/* Right Column: Responsive Focus Pills */}
+              <div className="w-full xl:w-auto">
+                {/* ── MOBILE / TABLET (< xl): 1 baris ada 2 (kiri kanan), baris terakhir 1 (centered) ── */}
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full xl:hidden">
                   {/* 1. Data Science */}
-                  <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="group flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 3v18h18" />
                         <path d="m19 9-5 5-4-4-3 3" />
                         <path d="M19 14v-5h-5" />
@@ -1072,39 +1090,39 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                         <path d="M15 10h2v8h-2z" fill="currentColor" fillOpacity="0.3" />
                       </svg>
                     </div>
-                    <div className="flex flex-col text-left pr-2">
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                    <div className="flex flex-col text-left min-w-0 pr-1">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Data
                       </span>
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Science
                       </span>
                     </div>
                   </div>
 
                   {/* 2. Data Analysis */}
-                  <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="group flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <ellipse cx="12" cy="5" rx="9" ry="3" />
                         <path d="M3 5V19A9 3 0 0 0 21 19V5" />
                         <path d="M3 12A9 3 0 0 0 21 12" />
                       </svg>
                     </div>
-                    <div className="flex flex-col text-left pr-2">
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                    <div className="flex flex-col text-left min-w-0 pr-1">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Data
                       </span>
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Analysis
                       </span>
                     </div>
                   </div>
 
                   {/* 3. AI Automation */}
-                  <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="group flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 8V4H8" />
                         <rect width="16" height="12" x="4" y="8" rx="3" />
                         <path d="M2 14h2" />
@@ -1114,23 +1132,20 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                         <path d="M9 16h6" strokeWidth="1.5" />
                       </svg>
                     </div>
-                    <div className="flex flex-col text-left pr-2">
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                    <div className="flex flex-col text-left min-w-0 pr-1">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         AI
                       </span>
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Automation
                       </span>
                     </div>
                   </div>
-                </div>
 
-                {/* Bottom Row: 2 items */}
-                <div className="flex flex-wrap items-center justify-start xl:justify-end gap-3 sm:gap-3.5">
                   {/* 4. Internet of Things (IoT) */}
-                  <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="group flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeWidth="2" />
                         <circle cx="4" cy="4" r="2" />
                         <path d="M5.5 5.5 9.5 9.5" />
@@ -1142,31 +1157,149 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                         <path d="M18.5 18.5 14.5 14.5" />
                       </svg>
                     </div>
-                    <div className="flex flex-col text-left pr-2">
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                    <div className="flex flex-col text-left min-w-0 pr-1">
+                      <span className="text-[10px] min-[380px]:text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
                         Internet of Things
                       </span>
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight tracking-tight">
+                      <span className="text-[10px] min-[380px]:text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight">
                         (IoT)
                       </span>
                     </div>
                   </div>
 
-                  {/* 5. Frontend Development */}
-                  <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="16 18 22 12 16 6" />
-                        <polyline points="8 6 2 12 8 18" />
-                      </svg>
+                  {/* 5. Frontend Development (Terakhir 1, centered) */}
+                  <div className="col-span-2 flex justify-center">
+                    <div className="group flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full max-w-[210px] sm:max-w-[240px]">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="16 18 22 12 16 6" />
+                          <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left min-w-0 pr-1">
+                        <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
+                          Frontend
+                        </span>
+                        <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight truncate">
+                          Development
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-col text-left pr-2">
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
-                        Frontend
-                      </span>
-                      <span className="text-xs sm:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight tracking-tight">
-                        Development
-                      </span>
+                  </div>
+                </div>
+
+                {/* ── DESKTOP (xl): 2 Rows (3 on top, 2 on bottom) ── */}
+                <div className="hidden xl:flex flex-col gap-3.5 sm:gap-4 items-end w-auto">
+                  {/* Top Row: 3 items */}
+                  <div className="flex items-center justify-end gap-3.5">
+                    {/* 1. Data Science */}
+                    <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M3 3v18h18" />
+                          <path d="m19 9-5 5-4-4-3 3" />
+                          <path d="M19 14v-5h-5" />
+                          <path d="M7 16h2v2H7z" fill="currentColor" fillOpacity="0.3" />
+                          <path d="M11 13h2v5h-2z" fill="currentColor" fillOpacity="0.3" />
+                          <path d="M15 10h2v8h-2z" fill="currentColor" fillOpacity="0.3" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left pr-2">
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Data
+                        </span>
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Science
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 2. Data Analysis */}
+                    <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <ellipse cx="12" cy="5" rx="9" ry="3" />
+                          <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                          <path d="M3 12A9 3 0 0 0 21 12" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left pr-2">
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Data
+                        </span>
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Analysis
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 3. AI Automation */}
+                    <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 8V4H8" />
+                          <rect width="16" height="12" x="4" y="8" rx="3" />
+                          <path d="M2 14h2" />
+                          <path d="M20 14h2" />
+                          <circle cx="9" cy="13" r="1.2" fill="currentColor" />
+                          <circle cx="15" cy="13" r="1.2" fill="currentColor" />
+                          <path d="M9 16h6" strokeWidth="1.5" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left pr-2">
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          AI
+                        </span>
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Automation
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Row: 2 items */}
+                  <div className="flex items-center justify-end gap-3.5">
+                    {/* 4. Internet of Things (IoT) */}
+                    <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeWidth="2" />
+                          <circle cx="4" cy="4" r="2" />
+                          <path d="M5.5 5.5 9.5 9.5" />
+                          <circle cx="20" cy="4" r="2" />
+                          <path d="M18.5 5.5 14.5 9.5" />
+                          <circle cx="4" cy="20" r="2" />
+                          <path d="M5.5 18.5 9.5 14.5" />
+                          <circle cx="20" cy="20" r="2" />
+                          <path d="M18.5 18.5 14.5 14.5" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left pr-2">
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Internet of Things
+                        </span>
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight tracking-tight">
+                          (IoT)
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 5. Frontend Development */}
+                    <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="16 18 22 12 16 6" />
+                          <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                      </div>
+                      <div className="flex flex-col text-left pr-2">
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Frontend
+                        </span>
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight tracking-tight">
+                          Development
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

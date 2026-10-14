@@ -204,9 +204,10 @@ const EXPERIENCES: ExperienceItem[] = [
     },
     location: "Gresik, Indonesia",
     period: {
-      id: "Mar – Des 2022",
-      en: "Mar – Dec 2022",
+      id: "Mar 2022 – Sekarang",
+      en: "Mar 2022 – Present",
     },
+    isLive: true,
     summary: {
       id: "Membantu UMKM dan bisnis online dalam membangun, mengkustomisasi, dan memelihara aplikasi web toko online modern.",
       en: "Built, customized, and maintained high-performance web applications and e-commerce platforms for MSMEs and clients.",
@@ -428,10 +429,10 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
 
       <div className="w-full max-w-[1240px] mx-auto flex flex-col gap-6 sm:gap-8">
         {/* ─── MAIN DUAL-PANE EXPERIENCE BOARD ─── */}
-        <div className="w-full rounded-[2rem] border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#121212] overflow-hidden shadow-xl shadow-black/5 dark:shadow-2xl grid grid-cols-1 lg:grid-cols-[330px_1fr] xl:grid-cols-[360px_1fr]">
+        <div className="w-full rounded-2xl sm:rounded-[2rem] border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#121212] overflow-hidden shadow-xl shadow-black/5 dark:shadow-2xl grid grid-cols-[125px_1fr] sm:grid-cols-[180px_1fr] md:grid-cols-[240px_1fr] lg:grid-cols-[330px_1fr] xl:grid-cols-[360px_1fr]">
 
           {/* ── LEFT COLUMN: Role Tabs Sidebar ── */}
-          <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-[#0e0e0e]/60">
+          <div className="flex flex-col border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-[#0e0e0e]/60 overflow-y-auto max-h-[640px] sm:max-h-none no-scrollbar">
             {EXPERIENCES.map((exp, idx) => {
               const isSelected = selectedIndex === idx;
               return (
@@ -441,15 +442,15 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                     setSelectedIndex(idx);
                     setSelectedImageIndex(0);
                   }}
-                  className={`text-left p-5 sm:p-6 transition-all duration-200 border-b border-neutral-200/80 dark:border-neutral-800/80 last:border-b-0 relative group cursor-pointer ${isSelected
+                  className={`text-left p-2.5 sm:p-5 lg:p-6 transition-all duration-200 border-b border-neutral-200/80 dark:border-neutral-800/80 last:border-b-0 relative group cursor-pointer ${isSelected
                       ? "bg-neutral-900 text-white dark:bg-white dark:text-black shadow-md z-10"
                       : "bg-transparent text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
                     }`}
                 >
                   <div className="flex flex-col">
-                    <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1">
                       <h3
-                        className={`text-sm sm:text-base font-bold tracking-tight leading-snug ${isSelected
+                        className={`text-xs sm:text-base font-bold tracking-tight leading-snug line-clamp-2 ${isSelected
                             ? "text-white dark:text-black"
                             : "text-neutral-900 dark:text-white group-hover:text-black dark:group-hover:text-white"
                           }`}
@@ -459,7 +460,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                     </div>
 
                     <p
-                      className={`text-xs font-medium ${isSelected
+                      className={`text-[10px] sm:text-xs font-medium line-clamp-1 ${isSelected
                           ? "text-neutral-300 dark:text-neutral-600"
                           : "text-neutral-500 dark:text-neutral-400"
                         }`}
@@ -467,7 +468,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                       {isIndo ? exp.company.id : exp.company.en}
                     </p>
 
-                    <div className="flex items-center gap-2 mt-3 text-[11px] font-mono">
+                    <div className="flex items-center gap-1.5 mt-2 sm:mt-3 text-[9px] sm:text-[11px] font-mono">
                       <span
                         className={`font-semibold ${isSelected
                             ? "text-neutral-300 dark:text-neutral-700"
@@ -478,12 +479,12 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                       </span>
                       {exp.isLive && (
                         <span
-                          className={`inline-flex items-center gap-1 font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${isSelected
+                          className={`inline-flex items-center gap-1 font-bold text-[8px] sm:text-[10px] uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full ${isSelected
                               ? "bg-white/20 text-white dark:bg-black/10 dark:text-black"
                               : "bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
                             }`}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500 animate-pulse" />
+                          <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500 animate-pulse" />
                           LIVE
                         </span>
                       )}
@@ -495,7 +496,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
           </div>
 
           {/* ── RIGHT COLUMN: Active Role Details View ── */}
-          <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[500px]">
+          <div className="p-3.5 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[460px] sm:min-h-[500px] overflow-y-auto max-h-[640px] sm:max-h-none no-scrollbar">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeExp.id}
@@ -506,42 +507,48 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                 className="flex flex-col flex-1"
               >
                 {/* 1. Big Role Title */}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-950 dark:text-white tracking-tight leading-tight mb-2">
+                <h2 className="text-base sm:text-3xl lg:text-5xl font-black text-neutral-950 dark:text-white tracking-tight leading-snug sm:leading-tight mb-1.5 sm:mb-2">
                   {isIndo ? activeExp.role.id : activeExp.role.en}
                 </h2>
 
                 {/* 2. Subtitle: Company, Location & Period Capsule */}
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 text-[10px] sm:text-xs md:text-sm text-neutral-600 dark:text-neutral-400 mb-3 sm:mb-6">
                   <span className="font-semibold text-neutral-900 dark:text-white">
                     {isIndo ? activeExp.company.id : activeExp.company.en}
                   </span>
                   <span className="text-neutral-300 dark:text-neutral-700">•</span>
                   <span className="flex items-center gap-1">
-                    <FiMapPin className="text-neutral-400" /> {activeExp.location}
+                    <FiMapPin className="text-neutral-400 text-[10px] sm:text-xs" /> {activeExp.location}
                   </span>
                   <span className="text-neutral-300 dark:text-neutral-700">•</span>
-                  <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 flex items-center gap-1.5">
-                    <FiCalendar className="text-[11px]" />
+                  <span className="font-mono text-[9px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 flex items-center gap-1 sm:gap-1.5">
+                    <FiCalendar className="text-[10px] sm:text-[11px]" />
                     {isIndo ? activeExp.period.id : activeExp.period.en}
                   </span>
+                  {activeExp.isLive && (
+                    <span className="inline-flex items-center gap-1 font-bold text-[8px] sm:text-[10px] uppercase tracking-wider px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 dark:bg-white animate-pulse" />
+                      LIVE
+                    </span>
+                  )}
                 </div>
 
                 {/* 3. Summary sentence */}
-                <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6 font-normal">
+                <p className="text-xs sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed mb-3 sm:mb-6 font-normal">
                   {isIndo ? activeExp.summary.id : activeExp.summary.en}
                 </p>
 
                 {/* 4. Numbered Responsibility & Achievement Points */}
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-3 sm:mb-6">
                   {(isIndo ? activeExp.points.id : activeExp.points.en).map((point, pIdx) => (
                     <div
                       key={pIdx}
-                      className="flex items-start gap-3.5 py-3 border-b border-dashed border-neutral-200 dark:border-neutral-800/80 first:pt-0 last:border-b-0"
+                      className="flex items-start gap-2 sm:gap-3.5 py-2 sm:py-3 border-b border-dashed border-neutral-200 dark:border-neutral-800/80 first:pt-0 last:border-b-0"
                     >
-                      <span className="font-mono text-xs font-bold text-neutral-400 dark:text-neutral-500 w-6 pt-0.5 select-none shrink-0">
+                      <span className="font-mono text-[10px] sm:text-xs font-bold text-neutral-400 dark:text-neutral-500 w-4 sm:w-6 pt-0.5 select-none shrink-0">
                         {String(pIdx + 1).padStart(2, "0")}
                       </span>
-                      <p className="text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed flex-1">
+                      <p className="text-[11px] sm:text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed flex-1">
                         {point}
                       </p>
                     </div>
@@ -549,11 +556,11 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                 </div>
 
                 {/* 5. Technology Pill Badges */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-6">
                   {activeExp.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3.5 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800/60 text-xs font-semibold text-neutral-900 dark:text-neutral-200"
+                      className="px-2 sm:px-3.5 py-0.5 sm:py-1 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800/60 text-[9px] sm:text-xs font-semibold text-neutral-900 dark:text-neutral-200"
                     >
                       {tag}
                     </span>
@@ -561,23 +568,23 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                 </div>
 
                 {/* 6. Screenshot / Visual Preview Frame (16:8 ratio) */}
-                <div className="relative w-full aspect-[16/8] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#181818] mb-4 group shadow-sm">
+                <div className="relative w-full aspect-[16/9] sm:aspect-[16/8] rounded-xl sm:rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#181818] mb-2.5 sm:mb-4 group shadow-sm">
                   {currentImage ? (
                     <Image
                       key={currentImage}
                       src={currentImage}
                       alt={activeExp.role.en}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 800px"
+                      sizes="(max-width: 640px) 70vw, (max-width: 1024px) 100vw, 800px"
                       className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-600 font-mono text-xs tracking-widest uppercase">
+                    <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-600 font-mono text-[10px] sm:text-xs tracking-widest uppercase">
                       <span>EXPERIENCE SCREENSHOT</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <span className="text-white text-xs font-semibold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5 sm:p-4">
+                    <span className="text-white text-[10px] sm:text-xs font-semibold">
                       {isIndo ? activeExp.role.id : activeExp.role.en}
                     </span>
                   </div>
@@ -585,7 +592,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
 
                 {/* Multi-image thumbnail selector */}
                 {activeExp.images && activeExp.images.length > 1 && (
-                  <div className="flex items-center gap-3 mb-6 overflow-x-auto pb-1">
+                  <div className="flex items-center gap-1.5 sm:gap-3 mb-3 sm:mb-6 overflow-x-auto pb-1 no-scrollbar">
                     {activeExp.images.map((imgSrc, imgIdx) => {
                       const isImgActive = selectedImageIndex === imgIdx;
                       return (
@@ -593,7 +600,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                           key={imgSrc}
                           type="button"
                           onClick={() => setSelectedImageIndex(imgIdx)}
-                          className={`relative w-20 h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
+                          className={`relative w-12 sm:w-20 h-8 sm:h-12 rounded-md sm:rounded-lg overflow-hidden border sm:border-2 transition-all shrink-0 cursor-pointer ${
                             isImgActive
                               ? "border-neutral-950 dark:border-white ring-2 ring-neutral-400/30 dark:ring-white/30 scale-105"
                               : "border-neutral-200 dark:border-neutral-800 opacity-60 hover:opacity-100"
@@ -628,34 +635,34 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
         </div>
 
         {/* ─── BOTTOM STATS BAR (3 COLUMNS) ─── */}
-        <div className="w-full rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#121212] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 text-center gap-6 md:gap-0 shadow-sm">
+        <div className="w-full rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#121212] p-4 sm:p-8 grid grid-cols-3 divide-x divide-neutral-200 dark:divide-neutral-800 text-center shadow-sm">
           {/* Col 1 */}
-          <div className="flex flex-col items-center justify-center px-4 pt-2 md:pt-0">
-            <span className="text-4xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1.5 tracking-tight">
+          <div className="flex flex-col items-center justify-center px-1.5 sm:px-4">
+            <span className="text-2xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1 sm:mb-1.5 tracking-tight">
               7
             </span>
-            <span className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
-              {isIndo ? "Peran & proyek riwayat" : "Roles & projects"}
+            <span className="text-[9px] sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+              {isIndo ? "Peran & proyek" : "Roles & projects"}
             </span>
           </div>
 
           {/* Col 2 */}
-          <div className="flex flex-col items-center justify-center px-4 pt-6 md:pt-0">
-            <span className="text-4xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1.5 tracking-tight">
+          <div className="flex flex-col items-center justify-center px-1.5 sm:px-4">
+            <span className="text-2xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1 sm:mb-1.5 tracking-tight">
               10+
             </span>
-            <span className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
-              {isIndo ? "Alur otomatisasi dibangun" : "Workflows automated"}
+            <span className="text-[9px] sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+              {isIndo ? "Otomatisasi" : "Workflows"}
             </span>
           </div>
 
           {/* Col 3 */}
-          <div className="flex flex-col items-center justify-center px-4 pt-6 md:pt-0">
-            <span className="text-4xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1.5 tracking-tight">
+          <div className="flex flex-col items-center justify-center px-1.5 sm:px-4">
+            <span className="text-2xl sm:text-5xl font-black text-neutral-950 dark:text-white leading-none mb-1 sm:mb-1.5 tracking-tight">
               3
             </span>
-            <span className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
-              {isIndo ? "Domain utama: Data · AI · Web" : "Core domains: Data · AI · Web"}
+            <span className="text-[9px] sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+              {isIndo ? "Domain utama" : "Core domains"}
             </span>
           </div>
         </div>

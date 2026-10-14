@@ -79,6 +79,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="!scroll-smooth">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("portfolio_intro_shown")==="true"){document.documentElement.classList.add("intro-skipped");}}catch(e){}`,
+          }}
+        />
+      </head>
       <body
         className={`${inter.className} bg-white dark:bg-black text-gray-900 dark:text-white relative transition-colors duration-300 overflow-x-hidden`}
       >

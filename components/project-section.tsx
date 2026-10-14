@@ -459,14 +459,14 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
           <div className="pointer-events-none absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-gradient-radial from-neutral-200/50 dark:from-white/[0.02] to-transparent blur-3xl" />
         </>
       )}
-      <div ref={sectionRef} className="w-[92vw] max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 relative">
+      <div ref={sectionRef} className="w-[95vw] sm:w-[92vw] max-w-[1600px] mx-auto px-1 sm:px-8 lg:px-12 relative">
         {variant === "full" ? (
           <div className="w-full">
             <SectionHeading>{t("projects.title")}</SectionHeading>
 
             {/* ── Segmented Switcher Tabs ── */}
             <div className="flex justify-center mb-6 sm:mb-7">
-              <div className="inline-flex items-center p-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 shadow-sm">
+              <div className="inline-flex items-center p-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 shadow-sm max-w-full overflow-x-auto no-scrollbar">
                 {categoryOptions.map((option) => {
                   const isActive = activeCategory === option.key;
                   return (
@@ -477,13 +477,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                         setActiveCategory(option.key);
                         setSelectedSubcategories([]);
                       }}
-                      className={`flex items-center gap-2 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
                         isActive
                           ? "bg-black text-white dark:bg-white dark:text-black shadow-md scale-[1.02]"
                           : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-neutral-200/60 dark:hover:bg-neutral-800/60"
                       }`}
                     >
-                      <span className="text-sm">{option.icon}</span>
+                      <span className="text-xs sm:text-sm">{option.icon}</span>
                       {option.label}
                     </button>
                   );
@@ -493,11 +493,11 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
 
             {/* ── Toolbar: Search + Filters + Sort + Showing Count ── */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-6">
-              <div className="flex items-center gap-2.5 flex-1 max-w-lg">
+              <div className="flex items-center gap-2 sm:gap-2.5 flex-1 max-w-lg">
                 {/* Search */}
                 <div className="relative flex-1">
                   <svg
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-neutral-500"
+                    className="absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 w-3.5 sm:w-4 h-3.5 sm:h-4 text-neutral-400 dark:text-neutral-500"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -511,25 +511,25 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={t("projects.searchPlaceholder")}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 backdrop-blur-md text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:border-neutral-500 dark:focus:border-neutral-600 focus:ring-1 focus:ring-neutral-400 dark:focus:ring-neutral-600 transition"
+                    className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 backdrop-blur-md text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:border-neutral-500 dark:focus:border-neutral-600 focus:ring-1 focus:ring-neutral-400 dark:focus:ring-neutral-600 transition"
                   />
                 </div>
 
                 {/* Filters Toggle Button */}
                 <button
                   onClick={() => setShowFilters((prev) => !prev)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition ${
+                  className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition shrink-0 ${
                     showFilters || selectedSubcategories.length > 0
                       ? "bg-black text-white dark:bg-white dark:text-black border-transparent shadow-md"
                       : "bg-white dark:bg-neutral-900/80 border-neutral-300 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   }`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <svg className="w-3.5 sm:w-4 h-3.5 sm:h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M7 12h10M11 18h2" />
                   </svg>
                   <span>{t("projects.filters")}</span>
                   {selectedSubcategories.length > 0 && (
-                    <span className="w-5 h-5 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 text-[11px] font-bold flex items-center justify-center">
+                    <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 text-[10px] sm:text-[11px] font-bold flex items-center justify-center">
                       {selectedSubcategories.length}
                     </span>
                   )}
@@ -537,11 +537,11 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               </div>
 
               {/* Right: Sort dropdown & Entry count */}
-              <div className="flex items-center gap-4 justify-between sm:justify-end">
+              <div className="flex items-center gap-3 sm:gap-4 justify-between sm:justify-end">
                 <div className="relative">
                   <button
                     onClick={() => setShowSortMenu((v) => !v)}
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition ${
+                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition ${
                       showSortMenu
                         ? "border-neutral-400 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white"
                         : "border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800"
@@ -551,11 +551,11 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                       {t("projects.sort")} <span className="font-bold text-neutral-900 dark:text-white">{sortOptions.find((s) => s.key === sortKey)?.label}</span>
                     </span>
                     {showSortMenu ? (
-                      <svg className="w-3.5 h-3.5 text-neutral-900 dark:text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <svg className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-neutral-900 dark:text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
                       </svg>
                     ) : (
-                      <svg className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <svg className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-neutral-400 dark:text-neutral-500" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     )}
@@ -572,7 +572,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                               setSortKey(opt.key);
                               setShowSortMenu(false);
                             }}
-                            className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${
+                            className={`w-full flex items-center justify-between px-4 py-2.5 text-xs sm:text-sm transition-colors ${
                               isSelected
                                 ? "text-neutral-950 dark:text-white font-bold bg-neutral-100 dark:bg-neutral-800"
                                 : "text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/60"
@@ -591,7 +591,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                   )}
                 </div>
 
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
+                <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
                   {t("projects.showing")} <span className="font-bold text-neutral-900 dark:text-white">{filteredProjects.length}</span> {t("projects.entries")}
                 </p>
               </div>
@@ -604,10 +604,10 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/40 backdrop-blur-md p-4 sm:p-5 mb-8 shadow-sm"
+                className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/40 backdrop-blur-md p-3 sm:p-5 mb-6 sm:mb-8 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                  <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                     {t("projects.filterBySub")}
                   </p>
                   {selectedSubcategories.length > 0 && (
@@ -620,7 +620,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                   )}
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {(SUBCATEGORIES_MAP[activeCategory] || SUBCATEGORIES_MAP.data).map((subCat) => {
                     const isSelected = selectedSubcategories.includes(subCat);
                     const label =
@@ -635,7 +635,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                               : [...prev, subCat]
                           );
                         }}
-                        className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                        className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                           isSelected
                             ? "bg-black text-white dark:bg-white dark:text-black shadow-sm scale-[1.02]"
                             : "bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
@@ -649,13 +649,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               </motion.div>
             )}
 
-            {/* ── Project Grid (3 Columns) ── */}
+            {/* ── Project Grid (2 Columns on Mobile, 3 Columns on Desktop) ── */}
             {filteredProjects.length === 0 ? (
               <div className="text-center py-24 text-neutral-400 dark:text-neutral-500 text-sm">
                 {t("projects.noMatch")}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-6">
                 {filteredProjects.map((rawProject, index) => {
                   const project = getTranslatedProject(rawProject, language);
                   const badges = getProjectBadges(rawProject, language);
@@ -666,15 +666,15 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.04 * (index % 12), duration: 0.4 }}
                       onClick={() => handleProjectClick(rawProject)}
-                      className="group flex flex-col justify-between rounded-2xl bg-white dark:bg-[#141414] backdrop-blur-md border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-xl transition-all duration-300 p-4 sm:p-5 cursor-pointer"
+                      className="group flex flex-col justify-between rounded-xl sm:rounded-2xl bg-white dark:bg-[#141414] backdrop-blur-md border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-xl transition-all duration-300 p-2.5 sm:p-5 cursor-pointer"
                     >
                       {/* Top Preview Image */}
-                      <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-neutral-100 dark:bg-black/40 border border-neutral-200 dark:border-neutral-800 mb-4">
+                      <div className="relative overflow-hidden rounded-lg sm:rounded-xl aspect-[16/10] bg-neutral-100 dark:bg-black/40 border border-neutral-200 dark:border-neutral-800 mb-2 sm:mb-4">
                         <Image
                           src={project.image.startsWith("/") ? project.image : `/${project.image}`}
                           alt={project.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                           loading="lazy"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
@@ -683,11 +683,11 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                       {/* Card Info */}
                       <div className="flex flex-col flex-1">
                         {/* Badges row */}
-                        <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
+                        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 mb-1.5 sm:mb-2.5">
                           {badges.map((b, i) => (
                             <span
                               key={i}
-                              className={`text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full ${BADGE_COLOR_MAP[b.color]}`}
+                              className={`text-[8px] sm:text-[10px] font-bold tracking-wider uppercase px-1.5 sm:px-2.5 py-0.5 rounded-full ${BADGE_COLOR_MAP[b.color]}`}
                             >
                               {b.text}
                             </span>
@@ -695,19 +695,19 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-white leading-snug line-clamp-1 group-hover:text-neutral-500 dark:group-hover:text-neutral-300 transition-colors mb-2">
+                        <h3 className="text-xs sm:text-base lg:text-lg font-bold text-neutral-900 dark:text-white leading-tight sm:leading-snug line-clamp-1 group-hover:text-neutral-500 dark:group-hover:text-neutral-300 transition-colors mb-1 sm:mb-2">
                           {project.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-2 mb-4 flex-1">
+                        <p className="text-[10px] sm:text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-snug sm:leading-relaxed line-clamp-2 mb-2 sm:mb-4 flex-1">
                           {project.description}
                         </p>
 
                         {/* Bottom Explore Link */}
-                        <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
-                          <span className="text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-black dark:group-hover:text-white flex items-center gap-1.5 transition-colors">
-                            {t("projects.exploreWriteup")} <span className="text-xs">↗</span>
+                        <div className="pt-2 sm:pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+                          <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-black dark:group-hover:text-white flex items-center gap-1 sm:gap-1.5 transition-colors">
+                            {t("projects.exploreWriteup")} <span className="text-[10px] sm:text-xs">↗</span>
                           </span>
                         </div>
                       </div>

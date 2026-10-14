@@ -29,6 +29,7 @@ export interface DriftWallProps {
   perspective?: number;
   depth?: number;
   speed?: number;
+  scale?: number;
   direction?: "up" | "down";
   variance?: number;
   parallax?: number;
@@ -76,6 +77,7 @@ const DriftWall: React.FC<DriftWallProps> = ({
   perspective = 1200,
   depth = 120,
   speed = 42,
+  scale = 1.65,
   direction = "up",
   variance = 0.45,
   parallax = 0.6,
@@ -161,11 +163,11 @@ const DriftWall: React.FC<DriftWallProps> = ({
       const plane = planeRef.current;
       if (!plane) return;
       plane.style.transform =
-        `translate(-50%, -50%) scale(1.65) ` +
+        `translate(-50%, -50%) scale(${scale}) ` +
         `rotateX(${tilt + py}deg) rotateY(${turn + px}deg) rotateZ(${roll}deg) ` +
         `translateZ(${-depth}px)`;
     },
-    [tilt, turn, roll, depth]
+    [scale, tilt, turn, roll, depth]
   );
 
   useEffect(() => {
@@ -188,7 +190,7 @@ const DriftWall: React.FC<DriftWallProps> = ({
       );
 
       if (!reduced) {
-        for (let c = 0; c < trackRefs.current.length; c++) {
+        for (let c = 0; c < columnItems.length; c++) {
           const meta = columnMeta[c];
           if (!meta) continue;
           const paused = wallHoveredRef.current && pauseOnHover;
@@ -206,7 +208,7 @@ const DriftWall: React.FC<DriftWallProps> = ({
           if (el) el.style.transform = `translate3d(0, ${-next}px, 0)`;
         }
       } else {
-        for (let c = 0; c < trackRefs.current.length; c++) {
+        for (let c = 0; c < columnItems.length; c++) {
           const el = trackRefs.current[c];
           const meta = columnMeta[c];
           if (el && meta)

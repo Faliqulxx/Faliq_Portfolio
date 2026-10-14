@@ -45,6 +45,11 @@ html.dark {
   font-weight: bold;
 }
 
+/* ==================== INTRO / LOADING SCREEN SESSION SKIP ==================== */
+html.intro-skipped #portfolio-loading-screen {
+  display: none !important;
+}
+
 /* ==================== LIQUID WAVE TEXT LOADER ==================== */
 .liquid-text-loader {
   width: fit-content;

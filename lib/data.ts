@@ -1194,7 +1194,7 @@ export const experiencesData = [
     description:
       "Worked as a freelance web developer supporting UMKM and small online businesses by developing, customizing, and maintaining websites and online stores. Handled feature implementation, bug fixing, UI improvements, and basic system optimization to ensure usability, reliability, and alignment with client requirements.",
     icon: "CgWorkAlt",
-    date: "Mar 2022 - Dec 2022",
+    date: "Mar 2022 - Present",
     image: "/images/Experience/Software Engineer/1.webp",
   },
   {

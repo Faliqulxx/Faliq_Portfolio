@@ -19,6 +19,25 @@ const STAGE_TIMELINE: { stage: LoadingStage; at: number }[] = [
 const FADEOUT_AT = 3100;    // mulai fade out keseluruhan loading screen
 const UNMOUNT_AFTER = 3800; // unmount setelah fade selesai
 
+const INTRO_SESSION_KEY = "portfolio_intro_shown";
+
+function hasShownIntro(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function markIntroShown(): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(INTRO_SESSION_KEY, "true");
+    document.documentElement.classList.add("intro-skipped");
+  } catch {}
+}
+
 export default function LoadingScreen() {
   const prefersReducedMotion = !!useReducedMotion();
   const [stage, setStage] = useState<LoadingStage>("particles");
@@ -26,8 +45,17 @@ export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // Jika user sudah pernah melihat intro di browser session ini, langsung skip
+    if (hasShownIntro()) {
+      setVisible(false);
+      return;
+    }
+
     if (prefersReducedMotion) {
-      const unmount = setTimeout(() => setVisible(false), 600);
+      const unmount = setTimeout(() => {
+        markIntroShown();
+        setVisible(false);
+      }, 600);
       return () => clearTimeout(unmount);
     }
 
@@ -38,9 +66,11 @@ export default function LoadingScreen() {
     // Loading screen fade out secara keseluruhan — teks tetap terisi penuh
     const fadeTimer = setTimeout(() => {
       setIsFadingOut(true);
+      markIntroShown();
     }, FADEOUT_AT);
 
     const unmount = setTimeout(() => {
+      markIntroShown();
       setVisible(false);
     }, UNMOUNT_AFTER);
 
@@ -52,7 +82,12 @@ export default function LoadingScreen() {
   }, [prefersReducedMotion]);
 
   useEffect(() => {
-    document.body.style.overflow = visible ? "hidden" : "";
+    // Hanya kunci scroll jika loading screen benar-benar aktif & belum pernah ditampilkan
+    if (visible && !hasShownIntro()) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -62,6 +97,7 @@ export default function LoadingScreen() {
 
   return (
     <motion.div
+      id="portfolio-loading-screen"
       key="loading-screen"
       className="fixed inset-0 z-[9999] overflow-hidden pointer-events-auto"
       style={{
@@ -75,7 +111,10 @@ export default function LoadingScreen() {
         ease: "easeInOut",
       }}
       onAnimationComplete={() => {
-        if (isFadingOut) setVisible(false);
+        if (isFadingOut) {
+          markIntroShown();
+          setVisible(false);
+        }
       }}
     >
       {/* ── CENTER CONTENT (Text liquid wave effect + subtitle) ── */}

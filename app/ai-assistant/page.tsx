@@ -83,25 +83,25 @@ export default function AIAssistantPage() {
   const isEmpty = messages.length === 0;
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center pt-[100px] sm:pt-[110px] pb-4 sm:pb-6 px-3 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-[#0a0a0a] z-10 overflow-hidden">
+    <div className="relative min-h-screen w-full flex flex-col items-center pt-[86px] sm:pt-[110px] pb-2 sm:pb-6 px-2 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-[#0a0a0a] z-10 overflow-hidden">
       {/* DYNAMIC FIT CHAT CONTAINER */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full h-[calc(100dvh-120px)] sm:h-[calc(100dvh-135px)] max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-xl shadow-2xl overflow-hidden"
+        className="w-full h-[calc(100dvh-98px)] sm:h-[calc(100dvh-135px)] max-w-5xl flex flex-col rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-xl shadow-2xl overflow-hidden"
       >
         {/* TOP BAR */}
-        <div className="px-4 sm:px-6 py-3 border-b border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-[#141414]/60 flex items-center justify-between backdrop-blur-md flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-neutral-900 text-white dark:bg-white dark:text-black p-0.5 shadow-md flex items-center justify-center">
-              <IoSparkles className="text-base sm:text-lg" />
+        <div className="px-4 sm:px-6 py-2.5 sm:py-3 border-b border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-[#141414]/60 flex items-center justify-between backdrop-blur-md flex-shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-neutral-900 text-white dark:bg-white dark:text-black p-0.5 shadow-md flex items-center justify-center">
+              <IoSparkles className="text-sm sm:text-lg" />
             </div>
             <div>
-              <h2 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-xs sm:text-base font-bold text-neutral-900 dark:text-white flex items-center gap-1.5 sm:gap-2">
                 {t("ai.title")}
               </h2>
-              <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400">
                 {t("ai.subtitle")}
               </p>
             </div>
@@ -112,9 +112,9 @@ export default function AIAssistantPage() {
               <button
                 type="button"
                 onClick={() => setConfirmingClear(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer shadow-sm"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer shadow-sm"
               >
-                <HiOutlineTrash className="text-sm text-neutral-600 dark:text-neutral-400" />
+                <HiOutlineTrash className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400" />
                 <span className="hidden sm:inline">{t("ai.clear")}</span>
               </button>
             )}
@@ -124,46 +124,48 @@ export default function AIAssistantPage() {
         {/* MESSAGES / WELCOME AREA */}
         <div
           ref={scrollRef}
-          className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar"
+          className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4 custom-scrollbar"
         >
           {isEmpty ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="h-full flex flex-col items-center justify-center text-center py-2"
+              className="h-full flex flex-col items-center justify-center text-center py-1 sm:py-2"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 flex items-center justify-center text-neutral-900 dark:text-white text-2xl mb-2 sm:mb-3 shadow-inner">
+              <div className="w-9 h-9 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 flex items-center justify-center text-neutral-900 dark:text-white text-base sm:text-2xl mb-1.5 sm:mb-3 shadow-inner">
                 <HiOutlineLightBulb />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-1">
+              <h3 className="text-sm sm:text-xl font-bold text-neutral-900 dark:text-white mb-0.5 sm:mb-1">
                 {t("ai.welcomeTitle")}
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-md mb-4 sm:mb-6">
+              <p className="text-[11px] sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-md mb-3 sm:mb-6 px-2">
                 {t("ai.welcomeDesc")}
               </p>
 
               {/* QUICK PROMPTS GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 w-full max-w-3xl">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 w-full max-w-3xl">
                 {quickPrompts.map((item, idx) => (
                   <motion.button
                     key={idx}
                     whileHover={{ y: -2, scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handlePromptSelect(item.description)}
-                    className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-[#161616] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 text-left transition-all group shadow-sm flex flex-col justify-between"
+                    className={`p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-[#161616] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 text-left transition-all group shadow-sm flex flex-col justify-between ${
+                      idx === 4 ? "col-span-2 lg:col-span-1" : ""
+                    }`}
                   >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xl sm:text-2xl">{item.icon}</span>
-                      <span className="text-[11px] font-semibold text-neutral-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                    <div className="flex items-center justify-between mb-1 sm:mb-1.5">
+                      <span className="text-base sm:text-2xl">{item.icon}</span>
+                      <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity font-mono">
                         {t("ai.askPrompt")}
                       </span>
                     </div>
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white mb-0.5">
+                      <h4 className="text-[11px] sm:text-sm font-semibold text-neutral-900 dark:text-white mb-0.5 line-clamp-1">
                         {item.title}
                       </h4>
-                      <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-snug">
+                      <p className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-tight sm:leading-snug">
                         &ldquo;{item.description}&rdquo;
                       </p>
                     </div>

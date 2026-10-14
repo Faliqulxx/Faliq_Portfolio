@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { contactData, personalData, links } from "@/lib/data";
+import { contactData, personalData } from "@/lib/data";
 import { FiMail, FiGithub, FiLinkedin, FiInstagram, FiFileText, FiArrowUp } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -87,16 +87,16 @@ export default function Footer() {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-[1600px] w-[92vw] mx-auto px-4 sm:px-8 lg:px-12 pt-16 pb-8"
       >
-        {/* TOP SECTION: 3 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 mb-16">
+        {/* TOP SECTION: 2 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-16">
 
           {/* Column 1: CTA */}
-          <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left lg:pr-12">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white">
+          <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left max-w-xl">
+            <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white">
               {t("contact.subtitle")}
             </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {t("about.bio").slice(0, 180)}...
+            <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              {t("about.bio").slice(0, 220)}...
             </p>
             <Link
               href="/contact"
@@ -110,29 +110,7 @@ export default function Footer() {
             </Link>
           </motion.div>
 
-          {/* Column 2: Quick Links */}
-          <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left lg:pl-12">
-            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Quick Links</h3>
-            <ul className="flex flex-col gap-3 items-center md:items-start">
-              {links.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.hash}
-                    onClick={() => {
-                      setActiveSection(link.name);
-                      setTimeOfLastClick(Date.now());
-                    }}
-                    className="group relative text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors duration-300 w-fit block focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded"
-                  >
-                    {link.name}
-                    <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-neutral-900 dark:bg-white transition-all duration-300 group-hover:w-full" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Column 3: Connect */}
+          {/* Column 2: Connect */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6 items-center md:items-start text-center md:text-left">
             <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Connect</h3>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">

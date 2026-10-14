@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@/context/theme-context";
 import DriftWall, { DriftWallItem } from "@/components/DriftWall";
 
@@ -34,26 +34,95 @@ export default function GalleryClient() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
+  const [device, setDevice] = useState<"mobile" | "tablet" | "desktop">("desktop");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setDevice("mobile");
+      } else if (width < 1024) {
+        setDevice("tablet");
+      } else {
+        setDevice("desktop");
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const config = {
+    mobile: {
+      columns: 6,
+      tileWidth: 86,
+      tileHeight: 58,
+      gap: 10,
+      radius: 8,
+      tilt: 10,
+      turn: -8,
+      perspective: 1000,
+      depth: 50,
+      scale: 1.2,
+      speed: 28,
+      lift: 32,
+      parallax: 0.35,
+    },
+    tablet: {
+      columns: 7,
+      tileWidth: 150,
+      tileHeight: 100,
+      gap: 16,
+      radius: 12,
+      tilt: 12,
+      turn: -9,
+      perspective: 1100,
+      depth: 80,
+      scale: 1.4,
+      speed: 34,
+      lift: 55,
+      parallax: 0.5,
+    },
+    desktop: {
+      columns: 8,
+      tileWidth: 240,
+      tileHeight: 155,
+      gap: 24,
+      radius: 16,
+      tilt: 14,
+      turn: -10,
+      perspective: 1200,
+      depth: 110,
+      scale: 1.65,
+      speed: 38,
+      lift: 75,
+      parallax: 0.65,
+    },
+  }[device];
+
   return (
     <main className="relative w-full h-screen min-h-[700px] overflow-hidden select-none">
       {/* ── Full-bleed Full-screen DriftWall Background (Starts at top: 0 behind Navbar) ── */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <DriftWall
+          key={device}
           items={galleryItems}
-          columns={8}
-          tileWidth={240}
-          tileHeight={155}
-          gap={24}
-          radius={16}
-          tilt={14}
-          turn={-10}
-          perspective={1200}
-          depth={110}
-          speed={38}
+          columns={config.columns}
+          tileWidth={config.tileWidth}
+          tileHeight={config.tileHeight}
+          gap={config.gap}
+          radius={config.radius}
+          tilt={config.tilt}
+          turn={config.turn}
+          perspective={config.perspective}
+          depth={config.depth}
+          scale={config.scale}
+          speed={config.speed}
           direction="up"
           variance={0.45}
-          parallax={0.65}
-          lift={75}
+          parallax={config.parallax}
+          lift={config.lift}
           fade={0.1}
           dim={isDark ? 0.65 : 0.75}
           grayscale={false}
