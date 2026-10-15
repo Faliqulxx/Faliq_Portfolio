@@ -371,6 +371,77 @@ export const galleryData = [
 // ─── PROJECTS ──────────────────────────────────────────────────────────────
 export const projectsData = [
   {
+    title: "OmniCore AI",
+    category: ["data", "web"],
+    description:
+      "OmniCore AI is an omnichannel conversational AI assistant operating 24/7 across WhatsApp (via WAHA), Telegram, and LINE. Powered by n8n workflow orchestration, hybrid AI models (Google Gemini & OpenAI GPT), Supabase vector database (pgvector), and PostgreSQL, it delivers accurate, hallucination-free responses using adaptive Retrieval-Augmented Generation (RAG) and dynamic SQL tabular queries connected to Google Drive.",
+    image: "images/project/OmniCore AI/1.webp",
+    screenshots: [
+      "images/project/OmniCore AI/2.webp",
+    ],
+    tech: [
+      "/images/icon/n8n.svg",
+      "/images/icon/gemini.svg",
+      "/images/icon/openai.svg",
+      "/images/icon/supabase.svg",
+      "/images/icon/postgresql.svg",
+    ],
+    demoUrl: null,
+    githubUrl: null,
+    features: [
+      "Adaptive RAG Architecture: Delivers strictly verified, hallucination-free answers grounded on authoritative knowledge base documents stored in Supabase pgvector.",
+      "Autonomous Google Drive ETL: Synchronizes and extracts spreadsheets (Excel/CSV), PDFs, and Docs autonomously, parsing tabular data into PostgreSQL JSONB rows.",
+      "Hybrid Semantic & SQL Retrieval: Combines vector similarity search for narrative context with precise SQL aggregations for tabular records (schedules, pricing, rosters).",
+      "Omnichannel & Human-like Typing: Connects WhatsApp, Telegram, and LINE with realistic typing delays, read receipts, and interactive onboarding flows.",
+    ],
+    languages: [
+      "n8n",
+      "LangChain",
+      "Google Gemini",
+      "OpenAI GPT",
+      "Supabase (pgvector)",
+      "PostgreSQL",
+      "WAHA (WhatsApp)",
+      "Telegram Bot API",
+      "LINE Messaging API",
+    ],
+  },
+  {
+    title: "WhatsApp AI Rental Mobil",
+    category: ["data", "web"],
+    description:
+      "WhatsApp AI Rental Mobil is an end-to-end automated car rental booking assistant powered by n8n and LangChain AI Agents. It provides 24/7 self-service vehicle reservations, real-time schedule checks via Google Calendar, down payment calculations, automatic cancellations via background cron jobs, and seamless payment gateway webhook integrations, complete with multimodal voice note processing using OpenAI Whisper and TTS.",
+    image: "images/project/Rental Mobil/1.webp",
+    screenshots: [
+      "images/project/Rental Mobil/2.webp",
+    ],
+    tech: [
+      "/images/icon/n8n.svg",
+      "/images/icon/gemini.svg",
+      "/images/icon/openai.svg",
+      "/images/icon/postgresql.svg",
+      "/images/icon/langchain.svg",
+    ],
+    demoUrl: "https://n8nrental.vercel.app/",
+    githubUrl: null,
+    features: [
+      "Multimodal Voice & Text Support: Accepts text and WhatsApp voice notes, transcribing audio with OpenAI Whisper and responding with synthesized voice notes via OpenAI TTS.",
+      "Intelligent Booking & Anti-Double-Booking: Checks live vehicle schedules directly against Google Calendar and calculates rental duration, driver fees, and down payments without computational errors.",
+      "Self-Service Rescheduling & Cancellation: Enables customers to adjust trip dates or cancel bookings conversationally, updating Google Calendar and Google Sheets automatically.",
+      "Automated Payment Webhook & Auto-Cancel: Verifies payment gateway webhook callbacks, while a 1-minute background cron job automatically cancels unpaid bookings past their deadline.",
+    ],
+    languages: [
+      "n8n",
+      "LangChain",
+      "Google Gemini",
+      "OpenAI Whisper & TTS",
+      "WhatsApp Cloud API",
+      "Google Calendar API",
+      "Google Sheets",
+      "PostgreSQL",
+    ],
+  },
+  {
     title: "CampRent",
     category: ["web"],
     description:
@@ -388,7 +459,7 @@ export const projectsData = [
       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
       "/images/icon/supabase.svg",
     ],
-    demoUrl: null,
+    demoUrl: "https://camprent.vercel.app/",
     githubUrl: "https://github.com/Faliqulxx/CamRent",
     features: [
       "Date-Based Availability: Calculates real-time gear availability based on exact rental date ranges and physical individual unit tracking rather than static stock counts.",

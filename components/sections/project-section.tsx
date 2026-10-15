@@ -130,13 +130,15 @@ const getProjectBadges = (project: any, lang: "en" | "id" = "en") => {
   } else if (title.includes("shopee") || desc.includes("sentiment") || desc.includes("nlp") || title.includes("sentiment")) {
     rawBadge = "DATA ANALYTICS";
     color = "blue";
-  } else if (title.includes("bot") || title.includes("assistant") || langs.includes("n8n") || desc.includes("automation")) {
+  } else if (title.includes("bot") || title.includes("assistant") || langs.includes("n8n") || desc.includes("automation") || title.includes("omnicore")) {
     rawBadge = "AUTOMATION";
     color = "green";
-    extraBadge = {
-      text: BADGE_TRANSLATIONS["ON PROGRESS"]?.[lang] || "ON PROGRESS",
-      color: "amber",
-    };
+    if (project.inProgress || title.includes("multi-service")) {
+      extraBadge = {
+        text: BADGE_TRANSLATIONS["ON PROGRESS"]?.[lang] || "ON PROGRESS",
+        color: "amber",
+      };
+    }
   } else if (title.includes("cgn") || desc.includes("supply") || desc.includes("logistics")) {
     rawBadge = "DATA ENGINEERING";
     color = "purple";
@@ -912,64 +914,67 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               onClick={(e) => e.stopPropagation()}
             >
               {/* ── LEFT: Image Slider ── */}
-              <div className="lg:w-1/2 flex flex-col bg-neutral-100 dark:bg-black/40">
-                <div className="relative w-full aspect-video overflow-hidden">
-                  <Image
-                    key={activeSlide}
-                    src={(() => {
-                      const list = [activeProject.image, ...activeProject.screenshots];
-                      const s = list[activeSlide] || list[0];
-                      return s.startsWith("/") ? s : `/${s}`;
-                    })()}
-                    alt={`slide-${activeSlide}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 600px"
-                    className="object-cover"
-                  />
-                  {[activeProject.image, ...activeProject.screenshots].length > 1 && (
-                    <>
-                      <button
-                        onClick={() => setActiveSlide((p) => (p === 0 ? [activeProject.image, ...activeProject.screenshots].length - 1 : p - 1))}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
-                      >
-                        ‹
-                      </button>
-                      <button
-                        onClick={() => setActiveSlide((p) => (p === [activeProject.image, ...activeProject.screenshots].length - 1 ? 0 : p + 1))}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
-                      >
-                        ›
-                      </button>
-                    </>
-                  )}
-                  <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono z-10">
-                    {activeSlide + 1} / {[activeProject.image, ...activeProject.screenshots].length}
-                  </div>
-                </div>
-
-                <div className="flex gap-2 p-3 overflow-x-auto scrollbar-hide">
-                  {[activeProject.image, ...activeProject.screenshots].map((src: string, i: number) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveSlide(i)}
-                      className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
-                        i === activeSlide
-                          ? "border-neutral-900 dark:border-white"
-                          : "border-transparent opacity-50 hover:opacity-100"
-                      }`}
-                    >
+              {(() => {
+                const list = Array.from(new Set([activeProject.image, ...(activeProject.screenshots || [])].filter(Boolean)));
+                const currentImg = list[activeSlide] || list[0] || "";
+                const fullSrc = currentImg.startsWith("/") ? currentImg : `/${currentImg}`;
+                return (
+                  <div className="lg:w-1/2 flex flex-col bg-neutral-100 dark:bg-black/40">
+                    <div className="relative w-full aspect-video overflow-hidden">
                       <Image
-                        src={src.startsWith("/") ? src : `/${src}`}
-                        alt={`thumb-${i}`}
+                        key={activeSlide}
+                        src={fullSrc}
+                        alt={`slide-${activeSlide}`}
                         fill
-                        sizes="64px"
-                        loading="lazy"
+                        sizes="(max-width: 1024px) 100vw, 600px"
                         className="object-cover"
                       />
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      {list.length > 1 && (
+                        <>
+                          <button
+                            onClick={() => setActiveSlide((p) => (p === 0 ? list.length - 1 : p - 1))}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            onClick={() => setActiveSlide((p) => (p === list.length - 1 ? 0 : p + 1))}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
+                          >
+                            ›
+                          </button>
+                        </>
+                      )}
+                      <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono z-10">
+                        {activeSlide + 1} / {list.length}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 p-3 overflow-x-auto scrollbar-hide">
+                      {list.map((src: string, i: number) => (
+                        <button
+                          key={i}
+                          onClick={() => setActiveSlide(i)}
+                          className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
+                            i === activeSlide
+                              ? "border-neutral-900 dark:border-white"
+                              : "border-transparent opacity-50 hover:opacity-100"
+                          }`}
+                        >
+                          <Image
+                            src={src.startsWith("/") ? src : `/${src}`}
+                            alt={`thumb-${i}`}
+                            fill
+                            sizes="64px"
+                            loading="lazy"
+                            className="object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* ── RIGHT: Project Details ── */}
               <div className="lg:w-1/2 overflow-y-auto p-6 flex flex-col gap-4">

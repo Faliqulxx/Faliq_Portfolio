@@ -10,6 +10,46 @@ export interface ProjectTranslation {
 }
 
 export const PROJECT_TRANSLATIONS: Record<string, ProjectTranslation> = {
+  "OmniCore AI": {
+    description: {
+      en: "OmniCore AI is an omnichannel conversational AI assistant operating 24/7 across WhatsApp (via WAHA), Telegram, and LINE. Powered by n8n workflow orchestration, hybrid AI models (Google Gemini & OpenAI GPT), Supabase vector database (pgvector), and PostgreSQL, it delivers accurate, hallucination-free responses using adaptive Retrieval-Augmented Generation (RAG) and dynamic SQL tabular queries connected to Google Drive.",
+      id: "OmniCore AI adalah asisten chatbot cerdas omnichannel 24/7 yang beroperasi di WhatsApp (via WAHA), Telegram, dan LINE. Mengintegrasikan orkestrasi alur kerja n8n, model AI hibrida (Google Gemini & OpenAI GPT), basis data vektor Supabase (pgvector), serta PostgreSQL, sistem ini menghadirkan respons akurat bebas halusinasi berbasis RAG adaptif dan kueri SQL data tabular yang tersinkronisasi otomatis dengan Google Drive.",
+    },
+    features: {
+      en: [
+        "Adaptive RAG Architecture: Delivers strictly verified, hallucination-free answers grounded on authoritative knowledge base documents stored in Supabase pgvector.",
+        "Autonomous Google Drive ETL: Synchronizes and extracts spreadsheets (Excel/CSV), PDFs, and Docs autonomously, parsing tabular data into PostgreSQL JSONB rows.",
+        "Hybrid Semantic & SQL Retrieval: Combines vector similarity search for narrative context with precise SQL aggregations for tabular records (schedules, pricing, rosters).",
+        "Omnichannel & Human-like Typing: Connects WhatsApp, Telegram, and LINE with realistic typing delays, read receipts, and interactive onboarding flows.",
+      ],
+      id: [
+        "Arsitektur RAG Adaptif: Memberikan jawaban akurat dan bebas halusinasi yang berakar kuat pada dokumen knowledge base terverifikasi di Supabase pgvector.",
+        "Pipeline ETL Google Drive Otomatis: Mendeteksi dan mengekstrak dokumen (Excel, CSV, PDF, Docs) secara otonom serta memetakan data tabular ke tabel PostgreSQL JSONB.",
+        "Hybrid Semantic & SQL Retrieval: Memadukan pencarian semantik vektor untuk konteks naratif dengan kueri SQL presisi untuk data terstruktur (jadwal, tarif, daftar).",
+        "Integrasi Omnichannel & Simulasi Ketikan: Terhubung ke WhatsApp, Telegram, dan LINE dengan jeda simulasi ketikan manusia, tanda baca pesan, dan onboarding pengguna baru.",
+      ],
+    },
+  },
+  "WhatsApp AI Rental Mobil": {
+    description: {
+      en: "WhatsApp AI Rental Mobil is an end-to-end automated car rental booking assistant powered by n8n and LangChain AI Agents. It provides 24/7 self-service vehicle reservations, real-time schedule checks via Google Calendar, down payment calculations, automatic cancellations via background cron jobs, and seamless payment gateway webhook integrations, complete with multimodal voice note processing using OpenAI Whisper and TTS.",
+      id: "WhatsApp AI Rental Mobil adalah asisten reservasi rental mobil otomatis 24/7 berbasis alur kerja n8n dan LangChain AI Agent. Sistem ini menangani pemesanan mobil mandiri, verifikasi ketersediaan jadwal real-time via Google Calendar, kalkulasi DP & total biaya, pembatalan otomatis pesanan kedaluwarsa berbasis cron job, serta integrasi webhook payment gateway, dilengkapi pemrosesan voice note multimodal via OpenAI Whisper dan TTS.",
+    },
+    features: {
+      en: [
+        "Multimodal Voice & Text Support: Accepts text and WhatsApp voice notes, transcribing audio with OpenAI Whisper and responding with synthesized voice notes via OpenAI TTS.",
+        "Intelligent Booking & Anti-Double-Booking: Checks live vehicle schedules directly against Google Calendar and calculates rental duration, driver fees, and down payments without computational errors.",
+        "Self-Service Rescheduling & Cancellation: Enables customers to adjust trip dates or cancel bookings conversationally, updating Google Calendar and Google Sheets automatically.",
+        "Automated Payment Webhook & Auto-Cancel: Verifies payment gateway webhook callbacks, while a 1-minute background cron job automatically cancels unpaid bookings past their deadline.",
+      ],
+      id: [
+        "Dukungan Multimodal Suara & Teks: Menerima pesan teks maupun voice note WhatsApp, mentranskripsikan audio dengan OpenAI Whisper dan membalas dengan voice note sintetis via OpenAI TTS.",
+        "Booking Cerdas & Anti Double-Booking: Memeriksa ketersediaan jadwal mobil langsung ke Google Calendar serta menghitung durasi sewa, biaya sopir, dan DP tanpa halusinasi hitungan.",
+        "Reschedule & Pembatalan Mandiri: Memungkinkan pelanggan mengubah tanggal sewa atau membatalkan pesanan via chat, memperbarui Google Calendar dan Google Sheets secara otomatis.",
+        "Webhook Pembayaran & Auto-Cancel: Memvalidasi callback payment gateway otomatis, serta menjalankan background cron job tiap 1 menit untuk membatalkan pesanan yang kedaluwarsa.",
+      ],
+    },
+  },
   "CampRent": {
     description: {
       en: "CampRent is a specialized camping equipment rental management system designed for outdoor gear business operations. The platform features an intelligent date-and-unit-based availability engine, multi-tier role management (Customer, Staff, Owner), automated rental lifecycle tracking, and integrated inspection workflows.",
