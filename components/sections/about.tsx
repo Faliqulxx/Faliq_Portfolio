@@ -248,22 +248,24 @@ function AboutFullView({
       {/* =========================================================================
           1. HERO HEADER SECTION
           ========================================================================= */}
-      <section className="relative w-full overflow-hidden pt-28 sm:pt-36 md:pt-44 lg:pt-48 pb-16 sm:pb-24 lg:pb-32 bg-neutral-100/70 dark:bg-[#0a0a0a]">
+      <section className="relative w-full overflow-hidden pt-28 sm:pt-36 md:pt-44 lg:pt-48 pb-16 sm:pb-24 lg:pb-32 bg-white dark:bg-black">
         {/* Hero Background Mountain Asset */}
-        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <Image
             src="/images/about/footer-mountain.webp"
             alt="Mountain Journey"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-top opacity-30 dark:opacity-20 grayscale"
+            className="object-cover object-center -scale-x-100 opacity-85 dark:opacity-65"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-100/40 via-transparent to-white dark:from-black/50 dark:via-transparent dark:to-black" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent dark:from-black dark:via-black/50 dark:to-transparent" />
+          {/* Readability gradient for text on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/20 dark:from-black/95 dark:via-black/80 dark:to-black/25" />
+          {/* Top and bottom subtle blend */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-black via-transparent to-white/30 dark:to-black/30" />
         </div>
 
-        <div className="w-[92vw] max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="relative z-10 w-[92vw] max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-12 lg:gap-16">
             {/* Left: Typography & Story Hook */}
             <motion.div
@@ -497,7 +499,7 @@ function AboutFullView({
                 <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xl group">
                   <div className="relative aspect-[16/10] w-full">
                     <Image
-                      src="/images/about/gontor.webp"
+                      src="/images/about/gontor.webp?v=2"
                       alt="Pondok Modern Darussalam Gontor"
                       fill
                       sizes="(max-width: 1024px) 100vw, 500px"
@@ -525,9 +527,11 @@ function AboutFullView({
                   <p className="text-base font-bold text-neutral-800 dark:text-neutral-200 mb-0.5">
                     {t("about.full.node2Inst")}
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-                    {t("about.full.node2Major")}
-                  </p>
+                  {t("about.full.node2Major") && (
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+                      {t("about.full.node2Major")}
+                    </p>
+                  )}
 
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-xs font-bold text-neutral-900 dark:text-neutral-100">
@@ -582,9 +586,11 @@ function AboutFullView({
                   <p className="text-base font-bold text-neutral-800 dark:text-neutral-200 mb-0.5">
                     {t("about.full.node3Inst")}
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-                    {t("about.full.node3Major")}
-                  </p>
+                  {t("about.full.node3Major") && (
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+                      {t("about.full.node3Major")}
+                    </p>
+                  )}
 
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-xs font-bold text-neutral-900 dark:text-neutral-100">
@@ -669,9 +675,11 @@ function AboutFullView({
                   <p className="text-base font-bold text-neutral-800 dark:text-neutral-200 mb-0.5">
                     {t("about.full.node4Inst")}
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-                    {t("about.full.node4Major")}
-                  </p>
+                  {t("about.full.node4Major") && (
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+                      {t("about.full.node4Major")}
+                    </p>
+                  )}
 
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-xs font-bold text-neutral-900 dark:text-neutral-100">
@@ -707,16 +715,6 @@ function AboutFullView({
           3. FOOTER CTA SECTION
           ========================================================================= */}
       <section className="relative w-full overflow-hidden py-24 sm:py-32 bg-black text-white">
-        <div className="absolute inset-0 -z-10 overflow-hidden opacity-30 pointer-events-none grayscale">
-          <Image
-            src="/images/about/footer-mountain.webp"
-            alt="Scenic Mountain Horizon"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/70" />
-        </div>
-
         <div className="w-[92vw] max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-12 lg:gap-16 items-center">
             <motion.div
@@ -916,23 +914,6 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                 sizes="(max-width: 1024px) 100vw, 320px"
                 className="object-cover object-top"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-10">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs text-neutral-400 font-mono">@{personalData.nickname?.toLowerCase() ?? "faliq"}</p>
-                    <p className="text-[10px] text-neutral-300 font-semibold uppercase tracking-widest flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-pulse inline-block" />
-                      {t("about.openToWork")}
-                    </p>
-                  </div>
-                  <Link
-                    href="/contact"
-                    className="px-3 py-1.5 rounded-full bg-white text-black text-xs font-bold hover:bg-neutral-200 transition-all duration-200"
-                  >
-                    {t("intro.contactMe")}
-                  </Link>
-                </div>
-              </div>
             </motion.div>
           </div>
 

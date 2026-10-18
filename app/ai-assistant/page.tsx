@@ -4,13 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineTrash, HiOutlineLightBulb } from "react-icons/hi";
 import { IoSend, IoSparkles } from "react-icons/io5";
-import {
-  BsLightningCharge,
-  BsRocketTakeoff,
-  BsCpu,
-  BsTools,
-  BsStar,
-} from "react-icons/bs";
+
+import dynamic from "next/dynamic";
 import { useChat } from "@/components/chat/useChat";
 import ChatMessage from "@/components/chat/ChatMessage";
 import ClearChatDialog from "@/components/chat/ClearChatDialog";
@@ -18,6 +13,10 @@ import PromptBar from "@/components/chat/PromptBar";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
+
+const CrystalizedBall = dynamic(() => import("@/components/ui/CrystalizedBall"), {
+  ssr: false,
+});
 
 export default function AIAssistantPage() {
   const { t } = useLanguage();
@@ -32,33 +31,27 @@ export default function AIAssistantPage() {
 
   const quickPrompts: {
     title: string;
-    description: string;
-    icon: React.ReactNode;
+    prompt: string;
   }[] = [
     {
       title: t("ai.prompt1.title"),
-      description: t("ai.prompt1.desc"),
-      icon: <BsLightningCharge />,
+      prompt: t("ai.prompt1.desc"),
     },
     {
       title: t("ai.prompt2.title"),
-      description: t("ai.prompt2.desc"),
-      icon: <BsRocketTakeoff />,
+      prompt: t("ai.prompt2.desc"),
     },
     {
       title: t("ai.prompt3.title"),
-      description: t("ai.prompt3.desc"),
-      icon: <BsCpu />,
+      prompt: t("ai.prompt3.desc"),
     },
     {
       title: t("ai.prompt4.title"),
-      description: t("ai.prompt4.desc"),
-      icon: <BsTools />,
+      prompt: t("ai.prompt4.desc"),
     },
     {
       title: t("ai.prompt5.title"),
-      description: t("ai.prompt5.desc"),
-      icon: <BsStar />,
+      prompt: t("ai.prompt5.desc"),
     },
   ];
 
@@ -142,48 +135,50 @@ export default function AIAssistantPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="h-full flex flex-col items-center justify-center text-center py-1 sm:py-2"
+              className="relative h-full flex flex-col items-center justify-center text-center py-1 sm:py-2 overflow-hidden"
             >
-              <div className="w-9 h-9 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 flex items-center justify-center text-neutral-900 dark:text-white text-base sm:text-2xl mb-1.5 sm:mb-3 shadow-inner">
-                <HiOutlineLightBulb />
+              {/* CRYSTALIZED BALL BACKGROUND BEHIND QUICK CHAT */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                <div className="w-full max-w-[560px] h-[360px] sm:h-[460px] pointer-events-auto opacity-75 dark:opacity-85">
+                  <CrystalizedBall
+                    preset="plasma"
+                    color="#94a3b8"
+                    theme={isDark ? "dark" : "light"}
+                    size={0.7}
+                    crackle={0.85}
+                    fill={0.5}
+                    interactive
+                    hoverStrength={0.7}
+                  />
+                </div>
               </div>
-              <h3 className="text-sm sm:text-xl font-bold text-neutral-900 dark:text-white mb-0.5 sm:mb-1">
-                {t("ai.welcomeTitle")}
-              </h3>
-              <p className="text-[11px] sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-md mb-3 sm:mb-6 px-2">
-                {t("ai.welcomeDesc")}
-              </p>
 
-              {/* QUICK PROMPTS GRID */}
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 w-full max-w-3xl">
-                {quickPrompts.map((item, idx) => (
-                  <motion.button
-                    key={idx}
-                    whileHover={{ y: -2, scale: 1.01 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => handlePromptSelect(item.description)}
-                    className={`p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-[#161616] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 text-left transition-all group shadow-sm flex flex-col justify-between ${
-                      idx === 4 ? "col-span-2 lg:col-span-1" : ""
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200/80 dark:border-neutral-700/60 flex items-center justify-center text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm group-hover:scale-105 transition-transform shrink-0">
-                        {item.icon}
-                      </div>
-                      <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity font-mono">
-                        {t("ai.askPrompt")}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-[11px] sm:text-sm font-semibold text-neutral-900 dark:text-white mb-0.5 line-clamp-1">
-                        {item.title}
-                      </h4>
-                      <p className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-tight sm:leading-snug">
-                        &ldquo;{item.description}&rdquo;
-                      </p>
-                    </div>
-                  </motion.button>
-                ))}
+              {/* FOREGROUND CONTENT */}
+              <div className="relative z-10 flex flex-col items-center max-w-2xl px-2">
+                <div className="w-9 h-9 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/70 dark:bg-neutral-800/70 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-700/60 flex items-center justify-center text-neutral-900 dark:text-white text-base sm:text-2xl mb-1.5 sm:mb-3 shadow-inner">
+                  <HiOutlineLightBulb />
+                </div>
+                <h3 className="text-sm sm:text-xl font-bold text-neutral-900 dark:text-white mb-0.5 sm:mb-1 drop-shadow-sm">
+                  {t("ai.welcomeTitle")}
+                </h3>
+                <p className="text-[11px] sm:text-sm text-neutral-600 dark:text-neutral-300 max-w-md mb-4 sm:mb-6 px-2 drop-shadow-sm">
+                  {t("ai.welcomeDesc")}
+                </p>
+
+                {/* QUICK PROMPTS */}
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-2xl px-2">
+                  {quickPrompts.map((item, idx) => (
+                    <motion.button
+                      key={idx}
+                      whileHover={{ y: -2, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handlePromptSelect(item.prompt)}
+                      className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl border border-neutral-200/90 dark:border-neutral-800/90 bg-white/85 dark:bg-[#161616]/85 backdrop-blur-md hover:bg-white dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 transition-all shadow-sm cursor-pointer"
+                    >
+                      {item.title}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ) : (

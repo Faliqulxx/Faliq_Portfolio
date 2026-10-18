@@ -70,6 +70,26 @@ export const PROJECT_TRANSLATIONS: Record<string, ProjectTranslation> = {
       ],
     },
   },
+  "CampRent POS": {
+    description: {
+      en: "CampRent POS is an offline-first Point of Sale and outdoor rental management system built with Flutter and Dart. Designed specifically for outdoor gear rental shops operating in remote mountain or basecamp areas with limited internet, it provides streamlined walk-in checkouts, multi-tenant cloud synchronization via Supabase & PostgreSQL RLS, cashier shift management with cash reconciliation, size-variant inventory tracking, physical ID & cash deposit management, and comprehensive return inspections with automated damage/late fee calculations.",
+      id: "CampRent POS adalah sistem kasir (Point of Sale) dan manajemen operasional rental perlengkapan outdoor berbasis Flutter dan Dart dengan arsitektur Offline-First. Dirancang khusus untuk toko persewaan alat camping dan alam bebas di area minim sinyal, aplikasi ini menghadirkan alur transaksi walk-in kilat, sinkronisasi multi-tenant cloud berbasis Supabase & PostgreSQL RLS, manajemen shift kasir dengan rekonsiliasi kas fisik, katalog varian ukuran, pengawasan deposit & jaminan identitas fisik (KTP/SIM/KTM), serta inspeksi kondisi barang dengan kalkulasi denda otomatis.",
+    },
+    features: {
+      en: [
+        "Offline-First Architecture & Cloud Sync: Operates 100% offline via local SQLite with automatic multi-tenant cloud synchronization to Supabase PostgreSQL.",
+        "Cashier Shift & Cash Reconciliation: Enforces opening cash drawer verification and closing reconciliation to prevent cashier cash discrepancies.",
+        "Flexible Rental & Collateral Tracking: Supports size-variant inventory, physical ID collateral (KTP/SIM/KTM), and automated security deposits.",
+        "Return Inspections, Penalties & Thermal Print: Features unit-by-unit return condition inspection, automated late/damage fees, and thermal receipt printing.",
+      ],
+      id: [
+        "Arsitektur Offline-First & Sinkronisasi Cloud: Bekerja 100% offline dengan SQLite lokal dan sinkronisasi cloud multi-tenant otomatis ke Supabase PostgreSQL saat online.",
+        "Manajemen Shift & Rekonsiliasi Kas: Mewajibkan input modal awal kasir dan audit rekonsiliasi kas saat tutup shift guna mencegah selisih uang laci kasir.",
+        "Pengelolaan Sewa Fleksibel & Jaminan: Mendukung stok varian ukuran, pencatatan jaminan fisik (KTP/SIM/KTM), serta pengelolaan deposit tunai terintegrasi.",
+        "Inspeksi Pengembalian, Denda & Struk Thermal: Pemeriksaan kondisi unit per unit, kalkulasi denda keterlambatan/kerusakan otomatis, dan cetak struk thermal.",
+      ],
+    },
+  },
   "SignalHR": {
     description: {
       en: "SignalHR is an AI-powered Applicant Tracking System designed to streamline modern recruitment workflows. It enables HR teams to manage vacancies, automate resume parsing, and evaluate candidate-job compatibility using intelligent scoring algorithms. The platform delivers end-to-end recruitment analytics to optimize hiring decisions efficiently.",
@@ -456,6 +476,7 @@ export const BADGE_TRANSLATIONS: Record<string, { en: string; id: string }> = {
   "DATA ENGINEERING": { en: "DATA ENGINEERING", id: "REKAYASA DATA" },
   "DATA SCIENCE": { en: "DATA SCIENCE", id: "SAINS DATA" },
   "AI PLATFORM": { en: "AI PLATFORM", id: "PLATFORM AI" },
+  "POS APP": { en: "POS APP", id: "APLIKASI KASIR" },
   "WEB DEV": { en: "WEB DEV", id: "PENGEMBANGAN WEB" },
   "GAME DEV": { en: "GAME DEV", id: "GAME DEV" },
 };

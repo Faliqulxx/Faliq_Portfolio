@@ -98,7 +98,7 @@ const checkProjectHasSubcategory = (project: any, subCat: string): boolean => {
     case "IoT & Embedded":
       return text.includes("iot") || text.includes("esp32") || text.includes("arduino") || text.includes("rfid") || text.includes("sensor");
     case "Frontend":
-      return text.includes("react") || text.includes("next.js") || text.includes("bootstrap") || text.includes("tailwind") || text.includes("css");
+      return text.includes("react") || text.includes("next.js") || text.includes("bootstrap") || text.includes("tailwind") || text.includes("css") || text.includes("flutter");
     case "Backend & API":
       return text.includes("api") || text.includes("fastapi") || text.includes("laravel") || text.includes("postgresql") || text.includes("mysql") || text.includes("supabase");
     default:
@@ -151,6 +151,9 @@ const getProjectBadges = (project: any, lang: "en" | "id" = "en") => {
   } else if (title.includes("stickman") || title.includes("troll") || desc.includes("troll platformer")) {
     rawBadge = "GAME DEV";
     color = "purple";
+  } else if (title.includes("pos") || title.includes("kasir") || desc.includes("point of sale")) {
+    rawBadge = "POS APP";
+    color = "teal";
   } else if (project.category?.includes("data")) {
     rawBadge = "DATA SCIENCE";
     color = "blue";

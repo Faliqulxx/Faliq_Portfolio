@@ -99,7 +99,7 @@ export default function Intro() {
             <div className="relative flex items-center justify-center w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
               <div className="absolute inset-0 pointer-events-none z-0">
                 <CircularText
-                  text="Available for Work * Available for Collaboration * "
+                  text="Available for Work | Available for Collaboration | "
                   spinDuration={18}
                   onHover="goBonkers"
                   className="w-full h-full text-[0.52rem] sm:text-[0.58rem] lg:text-[0.68rem] xl:text-[0.72rem] text-neutral-800 dark:text-neutral-400"
