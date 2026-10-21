@@ -68,7 +68,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.myFocus": "My Focus",
     "about.whatIDoBest": "What I Do Best",
     "about.focusDesc":
-      "Combining Data Science with AI Automation to build efficient, data-driven solutions — from predictive models to smart IoT systems.",
+      "Combining Data Science with AI Automation to build efficient, data-driven solutions — from predictive models to web development (frontend).",
 
     // ── About (Full View / Timeline) ──
     "about.full.heroTag": "ABOUT ME",
@@ -312,7 +312,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.myFocus": "Fokus Saya",
     "about.whatIDoBest": "Keahlian Utama Saya",
     "about.focusDesc":
-      "Menggabungkan Data Science dengan AI Automation untuk membangun solusi berbasis data yang efisien — dari model prediktif hingga sistem IoT pintar.",
+      "Menggabungkan Data Science dengan AI Automation untuk membangun solusi berbasis data yang efisien — dari model prediktif hingga web development (frontend).",
 
     // ── About (Full View / Timeline) ──
     "about.full.heroTag": "TENTANG SAYA",

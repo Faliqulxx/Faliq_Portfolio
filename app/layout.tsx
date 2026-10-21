@@ -82,7 +82,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem("portfolio_intro_shown")==="true"){document.documentElement.classList.add("intro-skipped");}}catch(e){}`,
+            __html: `try{var isReload=false;try{var nav=performance.getEntriesByType("navigation");if(nav&&nav.length>0){isReload=nav[0].type==="reload";}else if(performance.navigation){isReload=performance.navigation.type===1;}}catch(err){}if(isReload||sessionStorage.getItem("portfolio_intro_shown")==="true"){document.documentElement.classList.add("intro-skipped");sessionStorage.setItem("portfolio_intro_shown","true");}}catch(e){}`,
           }}
         />
       </head>
