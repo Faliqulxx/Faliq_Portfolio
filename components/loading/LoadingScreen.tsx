@@ -33,6 +33,7 @@ const CHARS = NAME.split("");
 const STAGGER = 0.075; // Delay antar kemunculan huruf
 
 function hasShownIntro(): boolean {
+  if (process.env.NODE_ENV === "development") return false;
   if (typeof window === "undefined") return false;
   try {
     const navEntries = performance.getEntriesByType("navigation");
@@ -49,6 +50,7 @@ function hasShownIntro(): boolean {
 }
 
 function markIntroShown(): void {
+  if (process.env.NODE_ENV === "development") return;
   if (typeof window === "undefined") return;
   try {
     sessionStorage.setItem(INTRO_SESSION_KEY, "true");
@@ -64,6 +66,13 @@ export default function LoadingScreen() {
   const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      try {
+        sessionStorage.removeItem(INTRO_SESSION_KEY);
+        document.documentElement.classList.remove("intro-skipped");
+      } catch {}
+    }
+
     // Check if user already saw the intro this session or if it's a page refresh
     if (hasShownIntro()) {
       markIntroShown();

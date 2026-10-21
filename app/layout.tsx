@@ -80,11 +80,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var isReload=false;try{var nav=performance.getEntriesByType("navigation");if(nav&&nav.length>0){isReload=nav[0].type==="reload";}else if(performance.navigation){isReload=performance.navigation.type===1;}}catch(err){}if(isReload||sessionStorage.getItem("portfolio_intro_shown")==="true"){document.documentElement.classList.add("intro-skipped");sessionStorage.setItem("portfolio_intro_shown","true");}}catch(e){}`,
-          }}
-        />
+        {process.env.NODE_ENV !== "development" ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `try{var isReload=false;try{var nav=performance.getEntriesByType("navigation");if(nav&&nav.length>0){isReload=nav[0].type==="reload";}else if(performance.navigation){isReload=performance.navigation.type===1;}}catch(err){}if(isReload||sessionStorage.getItem("portfolio_intro_shown")==="true"){document.documentElement.classList.add("intro-skipped");sessionStorage.setItem("portfolio_intro_shown","true");}}catch(e){}`,
+            }}
+          />
+        ) : (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `try{sessionStorage.removeItem("portfolio_intro_shown");document.documentElement.classList.remove("intro-skipped");}catch(e){}`,
+            }}
+          />
+        )}
       </head>
       <body
         className={`${inter.className} bg-white dark:bg-black text-gray-900 dark:text-white relative transition-colors duration-300 overflow-x-hidden`}
