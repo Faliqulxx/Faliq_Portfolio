@@ -11,7 +11,6 @@ import { BiLinkExternal } from "react-icons/bi";
 import { BsArrowRight, BsBarChartLine, BsCodeSlash, BsGrid } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
-import SectionHeading from "@/components/ui/section-heading";
 import { useLanguage } from "@/context/language-context";
 import {
   getTranslatedProject,
@@ -395,7 +394,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [sortKey, setSortKey] = useState("pinned");
   const [showSortMenu, setShowSortMenu] = useState(false);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -524,8 +523,6 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       <div ref={sectionRef} className="w-[95vw] sm:w-[92vw] max-w-[1600px] mx-auto px-1 sm:px-8 lg:px-12 relative">
         {variant === "full" ? (
           <div className="w-full">
-            <SectionHeading>{t("projects.title")}</SectionHeading>
-
             {/* ── Segmented Switcher Tabs ── */}
             <div className="flex justify-center mb-6 sm:mb-7">
               <div className="inline-flex items-center p-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 shadow-sm max-w-full overflow-x-auto no-scrollbar">
