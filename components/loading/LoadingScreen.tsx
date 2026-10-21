@@ -49,7 +49,15 @@ function hasShownIntro(): boolean {
   }
 }
 
-function markIntroShown(): void {
+function setSessionShown(): void {
+  if (process.env.NODE_ENV === "development") return;
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(INTRO_SESSION_KEY, "true");
+  } catch {}
+}
+
+function markIntroSkipped(): void {
   if (process.env.NODE_ENV === "development") return;
   if (typeof window === "undefined") return;
   try {
@@ -75,17 +83,17 @@ export default function LoadingScreen() {
 
     // Check if user already saw the intro this session or if it's a page refresh
     if (hasShownIntro()) {
-      markIntroShown();
+      markIntroSkipped();
       setVisible(false);
       return;
     }
 
-    // Immediately mark intro as shown for this session so refresh never triggers it
-    markIntroShown();
+    // Mark in sessionStorage only so reload won't loop, but do NOT add .intro-skipped yet
+    setSessionShown();
 
     if (prefersReducedMotion) {
       const quickTimer = setTimeout(() => {
-        markIntroShown();
+        markIntroSkipped();
         setVisible(false);
       }, 500);
       return () => clearTimeout(quickTimer);
@@ -131,17 +139,22 @@ export default function LoadingScreen() {
     };
   }, [prefersReducedMotion]);
 
-  // Clean up body overflow when fading out finishes
+  // Clean up body overflow when fading out starts or finishes
   useEffect(() => {
-    if (!visible) {
+    if (isFadingOut || !visible) {
       document.body.style.overflow = "";
     }
-  }, [visible]);
+  }, [isFadingOut, visible]);
 
   if (!visible) return null;
 
   return (
-    <AnimatePresence onExitComplete={() => setVisible(false)}>
+    <AnimatePresence
+      onExitComplete={() => {
+        markIntroSkipped();
+        setVisible(false);
+      }}
+    >
       {!isFadingOut ? (
         <motion.div
           id="portfolio-loading-screen"
@@ -154,12 +167,6 @@ export default function LoadingScreen() {
           style={{
             backgroundImage:
               "radial-gradient(ellipse at center, rgba(255,255,255,0.92) 0%, rgba(242,242,242,0.95) 55%, rgba(226,226,226,1) 100%)",
-          }}
-          onAnimationComplete={() => {
-            if (isFadingOut) {
-              markIntroShown();
-              setVisible(false);
-            }
           }}
         >
           {/* Subtle noise/texture overlay for tactile luxury paper feel */}
