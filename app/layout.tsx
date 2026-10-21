@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description:
     "Faliqul Ishbah is a Full-Stack Developer & AI Automation Engineer building modern, fast, and scalable digital solutions.",
   icons: {
-    icon: "/favicon.svg?v=3",
-    shortcut: "/favicon.svg?v=3",
-    apple: "/favicon.svg?v=3",
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
   },
   authors: [{ name: "Faliqul Ishbah" }],
   keywords: [
