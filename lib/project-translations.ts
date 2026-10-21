@@ -110,6 +110,46 @@ export const PROJECT_TRANSLATIONS: Record<string, ProjectTranslation> = {
       ],
     },
   },
+  "ChocoTea": {
+    description: {
+      en: "ChocoTea is an immersive, interactive experience landing page crafted with React 18, TypeScript, and Vite. Designed to highlight premium chocolate and tea fusion beverages, it features scroll-driven bottle and splash animations via GSAP ScrollTrigger, dynamic flavor-based theme switching, smooth momentum scrolling with Lenis, and multi-channel delivery ordering.",
+      id: "ChocoTea adalah landing page interaktif dengan pengalaman visual imersif yang dibangun menggunakan React 18, TypeScript, dan Vite. Dirancang untuk memperkenalkan produk minuman perpaduan teh dan cokelat premium, dilengkapi animasi showcase botol berbasis scroll GSAP ScrollTrigger, transisi tema dinamis antar varian rasa, pergerakan scroll halus Lenis, serta integrasi pemesanan multi-kanal.",
+    },
+    features: {
+      en: [
+        "Scroll-Driven Video Showcase: Precision bottle rotation and liquid splash dynamics synchronized to user scrolling via GSAP ScrollTrigger.",
+        "Dynamic Theme Switching: Seamless atmospheric color palette and visual transitions shifting in real-time according to the selected flavor variant.",
+        "Smooth Momentum Scrolling: Silky-smooth 60fps momentum rendering across desktop and mobile devices powered by Lenis Scroll.",
+        "Multi-Channel Order Modal: Frictionless direct checkout modal routing orders seamlessly to WhatsApp, GoFood, GrabFood, and ShopeeFood.",
+      ],
+      id: [
+        "Showcase Video Berbasis Scroll: Animasi rotasi botol dan percikan cairan minuman yang sinkron dengan pergerakan scroll pengguna via GSAP ScrollTrigger.",
+        "Transisi Tema Dinamis: Pergantian palet warna dan atmosfer visual secara halus mengikuti 5 varian rasa minuman yang sedang dilihat.",
+        "Smooth Momentum Scrolling: Pengalaman scroll 60 FPS yang sangat mulus dan responsif di perangkat desktop maupun ponsel berkat integrasi Lenis Scroll.",
+        "Modal Pemesanan Multi-Kanal: Antarmuka pemesanan cepat terpadu yang terhubung langsung ke WhatsApp, GoFood, GrabFood, dan ShopeeFood.",
+      ],
+    },
+  },
+  "Bandeng Freeze": {
+    description: {
+      en: "Bandeng Freeze (Samudra Bandeng) is a modern, high-speed landing page built with React 18, Vite, Tailwind CSS, and Framer Motion. Engineered with a 'Clean Ocean Premium' visual identity, it features an interactive product catalog with dynamic filtering, animated product lightbox modals, accordion FAQs, and instant WhatsApp order checkout integrations.",
+      id: "Bandeng Freeze (Samudra Bandeng) adalah landing page modern berkecepatan tinggi dengan estetika 'Clean Ocean Premium' yang dibangun menggunakan React 18, Vite, Tailwind CSS, dan Framer Motion. Menghadirkan katalog produk beku higienis dengan filter interaktif, modal lightbox detail produk, akordeon FAQ animatif, serta integrasi tombol checkout langsung ke WhatsApp.",
+    },
+    features: {
+      en: [
+        "Framer Motion 60 FPS: Smooth fadeUp, scaleIn, stagger, and floating micro-interactions with built-in prefers-reduced-motion accessibility support.",
+        "Interactive Product Catalog & Filtering: Centralized product catalog with instant category filtering across Shrimp, Sea Fish, and Seafood variants via AnimatePresence.",
+        "Direct WhatsApp Conversion: One-click order buttons generating pre-formatted WhatsApp chat inquiries containing exact product names, quantities, and selected variants.",
+        "Interactive Lightbox & Accordion FAQ: High-resolution image lightbox modal with detailed product descriptions and animated FAQ accordion for storage, thawing, and shipping guides.",
+      ],
+      id: [
+        "Animasi Framer Motion 60 FPS: Efek transisi fadeUp, scaleIn, stagger, dan float yang sangat halus serta ramah aksesibilitas dengan dukungan prefers-reduced-motion.",
+        "Katalog Produk & Filter Kategori: Katalog produk terpusat dengan filter interaktif (Aneka Udang, Ikan Laut, Seafood Lain) menggunakan transisi dinamis AnimatePresence.",
+        "Konversi Pesanan Direct WhatsApp: Tombol pesan instan yang otomatis membuka obrolan WhatsApp dengan pesan terformat rapi sesuai produk dan varian yang dipilih.",
+        "Modal Lightbox Interaktif & Accordion FAQ: Pop-up pratinjau gambar resolusi tinggi disertai detail produk lengkap, serta akordeon FAQ interaktif seputar penyimpanan beku dan panduan thawing.",
+      ],
+    },
+  },
   "Sistem Informasi Logistik CGN": {
     description: {
       en: "CGN Logistics Information System is an enterprise digital platform designed to optimize supply chain and warehouse operations. It streamlines inventory tracking, delivery monitoring, and logistics performance analytics to maximize overall organizational efficiency. The system ensures high data security and an intuitive interface for seamless operational management.",

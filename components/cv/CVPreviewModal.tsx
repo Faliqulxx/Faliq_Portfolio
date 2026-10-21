@@ -41,7 +41,7 @@ export default function CVPreviewModal() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={closePreview}
-            className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-[2000] bg-black/70 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -51,7 +51,7 @@ export default function CVPreviewModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 12 }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed inset-0 z-[201] flex items-center justify-center p-4 sm:p-6 pointer-events-none"
+            className="fixed inset-0 z-[2001] flex items-center justify-center p-4 sm:p-6 pointer-events-none"
           >
             <div
               className="pointer-events-auto w-full max-w-4xl h-[90vh] flex flex-col bg-white dark:bg-[#121212] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden"

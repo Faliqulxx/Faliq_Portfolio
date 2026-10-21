@@ -25,12 +25,14 @@ import { IoClose } from "react-icons/io5";
 import { PiGraduationCapFill, PiBankLight } from "react-icons/pi";
 import { useSectionInView } from "@/lib/hooks";
 import BurstBload from "@/components/ui/burst-bload";
+import PixelTransition from "@/components/ui/PixelTransition";
 import {
   personalData,
   certificatesData,
   educationData,
 } from "@/lib/data";
 import { useLanguage } from "@/context/language-context";
+import { useTheme } from "@/context/theme-context";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -803,6 +805,7 @@ export default function About({ variant = "full" }: AboutProps = {}) {
   const { ref } = useSectionInView("About");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { t } = useLanguage();
+  const { theme } = useTheme();
 
   if (variant === "preview") {
     const latestEdu = [...educationData].reverse()[0];
@@ -876,7 +879,7 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                   <span className="font-semibold text-neutral-900 dark:text-white">{t("about.roleTitle")}</span> {t("about.roleDesc")}
                 </p>
                 <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  {t("about.bio").slice(0, 200)}...
+                  {t("about.bio")}
                 </p>
               </div>
 
@@ -905,14 +908,41 @@ export default function About({ variant = "full" }: AboutProps = {}) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.32, duration: 0.4 }}
-              className="relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#141414] min-h-[280px] lg:min-h-0 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300"
+              className="relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#141414] min-h-[320px] sm:min-h-[380px] lg:min-h-0 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300 shadow-sm hover:shadow-lg"
             >
-              <Image
-                src="/images/gallery/Profil1.webp"
-                alt={personalData.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 320px"
-                className="object-cover object-top"
+              <PixelTransition
+                firstContent={
+                  <Image
+                    src="/images/gallery/Profil1.webp"
+                    alt={personalData.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                    className="object-cover object-top"
+                    priority
+                  />
+                }
+                secondContent={
+                  <Image
+                    src="/images/about/profile-f1.jpg"
+                    alt="Celebration"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                    className="object-cover object-top"
+                  />
+                }
+                gridSize={12}
+                pixelColor={theme === "dark" ? "#ffffff" : "#000000"}
+                mosaic={0.2}
+                pixelShape="square"
+                gap={0}
+                pattern="random"
+                pixelAnimation="pop"
+                randomness={0.3}
+                animationStepDuration={0.4}
+                trigger="hover"
+                aspectRatio=""
+                className="w-full h-full !rounded-3xl"
+                style={{ width: "100%", height: "100%" }}
               />
             </motion.div>
           </div>
@@ -1132,27 +1162,17 @@ export default function About({ variant = "full" }: AboutProps = {}) {
                     </div>
                   </div>
 
-                  {/* 4. Internet of Things (IoT) */}
+                  {/* 4. Web Development */}
                   <div className="group flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300 w-full">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeWidth="2" />
-                        <circle cx="4" cy="4" r="2" />
-                        <path d="M5.5 5.5 9.5 9.5" />
-                        <circle cx="20" cy="4" r="2" />
-                        <path d="M18.5 5.5 14.5 9.5" />
-                        <circle cx="4" cy="20" r="2" />
-                        <path d="M5.5 18.5 9.5 14.5" />
-                        <circle cx="20" cy="20" r="2" />
-                        <path d="M18.5 18.5 14.5 14.5" />
-                      </svg>
+                      <BsGlobe className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div className="flex flex-col text-left min-w-0 pr-1">
-                      <span className="text-[10px] min-[380px]:text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
-                        Internet of Things
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
+                        Web
                       </span>
-                      <span className="text-[10px] min-[380px]:text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight">
-                        (IoT)
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight truncate">
+                        Development
                       </span>
                     </div>
                   </div>
@@ -1249,27 +1269,17 @@ export default function About({ variant = "full" }: AboutProps = {}) {
 
                   {/* Bottom Row: 2 items */}
                   <div className="flex items-center justify-end gap-3.5">
-                    {/* 4. Internet of Things (IoT) */}
+                    {/* 4. Web Development */}
                     <div className="group flex items-center gap-3 px-4 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-[#222] transition-all duration-300">
                       <div className="w-10 h-10 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black border border-neutral-700 dark:border-neutral-300 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeWidth="2" />
-                          <circle cx="4" cy="4" r="2" />
-                          <path d="M5.5 5.5 9.5 9.5" />
-                          <circle cx="20" cy="4" r="2" />
-                          <path d="M18.5 5.5 14.5 9.5" />
-                          <circle cx="4" cy="20" r="2" />
-                          <path d="M5.5 18.5 9.5 14.5" />
-                          <circle cx="20" cy="20" r="2" />
-                          <path d="M18.5 18.5 14.5 14.5" />
-                        </svg>
+                        <BsGlobe className="w-5 h-5" />
                       </div>
                       <div className="flex flex-col text-left pr-2">
                         <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
-                          Internet of Things
+                          Web
                         </span>
-                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-600 dark:text-neutral-400 leading-tight tracking-tight">
-                          (IoT)
+                        <span className="text-xs sm:text-[13px] font-semibold text-neutral-900 dark:text-white leading-tight tracking-tight">
+                          Development
                         </span>
                       </div>
                     </div>

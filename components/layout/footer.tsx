@@ -96,7 +96,7 @@ export default function Footer() {
               {t("contact.subtitle")}
             </h2>
             <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {t("about.bio").slice(0, 220)}...
+              {t("footer.bio")}
             </p>
             <Link
               href="/contact"

@@ -39,12 +39,12 @@ export const personalData = {
   email: "faliqul.isback@gmail.com",
   profileImage: "/images/profile.webp",
   cvUrl: "/cv/RESUME_FALIQUL ISHBAH.pdf",
-  bio: "Hello, I'm Faliq! My primary interests and expertise are in Data Science, supported by skills in Data Analysis, AI Automation, and Internet of Things (IoT). I have experience in data processing, data analysis, data visualization, and machine learning, transforming raw data into valuable insights using Python, Pandas, Scikit-learn, and SQL. In the field of AI Automation, I design and develop automated workflows using n8n, integrate RESTful APIs, and automate data pipelines to improve operational efficiency. I also have a strong interest and hands-on experience in developing IoT systems, sensor-based device monitoring, and implementing smart technologies for livestock farming and smart agriculture. My goal is to create impactful data-driven, AI-powered, and IoT-based solutions through innovative automation that delivers real-world value.",
+  bio: "Hello, I'm Faliq! My primary interests and expertise are in Data Science, supported by skills in Data Analysis, AI Automation, and Web Development. I have experience in data processing, data analysis, data visualization, and machine learning, transforming raw data into valuable insights using Python, Pandas, Scikit-learn, and SQL. In the field of AI Automation, I design and develop automated workflows using n8n, integrate RESTful APIs, and automate data pipelines to improve operational efficiency. I also have hands-on experience in modern web development, building responsive user interfaces and full-stack applications. My goal is to create impactful data-driven, AI-powered, and web solutions that deliver real-world value.",
   expertise: [
     "Data Science",
     "Data Analysis",
     "AI Automation",
-    "Internet of Things (IoT)",
+    "Web Development",
     "Frontend Development",
   ],
   tools: ["React", "n8n", "Python", "SQL"],
@@ -372,7 +372,7 @@ export const galleryData = [
 export const projectsData = [
   {
     title: "OmniCore AI",
-    category: ["data", "web"],
+    category: ["data"],
     description:
       "OmniCore AI is an omnichannel conversational AI assistant operating 24/7 across WhatsApp (via WAHA), Telegram, and LINE. Powered by n8n workflow orchestration, hybrid AI models (Google Gemini & OpenAI GPT), Supabase vector database (pgvector), and PostgreSQL, it delivers accurate, hallucination-free responses using adaptive Retrieval-Augmented Generation (RAG) and dynamic SQL tabular queries connected to Google Drive.",
     image: "images/project/OmniCore AI/1.webp",
@@ -408,7 +408,7 @@ export const projectsData = [
   },
   {
     title: "WhatsApp AI Rental Mobil",
-    category: ["data", "web"],
+    category: ["data"],
     description:
       "WhatsApp AI Rental Mobil is an end-to-end automated car rental booking assistant powered by n8n and LangChain AI Agents. It provides 24/7 self-service vehicle reservations, real-time schedule checks via Google Calendar, down payment calculations, automatic cancellations via background cron jobs, and seamless payment gateway webhook integrations, complete with multimodal voice note processing using OpenAI Whisper and TTS.",
     image: "images/project/Rental Mobil/1.webp",
@@ -517,7 +517,7 @@ export const projectsData = [
   },
   {
     title: "SignalHR",
-    category: ["web"],
+    category: ["data", "web"],
     description:
       "SignalHR is an AI-powered Applicant Tracking System designed to streamline modern recruitment workflows. It enables HR teams to manage vacancies, automate resume parsing, and evaluate candidate-job compatibility using intelligent scoring algorithms. The platform delivers end-to-end recruitment analytics to optimize hiring decisions efficiently.",
     image: "images/project/signalHR/1.webp",
@@ -553,6 +553,77 @@ export const projectsData = [
     ],
   },
   {
+    title: "ChocoTea",
+    category: ["web"],
+    description:
+      "ChocoTea is an immersive, interactive experience landing page crafted with React 18, TypeScript, and Vite. Designed to highlight premium chocolate and tea fusion beverages, it features scroll-driven bottle and splash animations via GSAP ScrollTrigger, dynamic flavor-based theme switching, smooth momentum scrolling with Lenis, and multi-channel delivery ordering.",
+    image: "images/project/ChocoTea/0.webp",
+    screenshots: [
+      "images/project/ChocoTea/1.webp",
+      "images/project/ChocoTea/2.webp",
+      "images/project/ChocoTea/3.webp",
+      "images/project/ChocoTea/4.webp",
+    ],
+    tech: [
+      "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "/images/icon/typescript.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+      "/images/icon/framer-motion.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+    ],
+    demoUrl: "https://chocotea.vercel.app/",
+    githubUrl: "https://github.com/Faliqulxx/ChocoTEA",
+    features: [
+      "Scroll-Driven Video Showcase: Precision bottle rotation and liquid splash dynamics synchronized to user scrolling via GSAP ScrollTrigger.",
+      "Dynamic Theme Switching: Seamless atmospheric color palette and visual transitions shifting in real-time according to the selected flavor variant.",
+      "Smooth Momentum Scrolling: Silky-smooth 60fps momentum rendering across desktop and mobile devices powered by Lenis Scroll.",
+      "Multi-Channel Order Modal: Frictionless direct checkout modal routing orders seamlessly to WhatsApp, GoFood, GrabFood, and ShopeeFood.",
+    ],
+    languages: [
+      "React 18",
+      "TypeScript",
+      "Vite 5",
+      "GSAP 3",
+      "Lenis Scroll",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Bandeng Freeze",
+    category: ["web"],
+    description:
+      "Bandeng Freeze (Samudra Bandeng) is a modern, high-speed landing page built with React 18, Vite, Tailwind CSS, and Framer Motion. Engineered with a 'Clean Ocean Premium' visual identity, it features an interactive product catalog with dynamic filtering, animated product lightbox modals, accordion FAQs, and instant WhatsApp order checkout integrations.",
+    image: "images/project/Frozen Seafood (Bandeng Premium)/0.webp",
+    screenshots: [
+      "images/project/Frozen Seafood (Bandeng Premium)/1.webp",
+      "images/project/Frozen Seafood (Bandeng Premium)/2.webp",
+      "images/project/Frozen Seafood (Bandeng Premium)/3.webp",
+      "images/project/Frozen Seafood (Bandeng Premium)/4.webp",
+    ],
+    tech: [
+      "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+      "/images/icon/framer-motion.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+      "/images/icon/javascript.svg",
+    ],
+    demoUrl: "https://bandengfrezzz-cfk8.vercel.app/",
+    githubUrl: "https://github.com/Faliqulxx/bandengfrezzz",
+    features: [
+      "Framer Motion 60 FPS: Smooth fadeUp, scaleIn, stagger, and floating micro-interactions with built-in prefers-reduced-motion accessibility support.",
+      "Interactive Product Catalog & Filtering: Centralized product catalog with instant category filtering across Shrimp, Sea Fish, and Seafood variants via AnimatePresence.",
+      "Direct WhatsApp Conversion: One-click order buttons generating pre-formatted WhatsApp chat inquiries containing exact product names, quantities, and selected variants.",
+      "Interactive Lightbox & Accordion FAQ: High-resolution image lightbox modal with detailed product descriptions and animated FAQ accordion for storage, thawing, and shipping guides.",
+    ],
+    languages: [
+      "React 18",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide React",
+    ],
+  },
+  {
     title: "Sistem Informasi Logistik CGN",
     category: ["web"],
     description:
@@ -583,7 +654,7 @@ export const projectsData = [
   },
   {
     title: "Shopee App Review Intelligence Dashboard",
-    category: ["data", "web"],
+    category: ["data"],
     description:
       "This project is an interactive analytics dashboard engineered to extract actionable business insights from Shopee customer reviews. It leverages Natural Language Processing and sentiment analysis to evaluate user feedback across various ratings and categories. The platform empowers product teams to identify common complaints, satisfaction trends, and feature improvement areas.",
     image: "images/project/shopee-review-intelligence/1.webp",
@@ -764,7 +835,7 @@ export const projectsData = [
   },
   {
     title: "Cat Breed Classification (Streamlit)",
-    category: ["data", "web"],
+    category: ["data"],
     description:
       "This project is an interactive computer vision web application developed to identify and classify 12 distinct cat breeds from images. It evaluates deep learning architectures including Custom CNN, MobileNetV2, and ResNet50 to determine optimal prediction accuracy. The solution features an intuitive Streamlit dashboard for real-time model inference and diagnostic analysis.",
     image: "images/project/cat-breed/1.webp",

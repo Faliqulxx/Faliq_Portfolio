@@ -28,7 +28,7 @@ const translations: Record<Language, Record<string, string>> = {
     "intro.hi": "Hello, I'm",
     "intro.headline": "I have hands-on experience in",
     "intro.expertise":
-      "Data Science, Data Analysis, AI Automation, IoT Development, and Frontend Development",
+      "Data Science, Data Analysis, AI Automation, Web Development, and Frontend Development",
     "intro.with": ", with expertise in",
     "intro.and": "and",
     "intro.contactMe": "Contact Me",
@@ -42,7 +42,9 @@ const translations: Record<Language, Record<string, string>> = {
     "about.roleDesc":
       "with hands-on experience in data processing, machine learning, and building automated AI workflows with tools like Python, n8n, and REST APIs.",
     "about.bio":
-      "Hello, I'm Faliq! My primary interests and expertise are in Data Science, supported by skills in Data Analysis, AI Automation, and Internet of Things (IoT). I have experience in data processing, data analysis, data visualization, and machine learning, transforming raw data into valuable insights using Python, Pandas, Scikit-learn, and SQL. In the field of AI Automation, I design and develop automated workflows using n8n, integrate RESTful APIs, and automate data pipelines to improve operational efficiency. I also have a strong interest and hands-on experience in developing IoT systems, sensor-based device monitoring, and implementing smart technologies for livestock farming and smart agriculture. My goal is to create impactful data-driven, AI-powered, and IoT-based solutions through innovative automation that delivers real-world value.",
+      "My primary focus covers Data Analysis, AI Automation, and Web Development. I specialize in transforming raw data into actionable insights using Python, Pandas, Scikit-learn, and SQL, as well as designing automated pipelines and API workflows with n8n. In addition, I have hands-on experience in modern web development, building responsive interfaces and functional full-stack applications. My goal is to deliver impactful, data-driven, and AI-powered solutions that create measurable value.",
+    "footer.bio":
+      "Data Scientist & AI Automation Engineer focused on building intelligent solutions, automated workflows, and data-driven systems.",
     "about.mySkills": "My Skills",
     "about.myExpertise": "My Expertise",
     "about.education": "Education",
@@ -162,8 +164,9 @@ const translations: Record<Language, Record<string, string>> = {
     "projects.viewCaseStudy": "VIEW CASE STUDY",
     "projects.visitSite": "Visit Site",
     "projects.details": "Details",
+    "projects.cat.all": "ALL",
     "projects.cat.data": "Data Science",
-    "projects.cat.web": "General Dev",
+    "projects.cat.web": "Web Dev",
     "projects.searchPlaceholder": "Search projects...",
     "projects.filters": "Filters",
     "projects.filterBySub": "Filter by Sub Category (Multiple Select)",
@@ -269,7 +272,7 @@ const translations: Record<Language, Record<string, string>> = {
     "intro.hi": "Halo, saya",
     "intro.headline": "Saya memiliki pengalaman langsung di bidang",
     "intro.expertise":
-      "Data Science, Analisis Data, AI Automation, Pengembangan IoT, dan Pengembangan Frontend",
+      "Data Science, Analisis Data, AI Automation, Web Development, dan Pengembangan Frontend",
     "intro.with": ", dengan keahlian dalam",
     "intro.and": "dan",
     "intro.contactMe": "Hubungi Saya",
@@ -283,7 +286,9 @@ const translations: Record<Language, Record<string, string>> = {
     "about.roleDesc":
       "dengan pengalaman langsung dalam pemrosesan data, machine learning, dan membangun alur kerja otomatisasi AI dengan alat seperti Python, n8n, dan REST API.",
     "about.bio":
-      "Halo, saya Faliq! Minat dan keahlian utama saya adalah di bidang Data Science, didukung oleh kemampuan dalam Analisis Data, AI Automation, dan Internet of Things (IoT). Saya memiliki pengalaman dalam pengolahan data, analisis data, visualisasi data, dan machine learning, mengubah data mentah menjadi wawasan berharga menggunakan Python, Pandas, Scikit-learn, dan SQL. Di bidang AI Automation, saya merancang dan mengembangkan alur kerja otomatis menggunakan n8n, mengintegrasikan RESTful API, dan mengotomasi pipeline data untuk meningkatkan efisiensi operasional. Saya juga memiliki minat dan pengalaman langsung dalam pengembangan sistem IoT, pemantauan perangkat berbasis sensor, dan penerapan teknologi cerdas untuk peternakan dan pertanian cerdas. Tujuan saya adalah menciptakan solusi berbasis data, bertenaga AI, dan berbasis IoT yang berdampak melalui otomasi inovatif yang memberikan nilai nyata.",
+      "Fokus utama saya meliputi Analisis Data, AI Automation, dan Web Development. Saya terbiasa mengubah data mentah menjadi wawasan berharga menggunakan Python, Pandas, Scikit-learn, dan SQL, serta merancang pipeline data dan integrasi API otomatis menggunakan n8n. Selain itu, saya memiliki pengalaman dalam pengembangan web modern, membangun antarmuka responsif dan aplikasi full-stack yang fungsional. Tujuan saya adalah menciptakan solusi berbasis data dan AI yang terukur serta memberikan dampak nyata.",
+    "footer.bio":
+      "Data Scientist & AI Automation Engineer yang berfokus membangun solusi cerdas, alur kerja otomatis, dan sistem berbasis data.",
     "about.mySkills": "Keahlian Saya",
     "about.myExpertise": "Bidang Keahlian",
     "about.education": "Pendidikan",
@@ -403,8 +408,9 @@ const translations: Record<Language, Record<string, string>> = {
     "projects.viewCaseStudy": "LIHAT STUDI KASUS",
     "projects.visitSite": "Kunjungi Web",
     "projects.details": "Detail",
+    "projects.cat.all": "ALL",
     "projects.cat.data": "Sains Data",
-    "projects.cat.web": "Pengembangan Umum",
+    "projects.cat.web": "Web Dev",
     "projects.searchPlaceholder": "Cari proyek...",
     "projects.filters": "Filter",
     "projects.filterBySub": "Filter berdasarkan Sub Kategori (Pilih Banyak)",

@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { projectsData } from "@/lib/data";
 import BurstBload2 from "@/components/ui/burst-bload-2";
 import { useSectionInView } from "@/lib/hooks";
 import { useInView } from "react-intersection-observer";
 import { FaGithub } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
-import { BsArrowRight, BsBarChartLine, BsCodeSlash } from "react-icons/bs";
+import { BsArrowRight, BsBarChartLine, BsCodeSlash, BsGrid } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/section-heading";
@@ -57,9 +58,14 @@ const SUBCATEGORIES_MAP: Record<string, string[]> = {
     "Artificial Intelligence",
     "Automation",
     "Data Modeling",
+    "Computer Vision",
+    "Natural Language Processing",
     "Web Development",
     "Full Stack",
+    "AI Web Apps",
     "IoT & Embedded",
+    "Frontend",
+    "Backend & API",
   ],
 };
 
@@ -385,14 +391,41 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const [activeCategory, setActiveCategory] = useState<CategoryFilter>("web");
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortKey, setSortKey] = useState("pinned");
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    if (selectedProject) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedProject]);
 
   const categoryOptions: { key: CategoryFilter; label: string; icon: React.ReactNode }[] = [
+    {
+      key: "all",
+      label: t("projects.cat.all"),
+      icon: <BsGrid className="text-sm shrink-0" />,
+    },
     {
       key: "web",
       label: t("projects.cat.web"),
@@ -898,156 +931,164 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       </div>
 
       {/* ─── PROJECT DETAIL MODAL ─────────────────────────────── */}
-      {selectedProject && (() => {
-        const activeProject = getTranslatedProject(selectedProject, language);
-        return (
-          <motion.div
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleCloseModal}
-          >
-            <motion.div
-              className="bg-white dark:bg-[#141414] w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden flex flex-col lg:flex-row"
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* ── LEFT: Image Slider ── */}
-              {(() => {
-                const list = Array.from(new Set([activeProject.image, ...(activeProject.screenshots || [])].filter(Boolean)));
-                const currentImg = list[activeSlide] || list[0] || "";
-                const fullSrc = currentImg.startsWith("/") ? currentImg : `/${currentImg}`;
-                return (
-                  <div className="lg:w-1/2 flex flex-col bg-neutral-100 dark:bg-black/40">
-                    <div className="relative w-full aspect-video overflow-hidden">
-                      <Image
-                        key={activeSlide}
-                        src={fullSrc}
-                        alt={`slide-${activeSlide}`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 600px"
-                        className="object-cover"
-                      />
-                      {list.length > 1 && (
-                        <>
-                          <button
-                            onClick={() => setActiveSlide((p) => (p === 0 ? list.length - 1 : p - 1))}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
-                          >
-                            ‹
-                          </button>
-                          <button
-                            onClick={() => setActiveSlide((p) => (p === list.length - 1 ? 0 : p + 1))}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
-                          >
-                            ›
-                          </button>
-                        </>
-                      )}
-                      <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono z-10">
-                        {activeSlide + 1} / {list.length}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {selectedProject && (() => {
+              const activeProject = getTranslatedProject(selectedProject, language);
+              return (
+                <motion.div
+                  className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-[2000] p-4 sm:p-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handleCloseModal}
+                >
+                  <motion.div
+                    className="relative bg-white dark:bg-[#141414] w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden flex flex-col lg:flex-row"
+                    initial={{ scale: 0.94, opacity: 0, y: 15 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.94, opacity: 0, y: 15 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close button pinned to top right of modal card */}
+                    <button
+                      onClick={handleCloseModal}
+                      aria-label="Close modal"
+                      className="absolute top-3.5 right-3.5 z-30 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white bg-white/90 dark:bg-neutral-800/90 hover:bg-neutral-100 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700 rounded-full w-8 h-8 flex items-center justify-center transition shadow-sm backdrop-blur-sm"
+                    >
+                      <span className="text-xl leading-none">&times;</span>
+                    </button>
+
+                    {/* ── LEFT: Image Slider ── */}
+                    {(() => {
+                      const list = Array.from(new Set([activeProject.image, ...(activeProject.screenshots || [])].filter(Boolean)));
+                      const currentImg = list[activeSlide] || list[0] || "";
+                      const fullSrc = currentImg.startsWith("/") ? currentImg : `/${currentImg}`;
+                      return (
+                        <div className="lg:w-1/2 flex flex-col bg-neutral-100 dark:bg-black/40">
+                          <div className="relative w-full aspect-video overflow-hidden">
+                            <Image
+                              key={activeSlide}
+                              src={fullSrc}
+                              alt={`slide-${activeSlide}`}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 600px"
+                              className="object-cover"
+                            />
+                            {list.length > 1 && (
+                              <>
+                                <button
+                                  onClick={() => setActiveSlide((p) => (p === 0 ? list.length - 1 : p - 1))}
+                                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
+                                >
+                                  ‹
+                                </button>
+                                <button
+                                  onClick={() => setActiveSlide((p) => (p === list.length - 1 ? 0 : p + 1))}
+                                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
+                                >
+                                  ›
+                                </button>
+                              </>
+                            )}
+                            <div className="absolute bottom-2 right-3 bg-black/70 text-white text-xs px-2.5 py-0.5 rounded-full font-mono z-10">
+                              {activeSlide + 1} / {list.length}
+                            </div>
+                          </div>
+
+                          <div className="flex gap-2 p-3 overflow-x-auto scrollbar-hide">
+                            {list.map((src: string, i: number) => (
+                              <button
+                                key={i}
+                                onClick={() => setActiveSlide(i)}
+                                className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
+                                  i === activeSlide
+                                    ? "border-neutral-900 dark:border-white"
+                                    : "border-transparent opacity-50 hover:opacity-100"
+                                }`}
+                              >
+                                <Image
+                                  src={src.startsWith("/") ? src : `/${src}`}
+                                  alt={`thumb-${i}`}
+                                  fill
+                                  sizes="64px"
+                                  loading="lazy"
+                                  className="object-cover"
+                                />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* ── RIGHT: Project Details ── */}
+                    <div className="lg:w-1/2 overflow-y-auto p-6 sm:p-7 flex flex-col gap-4">
+                      <div className="pr-8">
+                        <h2 className="text-2xl font-bold text-neutral-950 dark:text-white mb-2">{activeProject.title}</h2>
+                        <div className="flex gap-2 flex-wrap">
+                          {activeProject.demoUrl && (
+                            <a
+                              href={activeProject.demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:opacity-85 shadow-sm transition"
+                            >
+                              <BiLinkExternal className="text-base" /> {t("projects.modal.liveDemo")}
+                            </a>
+                          )}
+                          {activeProject.githubUrl && (
+                            <a
+                              href={activeProject.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 text-sm font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
+                            >
+                              <FaGithub className="text-base" /> {t("projects.modal.github")}
+                            </a>
+                          )}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-sm">{activeProject.description}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">{t("projects.modal.features")}</h3>
+                        <ul className="space-y-1.5">
+                          {activeProject.features.map((feature: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+                              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-neutral-900 dark:bg-white flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">{t("projects.modal.techStack")}</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {activeProject.languages.map((lang: string, index: number) => (
+                            <span
+                              key={index}
+                              className="px-2.5 py-1 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-full text-xs font-medium"
+                            >
+                              {lang}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-
-                    <div className="flex gap-2 p-3 overflow-x-auto scrollbar-hide">
-                      {list.map((src: string, i: number) => (
-                        <button
-                          key={i}
-                          onClick={() => setActiveSlide(i)}
-                          className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
-                            i === activeSlide
-                              ? "border-neutral-900 dark:border-white"
-                              : "border-transparent opacity-50 hover:opacity-100"
-                          }`}
-                        >
-                          <Image
-                            src={src.startsWith("/") ? src : `/${src}`}
-                            alt={`thumb-${i}`}
-                            fill
-                            sizes="64px"
-                            loading="lazy"
-                            className="object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {/* ── RIGHT: Project Details ── */}
-              <div className="lg:w-1/2 overflow-y-auto p-6 flex flex-col gap-4">
-                <button
-                  onClick={handleCloseModal}
-                  className="absolute top-4 right-4 z-10 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-300 dark:border-neutral-700 rounded-full w-8 h-8 flex items-center justify-center transition"
-                >
-                  <span className="text-xl leading-none">&times;</span>
-                </button>
-
-                <div>
-                  <h2 className="text-2xl font-bold text-neutral-950 dark:text-white mb-2">{activeProject.title}</h2>
-                  <div className="flex gap-2 flex-wrap">
-                    {activeProject.demoUrl && (
-                      <a
-                        href={activeProject.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:opacity-85 shadow-sm transition"
-                      >
-                        <BiLinkExternal className="text-base" /> {t("projects.modal.liveDemo")}
-                      </a>
-                    )}
-                    {activeProject.githubUrl && (
-                      <a
-                        href={activeProject.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 text-sm font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
-                      >
-                        <FaGithub className="text-base" /> {t("projects.modal.github")}
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-sm">{activeProject.description}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">{t("projects.modal.features")}</h3>
-                  <ul className="space-y-1.5">
-                    {activeProject.features.map((feature: string, index: number) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-neutral-700 dark:text-neutral-300">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-neutral-900 dark:bg-white flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">{t("projects.modal.techStack")}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {activeProject.languages.map((lang: string, index: number) => (
-                      <span
-                        key={index}
-                        className="px-2.5 py-1 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-full text-xs font-medium"
-                      >
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        );
-      })()}
+                  </motion.div>
+                </motion.div>
+              );
+            })()}
+          </AnimatePresence>,
+          document.body
+        )}
     </motion.section>
   );
 };
