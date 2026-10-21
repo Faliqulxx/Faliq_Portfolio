@@ -70,6 +70,9 @@ export const metadata: Metadata = {
       "Faliqul Ishbah is a Full-Stack Developer & AI Automation Engineer building modern, fast, and scalable digital solutions.",
     images: ["/og-image.png"],
   },
+  verification: {
+    google: "j6R3fP0D4ud8wPCNaD3p4bos9CI9Syvy3m3tAuKpC8s",
+  },
 };
 
 export default function RootLayout({
