@@ -12,18 +12,18 @@ import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
 import WebThreads from "@/components/ui/WebThreads";
 
-// ═══════════════════════════════════════════════════════════════
-// ANIMASI "KELUAR DARI BELAKANG FOTO"
-// Teks dibuka (clip-path) dari sisi yang menempel ke foto menuju keluar,
-// sambil bergeser, sehingga terlihat muncul dari balik badan foto.
-// ═══════════════════════════════════════════════════════════════
-const CLIP_HIDDEN = {
-  left: "inset(-30% -5% -30% 105%)", // Faliqul: terbuka dari kanan → kiri
-  right: "inset(-30% 105% -30% -5%)", // Ishbah.: terbuka dari kiri → kanan
+// Urutan animasi (detik)
+const T = {
+  photo: 0,
+  name1: 1.1,        // Faliqul (setelah tirai foto hampir terbuka)
+  name2: 1.8,        // Ishbah.
+  iconsLeft: 2.2,
+  iconsRight: 2.9,
+  curved: 3.1,
 };
-const CLIP_SHOWN = "inset(-30% -5% -30% -5%)";
 
-function emerge(side: "left" | "right", delay: number, reduce: boolean | null) {
+// Teks meluncur dari luar layar, mulai buram lalu menajam saat berhenti
+function slideIn(side: "left" | "right", delay: number, reduce: boolean | null) {
   if (reduce) {
     return {
       initial: { opacity: 0 },
@@ -31,11 +31,14 @@ function emerge(side: "left" | "right", delay: number, reduce: boolean | null) {
       transition: { duration: 0.3 },
     };
   }
-  const dir = side === "left" ? 1 : -1;
   return {
-    initial: { clipPath: CLIP_HIDDEN[side], x: 90 * dir, opacity: 0 },
-    animate: { clipPath: CLIP_SHOWN, x: 0, opacity: 1 },
-    transition: { duration: 1, delay, ease: [0.16, 1, 0.3, 1] as const },
+    initial: { x: side === "left" ? "-75vw" : "75vw", opacity: 0, filter: "blur(14px)" },
+    animate: { x: 0, opacity: 1, filter: "blur(0px)" },
+    transition: {
+      x: { duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] as const },
+      opacity: { duration: 0.4, delay },
+      filter: { duration: 1.3, delay: delay + 0.1, ease: "easeOut" as const },
+    },
   };
 }
 
@@ -160,7 +163,7 @@ export default function Intro() {
           {/* Kiri: Faliqul, ikon di TENGAH nama */}
           <div className="col-start-1 justify-self-end flex flex-col items-center">
             <motion.div
-              {...emerge("left", 0.45, reduce)}
+              {...slideIn("left", T.name1, reduce)}
               className={nameClass}
               style={{ fontSize: "var(--name-font)" }}
               aria-hidden="true"
@@ -170,7 +173,7 @@ export default function Intro() {
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: reduce ? 0 : 1.25 }}
+              transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsLeft }}
             >
               <SocialGroup items={leftSocials} className="mt-6 justify-center" />
             </motion.div>
@@ -179,7 +182,7 @@ export default function Intro() {
           {/* Kanan: Ishbah., ikon di TENGAH nama */}
           <div className="col-start-3 justify-self-start flex flex-col items-center">
             <motion.div
-              {...emerge("right", 0.65, reduce)}
+              {...slideIn("right", T.name2, reduce)}
               className={nameClass}
               style={{ fontSize: "var(--name-font)" }}
               aria-hidden="true"
@@ -189,7 +192,7 @@ export default function Intro() {
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: reduce ? 0 : 1.4 }}
+              transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsRight }}
             >
               <SocialGroup items={rightSocials} className="mt-6 justify-center" />
             </motion.div>
@@ -206,28 +209,18 @@ export default function Intro() {
           style={{ fontSize: "var(--stack-font)" }}
           aria-hidden="true"
         >
-          {["Faliqul", "Ishbah."].map((word, i) => (
-            <span key={word} className="block overflow-hidden pb-[0.12em] -mb-[0.1em]">
-              <motion.span
-                className="block"
-                initial={reduce ? { opacity: 0 } : { y: "110%" }}
-                animate={reduce ? { opacity: 1 } : { y: 0 }}
-                transition={{
-                  duration: reduce ? 0.3 : 0.9,
-                  delay: reduce ? 0 : 0.3 + i * 0.12,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                {word}
-              </motion.span>
-            </span>
-          ))}
+          <motion.div {...slideIn("left", T.name1, reduce)} className="block">
+            Faliqul
+          </motion.div>
+          <motion.div {...slideIn("right", T.name2, reduce)} className="block">
+            Ishbah<span className="inline-block ml-[0.02em]">.</span>
+          </motion.div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: reduce ? 0 : 0.9 }}
+          transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsLeft }}
         >
           <SocialGroup
             items={[...leftSocials, ...rightSocials]}
@@ -240,9 +233,22 @@ export default function Intro() {
       {/* LAYER 3: FOTO (z-30), dasar menempel ke bawah section */}
       <div className="hero-photo-frame absolute bottom-0 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none flex items-end justify-center w-auto">
         <motion.div
-          initial={{ opacity: 0, y: reduce ? 0 : 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduce ? 0.2 : 0.9, ease: [0.16, 1, 0.3, 1] }}
+          initial={
+            reduce
+              ? { opacity: 0 }
+              : { clipPath: "inset(100% -20% 0% -20%)", y: 30, scale: 1.04 }
+          }
+          animate={
+            reduce
+              ? { opacity: 1 }
+              : { clipPath: "inset(-5% -20% 0% -20%)", y: 0, scale: 1 }
+          }
+          transition={{
+            duration: reduce ? 0.2 : 1.4,
+            delay: T.photo,
+            ease: [0.76, 0, 0.24, 1],
+          }}
+          style={{ transformOrigin: "50% 100%" }}
           className="hero-photo-fade h-full w-auto flex items-end justify-center"
         >
           <Image
