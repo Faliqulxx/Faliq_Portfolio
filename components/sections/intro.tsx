@@ -2,41 +2,124 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BsLinkedin, BsInstagram } from "react-icons/bs";
-import { FaGithubSquare } from "react-icons/fa";
-import { RiMailSendLine } from "react-icons/ri";
+import { FaGithub } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 import { useSectionInView } from "@/lib/hooks";
-import CircularText from "@/components/ui/circular-text";
 import ScrollVelocity from "@/components/ui/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
-import TechText from "@/components/ui/TechText";
-import profileImg from "@/public/images/profile.webp";
 import WebThreads from "@/components/ui/WebThreads";
+
+// ═══════════════════════════════════════════════════════════════
+// ANIMASI "KELUAR DARI BELAKANG FOTO"
+// Teks dibuka (clip-path) dari sisi yang menempel ke foto menuju keluar,
+// sambil bergeser, sehingga terlihat muncul dari balik badan foto.
+// ═══════════════════════════════════════════════════════════════
+const CLIP_HIDDEN = {
+  left: "inset(-30% -5% -30% 105%)", // Faliqul: terbuka dari kanan → kiri
+  right: "inset(-30% 105% -30% -5%)", // Ishbah.: terbuka dari kiri → kanan
+};
+const CLIP_SHOWN = "inset(-30% -5% -30% -5%)";
+
+function emerge(side: "left" | "right", delay: number, reduce: boolean | null) {
+  if (reduce) {
+    return {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: { duration: 0.3 },
+    };
+  }
+  const dir = side === "left" ? 1 : -1;
+  return {
+    initial: { clipPath: CLIP_HIDDEN[side], x: 90 * dir, opacity: 0 },
+    animate: { clipPath: CLIP_SHOWN, x: 0, opacity: 1 },
+    transition: { duration: 1, delay, ease: [0.16, 1, 0.3, 1] as const },
+  };
+}
+
+type Social = { name: string; href: string; icon: React.ReactNode };
+
+function SocialGroup({
+  items,
+  className = "",
+  size = "w-12 h-12",
+}: {
+  items: Social[];
+  className?: string;
+  size?: string;
+}) {
+  return (
+    <div className={`flex items-center gap-4 relative z-40 pointer-events-auto ${className}`}>
+      {items.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={item.name}
+          className={`${size} rounded-full bg-neutral-100 dark:bg-[#1a1a1e] border border-neutral-300 dark:border-neutral-700/80 flex items-center justify-center text-neutral-800 dark:text-neutral-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 hover:-translate-y-[3px] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400`}
+        >
+          {item.icon}
+        </a>
+      ))}
+    </div>
+  );
+}
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const reduce = useReducedMotion();
+
+  const leftSocials: Social[] = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/faliqulishbah/",
+      icon: <BsLinkedin className="text-base" />,
+    },
+    {
+      name: "Email",
+      href: "mailto:faliqul.isback@gmail.com",
+      icon: <FiMail className="text-lg" />,
+    },
+  ];
+
+  const rightSocials: Social[] = [
+    {
+      name: "GitHub",
+      href: "https://github.com/Faliqulxx",
+      icon: <FaGithub className="text-lg" />,
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/Faliqulx/",
+      icon: <BsInstagram className="text-base" />,
+    },
+  ];
+
+  const nameClass =
+    "whitespace-nowrap font-black tracking-[-0.05em] leading-[0.85] text-neutral-950 dark:text-white select-none";
 
   return (
     <section
       id="home"
       ref={ref}
-      className="relative w-full mb-8 sm:mb-10 lg:mb-12 scroll-mt-[28rem]
-        min-h-screen
-        pt-24 sm:pt-28 md:pt-32
-        flex flex-col justify-between"
+      className="hero-root relative w-full min-h-[var(--hero-min-h)] overflow-hidden flex flex-col select-none scroll-mt-[28rem]"
+      style={{ backgroundColor: "var(--hero-bg, transparent)" }}
     >
-      {/* ── BACKGROUND WEBTHREADS ── */}
-      <div className="absolute inset-0 -z-10 pointer-events-none w-full h-full opacity-75 dark:opacity-60">
+      <div id="hero" className="absolute top-0 pointer-events-none" />
+
+      {/* LAYER 0: BACKGROUND */}
+      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full opacity-75 dark:opacity-60">
         <WebThreads
           color1={isDark ? "#94a3b8" : "#64748b"}
           color2={isDark ? "#64748b" : "#94a3b8"}
           color3={isDark ? "#cbd5e1" : "#1e293b"}
-          speed={0.22}
+          speed={reduce ? 0 : 0.22}
           threadCount={8}
           frequency={3.6}
           spread={0.65}
@@ -49,131 +132,139 @@ export default function Intro() {
           brightness={isDark ? 0.4 : 0.45}
           opacity={0.85}
           mirror={true}
-          shimmer={true}
+          shimmer={!reduce}
           grain={true}
           grainIntensity={0.05}
-          mouseInteraction={true}
+          mouseInteraction={!reduce}
           mouseStrength={0.35}
           lightMode={!isDark}
           backgroundColor={isDark ? "#09090b" : "#ffffff"}
         />
       </div>
-      {/* ── HERO CONTENT ── */}
-      <div className="flex-1 flex items-center w-full px-4 sm:px-8 lg:px-12">
-        <div className="w-full max-w-[1600px] mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16 text-center lg:text-left">
-          {/* TEKS (KIRI) */}
-          <div className="flex-1 w-full max-w-3xl flex items-center justify-center lg:justify-start">
+
+      <h1 className="sr-only">Faliqul Ishbah.</h1>
+
+      {/* ══════════════════════════════════════════════
+          DESKTOP (>= 1024px): nama di kiri & kanan foto,
+          tidak ada huruf yang masuk ke belakang badan.
+          ══════════════════════════════════════════════ */}
+      <div
+        className="relative z-10 hidden lg:flex flex-1 w-full justify-center pb-24 px-8 max-w-[1800px] mx-auto"
+        style={{ paddingTop: "calc(92px + var(--photo-h) * 0.24)" }}
+      >
+        {/* Satu baris sejajar di bahu: Faliqul | ruang foto | Ishbah. */}
+        <div
+          className="grid w-full items-start"
+          style={{ gridTemplateColumns: "1fr calc(var(--photo-h) * 0.48) 1fr" }}
+        >
+          {/* Kiri: Faliqul, ikon di TENGAH nama */}
+          <div className="col-start-1 justify-self-end flex flex-col items-center">
             <motion.div
-              className="w-full h-[140px] sm:h-[180px] md:h-[220px] lg:h-[260px] xl:h-[300px] relative"
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
+              {...emerge("left", 0.45, reduce)}
+              className={nameClass}
+              style={{ fontSize: "var(--name-font)" }}
+              aria-hidden="true"
             >
-              <TechText
-                text="Faliqul Ishbah."
-                fontWeight={800}
-                fontSize={180}
-                letterSpacing={-0.04}
-                color={isDark ? "#ffffff" : "#171717"}
-                accentColor={isDark ? "#737373" : "#525252"}
-                reveal="letter"
-                dashLength={4}
-                dashGap={2}
-                specks={18}
-                selection={true}
-                labels={true}
-                draggable={true}
-                sweep={true}
-                speed={1}
-              />
+              Faliqul
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: reduce ? 0 : 1.25 }}
+            >
+              <SocialGroup items={leftSocials} className="mt-6 justify-center" />
             </motion.div>
           </div>
 
-          {/* FOTO (KANAN) + SOSIAL MEDIA */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
-            className="flex flex-col items-center gap-4 flex-shrink-0"
-          >
-            {/* Photo + CircularText ring */}
-            <div className="relative flex items-center justify-center w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
-              <div className="absolute inset-0 pointer-events-none z-0">
-                <CircularText
-                  text="Available for Work | Available for Collaboration | "
-                  spinDuration={18}
-                  onHover="goBonkers"
-                  className="w-full h-full text-[0.52rem] sm:text-[0.58rem] lg:text-[0.68rem] xl:text-[0.72rem] text-neutral-800 dark:text-neutral-400"
-                />
-              </div>
-
-              {/* Profile photo */}
-              <Image
-                src={profileImg}
-                alt="Faliqul Ishbah"
-                priority
-                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full object-cover border-[0.35rem] border-white shadow-lg dark:border-neutral-800 dark:shadow-none z-10 relative"
-              />
-            </div>
-
-            {/* SOSIAL MEDIA */}
-            <div className="flex flex-row items-center justify-center gap-3 text-lg mt-5">
-              {/* LinkedIn */}
-              <a
-                className="group bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 p-4 text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full transition-all duration-300 shadow-sm hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
-                href="https://www.linkedin.com/in/faliqulishbah/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-              >
-                <BsLinkedin className="transition" />
-              </a>
-
-              {/* Email */}
-              <a
-                className="group bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 p-4 text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full transition-all duration-300 shadow-sm hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
-                href="mailto:faliqul.isback@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Email"
-              >
-                <RiMailSendLine className="transition" />
-              </a>
-
-              {/* GitHub */}
-              <a
-                className="group bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 p-4 text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full transition-all duration-300 shadow-sm hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
-                href="https://github.com/Faliqulxx"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-              >
-                <FaGithubSquare className="transition" />
-              </a>
-
-              {/* Instagram */}
-              <a
-                className="group bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 p-4 text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full transition-all duration-300 shadow-sm hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
-                href="https://www.instagram.com/Faliqulx/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              >
-                <BsInstagram className="transition" />
-              </a>
-            </div>
-          </motion.div>
+          {/* Kanan: Ishbah., ikon di TENGAH nama */}
+          <div className="col-start-3 justify-self-start flex flex-col items-center">
+            <motion.div
+              {...emerge("right", 0.65, reduce)}
+              className={nameClass}
+              style={{ fontSize: "var(--name-font)" }}
+              aria-hidden="true"
+            >
+              Ishbah<span className="inline-block ml-[0.02em]">.</span>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: reduce ? 0 : 1.4 }}
+            >
+              <SocialGroup items={rightSocials} className="mt-6 justify-center" />
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* ── SCROLL VELOCITY TEXT ── */}
-      <div className="w-full overflow-hidden pb-4">
+      {/* ══════════════════════════════════════════════
+          MOBILE & TABLET (< 1024px): nama ditumpuk di atas foto
+          ══════════════════════════════════════════════ */}
+      <div className="relative z-10 flex lg:hidden flex-col items-center pt-24 px-4 text-center">
+        <div
+          className="font-black tracking-[-0.05em] leading-[0.88] text-neutral-950 dark:text-white"
+          style={{ fontSize: "var(--stack-font)" }}
+          aria-hidden="true"
+        >
+          {["Faliqul", "Ishbah."].map((word, i) => (
+            <span key={word} className="block overflow-hidden pb-[0.12em] -mb-[0.1em]">
+              <motion.span
+                className="block"
+                initial={reduce ? { opacity: 0 } : { y: "110%" }}
+                animate={reduce ? { opacity: 1 } : { y: 0 }}
+                transition={{
+                  duration: reduce ? 0.3 : 0.9,
+                  delay: reduce ? 0 : 0.3 + i * 0.12,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: reduce ? 0 : 0.9 }}
+        >
+          <SocialGroup
+            items={[...leftSocials, ...rightSocials]}
+            className="mt-4 justify-center gap-3.5"
+            size="w-11 h-11"
+          />
+        </motion.div>
+      </div>
+
+      {/* LAYER 3: FOTO (z-30), dasar menempel ke bawah section */}
+      <div className="hero-photo-frame absolute bottom-0 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none flex items-end justify-center w-auto">
+        <motion.div
+          initial={{ opacity: 0, y: reduce ? 0 : 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduce ? 0.2 : 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-photo-fade h-full w-auto flex items-end justify-center"
+        >
+          <Image
+            src="/images/new_profile.png"
+            alt="Faliqul Ishbah"
+            width={1792}
+            height={2400}
+            priority
+            className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.16)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+          />
+        </motion.div>
+      </div>
+
+      {/* MARQUEE (z-40) di atas kaki foto */}
+      <div className="absolute bottom-0 inset-x-0 z-40 w-full overflow-hidden pb-2 sm:pb-3 select-none pointer-events-auto">
         <ScrollVelocity
           texts={[
-            "| Data Scientist | Data Analyst | AI Automation | IoT Developer | Frontend Developer",
+            "| Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer | ",
             t("intro.availableForWork"),
           ]}
-          velocity={100}
-          className="custom-scroll-text"
+          velocity={70}
+          className="font-black text-[#0b132a] dark:text-neutral-100 text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight leading-none px-4 [text-shadow:0_0_18px_var(--hero-bg),0_0_6px_var(--hero-bg)]"
         />
       </div>
     </section>

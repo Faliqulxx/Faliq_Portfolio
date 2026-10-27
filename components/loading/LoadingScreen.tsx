@@ -33,6 +33,9 @@ const CHARS = NAME.split("");
 const STAGGER = 0.075; // Delay antar kemunculan huruf
 
 function hasShownIntro(): boolean {
+  if (typeof window !== "undefined" && window.location.search.includes("skipIntro=true")) {
+    return true;
+  }
   if (process.env.NODE_ENV === "development") return false;
   if (typeof window === "undefined") return false;
   try {

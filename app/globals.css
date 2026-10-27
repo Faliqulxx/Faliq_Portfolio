@@ -27,11 +27,47 @@
   --brand-navy: #171717;
 
   --line-color: rgba(0, 0, 0, 0.1);
+  --hero-bg: #ffffff;
 }
 
-html.dark {
+html.dark,
+.dark {
   --line-color: rgba(255, 255, 255, 0.1);
+  --hero-bg: #09090b;
 }
+
+/* ==================== HERO SECTION EDITORIAL STYLES ==================== */
+.hero-root {
+  --navbar-h: 76px;
+
+  /* Mobile & tablet: nama ditumpuk, foto mengisi sisa tinggi layar */
+  --stack-font: clamp(3rem, 13vw, 7.5rem);
+  --photo-h: clamp(16rem, calc(100svh - 11.5rem - var(--stack-font) * 1.8), 75svh);
+  --hero-min-h: max(100svh, calc(var(--photo-h) + 11.5rem + var(--stack-font) * 1.8));
+}
+
+@media (min-width: 1024px) {
+  .hero-root {
+    --photo-h: calc(100svh - 92px);
+    --name-font: clamp(
+      2.5rem,
+      min(9.5vw, calc((50vw - var(--photo-h) * 0.24 - 28px) / 3.5)),
+      14rem
+    );
+    --hero-min-h: 100svh;
+  }
+}
+
+.hero-photo-frame {
+  height: var(--photo-h);
+}
+
+.hero-photo-fade {
+  mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.45) 86%, rgba(0, 0, 0, 0.12) 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.45) 86%, rgba(0, 0, 0, 0.12) 95%, transparent 100%);
+}
+
+
 
 /* ==================== UTILITY CLASSES ==================== */
 

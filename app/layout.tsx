@@ -92,7 +92,7 @@ export default function RootLayout({
         ) : (
           <script
             dangerouslySetInnerHTML={{
-              __html: `try{sessionStorage.removeItem("portfolio_intro_shown");document.documentElement.classList.remove("intro-skipped");}catch(e){}`,
+              __html: `try{if(window.location.search.indexOf("skipIntro=true")!==-1){document.documentElement.classList.add("intro-skipped");}else{sessionStorage.removeItem("portfolio_intro_shown");document.documentElement.classList.remove("intro-skipped");}}catch(e){}`,
             }}
           />
         )}
