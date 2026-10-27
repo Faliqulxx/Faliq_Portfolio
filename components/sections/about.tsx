@@ -33,6 +33,7 @@ import {
 } from "@/lib/data";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
+import { MOTION_EASINGS } from "@/lib/motion";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -853,12 +854,18 @@ export default function About({ variant = "full" }: AboutProps = {}) {
       >
         <div className="w-full max-w-6xl mx-auto flex flex-col gap-4">
           {/* HEADING */}
-          <div className="flex items-center gap-3 self-start mb-2">
+          <motion.div
+            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: MOTION_EASINGS.entrance }}
+            className="flex items-center gap-3 self-start mb-2"
+          >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-neutral-950 dark:text-white">
               {t("about.title")}
             </h2>
             <BurstBload />
-          </div>
+          </motion.div>
 
           {/* ROW 1: Bio card + Photo card */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] gap-4">
@@ -906,9 +913,10 @@ export default function About({ variant = "full" }: AboutProps = {}) {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.32, duration: 0.4 }}
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: MOTION_EASINGS.entrance }}
               className="relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-[#141414] min-h-[320px] sm:min-h-[380px] lg:min-h-0 hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300 shadow-sm hover:shadow-lg"
             >
               <PixelTransition

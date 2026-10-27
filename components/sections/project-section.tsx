@@ -12,6 +12,8 @@ import { BsArrowRight, BsBarChartLine, BsCodeSlash, BsGrid } from "react-icons/b
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
+import { MOTION_EASINGS } from "@/lib/motion";
+import CountUp from "@/components/motion/CountUp";
 import {
   getTranslatedProject,
   SUBCATEGORY_TRANSLATIONS,
@@ -510,9 +512,10 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
           ? "w-full bg-neutral-100 dark:bg-[#121212] border-y border-neutral-200 dark:border-neutral-800 py-12 sm:py-16 my-6 sm:my-8 relative overflow-hidden scroll-mt-28"
           : "scroll-mt-28 mb-28"
       }
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.8, ease: MOTION_EASINGS.entrance }}
     >
       {variant === "preview" && (
         <>
@@ -805,9 +808,10 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                 return (
                   <motion.div
                     key={project.title}
-                    initial={{ opacity: 0, y: 32 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + index * 0.12, duration: 0.5 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true, amount: 0.05 }}
+                    transition={{ delay: 0.08 * index, duration: 0.7, ease: MOTION_EASINGS.entrance }}
                     className="group py-10 sm:py-14 border-b border-neutral-300 dark:border-neutral-800 last:border-b-0"
                   >
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 items-center lg:items-start">
@@ -815,7 +819,10 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                       {/* LEFT: content */}
                       <div className="flex-1 min-w-0">
                         {/* Category badge */}
-                        <div className="mb-4">
+                        <div className="mb-4 flex items-center gap-3">
+                          <span className="font-mono text-sm sm:text-base font-bold text-neutral-400 dark:text-neutral-500">
+                            <CountUp target={index + 1} />
+                          </span>
                           <span className="inline-block px-3.5 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 text-xs font-bold uppercase tracking-widest">
                             {Array.isArray(project.category)
                               ? project.category.join(" · ")

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import { BsLinkedin, BsInstagram } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
@@ -74,6 +74,13 @@ function SocialGroup({
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
   const { language, t } = useLanguage();
+
+  const { scrollY } = useScroll();
+  const heroOpacity = useTransform(scrollY, [200, 700], [1, 0]);
+  const heroScale = useTransform(scrollY, [200, 700], [1, 0.94]);
+  const heroBlurVal = useTransform(scrollY, [200, 700], [0, 8]);
+  const heroBlur = useMotionTemplate`blur(${heroBlurVal}px)`;
+  const heroY = useTransform(scrollY, [200, 700], [0, -50]);
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const reduce = useReducedMotion();
@@ -146,6 +153,20 @@ export default function Intro() {
       </div>
 
       <h1 className="sr-only">Faliqul Ishbah.</h1>
+
+      <motion.div
+        style={
+          reduce
+            ? undefined
+            : {
+                opacity: heroOpacity,
+                scale: heroScale,
+                filter: heroBlur,
+                y: heroY,
+              }
+        }
+        className="relative z-10 w-full flex-1 flex flex-col justify-between"
+      >
 
       {/* ══════════════════════════════════════════════
           DESKTOP (>= 1024px): nama di kiri & kanan foto,
@@ -261,6 +282,8 @@ export default function Intro() {
           />
         </motion.div>
       </div>
+
+      </motion.div>
 
       {/* MARQUEE (z-40) di atas kaki foto */}
       <div className="absolute bottom-0 inset-x-0 z-40 w-full overflow-hidden pb-2 sm:pb-3 select-none pointer-events-auto">

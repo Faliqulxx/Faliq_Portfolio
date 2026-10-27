@@ -8,6 +8,9 @@ import { BsArrowRight } from "react-icons/bs";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 import Link from "next/link";
 import { useLanguage } from "@/context/language-context";
+import { MOTION_EASINGS } from "@/lib/motion";
+import ScrambleText from "@/components/motion/ScrambleText";
+import { useScroll, useTransform } from "framer-motion";
 
 interface ExperienceItem {
   id: string;
@@ -378,8 +381,8 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
             {EXPERIENCES.slice(0, 3).map((exp, idx) => {
               const numberStr = String(idx + 1).padStart(2, "0");
               return (
-                <Link
-                  key={exp.id}
+                <motion.div key={exp.id} initial={{ opacity: 0, x: 24, filter: 'blur(6px)' }} whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.8, delay: idx * 0.1, ease: MOTION_EASINGS.entrance }}>
+                  <Link
                   href="/experience"
                   className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-7 sm:py-8 border-b border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-900/40 -mx-3 px-3 sm:-mx-4 sm:px-4 rounded-xl transition-all duration-200 cursor-pointer"
                 >
@@ -415,6 +418,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                     <BsArrowRight className="text-sm sm:text-base text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-1.5 transition-all" />
                   </div>
                 </Link>
+                </motion.div>
               );
             })}
           </div>
