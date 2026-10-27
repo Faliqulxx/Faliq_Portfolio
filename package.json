@@ -9,29 +9,25 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ],
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@hugeicons/core-free-icons": "^4.3.5",
     "@hugeicons/react": "^1.1.10",
     "@react-email/components": "^0.0.7",
     "@react-email/tailwind": "^0.0.8",
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
     "@types/node": "20.4.8",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
-    "@types/three": "^0.185.1",
     "@vercel/analytics": "^1.0.2",
     "@vercel/speed-insights": "^1.0.2",
     "autoprefixer": "10.4.14",
-    "clsx": "^2.0.0",
     "framer-motion": "^10.15.0",
     "gsap": "^3.15.0",
-    "lenis": "^1.3.25",
-    "lucide-react": "^1.16.0",
-    "motion": "^12.23.12",
     "next": "13.4.12",
-    "next-themes": "^0.4.6",
     "ogl": "^1.0.11",
     "postcss": "8.4.27",
     "react": "18.2.0",
@@ -39,15 +35,11 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
     "react-intersection-observer": "^9.5.2",
-    "react-vertical-timeline-component": "^3.6.0",
     "resend": "^0.17.2",
     "tailwindcss": "3.3.3",
-    "three": "^0.185.1",
-    "typescript": "5.1.6",
-    "vgpu": "^0.5.0"
+    "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/react-vertical-timeline-component": "^3.3.3",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13"
   }
