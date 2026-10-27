@@ -266,11 +266,11 @@ export default function Intro() {
       <div className="absolute bottom-0 inset-x-0 z-40 w-full overflow-hidden pb-2 sm:pb-3 select-none pointer-events-auto">
         <ScrollVelocity
           texts={[
-            "Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer | ",
+            "Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer",
             t("intro.availableForWork"),
           ]}
           velocity={70}
-          className="font-black text-[#0b132a] dark:text-neutral-100 text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight leading-none px-4 [text-shadow:0_0_18px_var(--hero-bg),0_0_6px_var(--hero-bg)]"
+          className="font-black text-[#0b132a] dark:text-neutral-100 text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight leading-none [text-shadow:0_0_18px_var(--hero-bg),0_0_6px_var(--hero-bg)]"
         />
       </div>
     </section>
