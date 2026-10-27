@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";

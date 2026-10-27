@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import React, {
   useCallback,
   useEffect,
@@ -234,6 +236,7 @@ const DriftWall: React.FC<DriftWallProps> = ({
     parallax,
     reduced,
     applyPlaneTransform,
+    columnItems.length,
   ]);
 
   const activate = useCallback((id: string, index: number) => {
@@ -308,13 +311,12 @@ const DriftWall: React.FC<DriftWallProps> = ({
   const renderTile = (item: DriftWallItem, id: string, colIndex: number) => {
     const inner = (
       <span className="drift-wall__inner">
-        <img
+        <Image
           src={item.image}
           alt={item.title ?? ""}
           width={tileWidth}
           height={tileHeight}
           loading="lazy"
-          decoding="async"
           draggable={false}
         />
         <span className="drift-wall__overlay" aria-hidden="true" />

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -274,13 +276,13 @@ export default function PillNav({
             }}
           >
             {typeof logo === "string" ? (
-              <img
+              <Image
                 src={logo}
                 alt={logoAlt}
-                ref={logoImgRef}
+                ref={logoImgRef as any}
                 width={28}
                 height={28}
-                loading="eager"
+                priority
               />
             ) : (
               logo

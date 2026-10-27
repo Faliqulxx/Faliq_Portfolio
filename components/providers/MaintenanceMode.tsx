@@ -8,7 +8,7 @@ const MaintenanceMode: React.FC = () => {
           Website under maintenance!
         </p>
         <p className="text-xl text-black dark:text-white uppercase mt-4">
-          We'll be back soon
+          We&apos;ll be back soon
         </p>
       </div>
       <div className="w-full py-4 border-t border-gray-300">

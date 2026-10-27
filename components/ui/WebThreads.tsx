@@ -283,13 +283,28 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     const onMouseLeave = () => {
       targetActive = 0;
     };
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
     canvas.addEventListener('mouseenter', onMouseEnter);
     canvas.addEventListener('mouseleave', onMouseLeave);
 
     let raf = 0;
     let isVisible = true;
     let isPageVisible = !document.hidden;
+
+    const reduceMotionQuery = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    let isReducedMotion = reduceMotionQuery ? reduceMotionQuery.matches : false;
+
+    const onReduceMotionChange = (e: MediaQueryListEvent) => {
+      isReducedMotion = e.matches;
+      if (isReducedMotion) {
+        tryStop();
+        renderer.render({ scene: mesh });
+      } else {
+        tryStart();
+      }
+    };
+    reduceMotionQuery?.addEventListener?.('change', onReduceMotionChange);
+
     const t0 = performance.now();
 
     const loop = (t: number) => {
@@ -307,6 +322,10 @@ const WebThreads: React.FC<WebThreadsProps> = ({
     };
 
     const tryStart = () => {
+      if (isReducedMotion) {
+        renderer.render({ scene: mesh });
+        return;
+      }
       if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
     };
     const tryStop = () => {
@@ -337,6 +356,7 @@ const WebThreads: React.FC<WebThreadsProps> = ({
       tryStop();
       ro.disconnect();
       io.disconnect();
+      reduceMotionQuery?.removeEventListener?.('change', onReduceMotionChange);
       document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('mousemove', onMouseMove);
       canvas.removeEventListener('mouseenter', onMouseEnter);
