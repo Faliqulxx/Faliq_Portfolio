@@ -11,6 +11,7 @@ import ScrollVelocity from "@/components/ui/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
 import WebThreads from "@/components/ui/WebThreads";
+import TechText from "@/components/ui/TechText";
 
 // Urutan animasi (detik)
 const T = {
@@ -104,9 +105,6 @@ export default function Intro() {
     },
   ];
 
-  const nameClass =
-    "whitespace-nowrap font-black tracking-[-0.05em] leading-[0.85] text-neutral-950 dark:text-white select-none";
-
   return (
     <section
       id="home"
@@ -161,40 +159,66 @@ export default function Intro() {
           style={{ gridTemplateColumns: "1fr calc(var(--photo-h) * 0.48) 1fr" }}
         >
           {/* Kiri: Faliqul, ikon di TENGAH nama */}
-          <div className="col-start-1 justify-self-end flex flex-col items-center">
+          <div className="col-start-1 justify-self-end flex flex-col items-center w-full max-w-[460px]">
             <motion.div
               {...slideIn("left", T.name1, reduce)}
-              className={nameClass}
-              style={{ fontSize: "var(--name-font)" }}
+              className="w-full h-[clamp(4.5rem,10.5vw,9rem)] text-neutral-950 dark:text-white"
               aria-hidden="true"
             >
-              Faliqul
+              <TechText
+                text="Faliqul"
+                fontWeight={900}
+                fontSize={160}
+                letterSpacing={-0.05}
+                align="center"
+                reveal="letter"
+                dashLength={4}
+                dashGap={2}
+                specks={15}
+                intro="none"
+                introDuration={2}
+                clickKick
+                guides={false}
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsLeft }}
             >
-              <SocialGroup items={leftSocials} className="mt-6 justify-center" />
+              <SocialGroup items={leftSocials} className="mt-4 justify-center" />
             </motion.div>
           </div>
 
           {/* Kanan: Ishbah., ikon di TENGAH nama */}
-          <div className="col-start-3 justify-self-start flex flex-col items-center">
+          <div className="col-start-3 justify-self-start flex flex-col items-center w-full max-w-[460px]">
             <motion.div
               {...slideIn("right", T.name2, reduce)}
-              className={nameClass}
-              style={{ fontSize: "var(--name-font)" }}
+              className="w-full h-[clamp(4.5rem,10.5vw,9rem)] text-neutral-950 dark:text-white"
               aria-hidden="true"
             >
-              Ishbah<span className="inline-block ml-[0.02em]">.</span>
+              <TechText
+                text="Ishbah."
+                fontWeight={900}
+                fontSize={160}
+                letterSpacing={-0.05}
+                align="center"
+                reveal="letter"
+                dashLength={4}
+                dashGap={2}
+                specks={15}
+                intro="none"
+                introDuration={2}
+                clickKick
+                guides={false}
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsRight }}
             >
-              <SocialGroup items={rightSocials} className="mt-6 justify-center" />
+              <SocialGroup items={rightSocials} className="mt-4 justify-center" />
             </motion.div>
           </div>
         </div>
@@ -203,17 +227,48 @@ export default function Intro() {
       {/* ══════════════════════════════════════════════
           MOBILE & TABLET (< 1024px): nama ditumpuk di atas foto
           ══════════════════════════════════════════════ */}
-      <div className="relative z-10 flex lg:hidden flex-col items-center pt-24 px-4 text-center">
+      <div className="relative z-10 flex lg:hidden flex-col items-center pt-24 px-4 text-center w-full">
         <div
-          className="font-black tracking-[-0.05em] leading-[0.88] text-neutral-950 dark:text-white"
-          style={{ fontSize: "var(--stack-font)" }}
+          className="w-full max-w-[360px] flex flex-col items-center"
           aria-hidden="true"
         >
-          <motion.div {...slideIn("left", T.name1, reduce)} className="block">
-            Faliqul
+          <motion.div
+            {...slideIn("left", T.name1, reduce)}
+            className="w-full h-[clamp(3.5rem,12vw,5.5rem)] text-neutral-950 dark:text-white"
+          >
+            <TechText
+              text="Faliqul"
+              fontWeight={900}
+              fontSize={130}
+              letterSpacing={-0.05}
+              align="center"
+              reveal="letter"
+              dashLength={4}
+              dashGap={2}
+              specks={12}
+              intro="none"
+              clickKick
+              guides={false}
+            />
           </motion.div>
-          <motion.div {...slideIn("right", T.name2, reduce)} className="block">
-            Ishbah<span className="inline-block ml-[0.02em]">.</span>
+          <motion.div
+            {...slideIn("right", T.name2, reduce)}
+            className="w-full h-[clamp(3.5rem,12vw,5.5rem)] text-neutral-950 dark:text-white -mt-1 sm:-mt-2"
+          >
+            <TechText
+              text="Ishbah."
+              fontWeight={900}
+              fontSize={130}
+              letterSpacing={-0.05}
+              align="center"
+              reveal="letter"
+              dashLength={4}
+              dashGap={2}
+              specks={12}
+              intro="none"
+              clickKick
+              guides={false}
+            />
           </motion.div>
         </div>
 
