@@ -269,7 +269,7 @@ export default function Intro() {
             "Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer",
             t("intro.availableForWork"),
           ]}
-          velocity={70}
+          duration={55}
           className="font-black text-[#0b132a] dark:text-neutral-100 text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight leading-none [text-shadow:0_0_18px_var(--hero-bg),0_0_6px_var(--hero-bg)]"
         />
       </div>

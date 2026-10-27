@@ -5,6 +5,7 @@ import React from "react";
 interface ScrollVelocityProps {
   texts: string[];
   velocity?: number;
+  duration?: number;
   className?: string;
   numCopies?: number;
   parallaxClassName?: string;
@@ -15,15 +16,17 @@ interface ScrollVelocityProps {
 
 export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
   texts = [],
-  velocity = 70,
+  velocity = 40,
+  duration,
   className = "",
   parallaxClassName = "",
   scrollerClassName = "",
   parallaxStyle,
   scrollerStyle,
 }) => {
-  // Hitung durasi animasi berbasis velocity: makin tinggi velocity, makin cepat (durasi makin kecil)
-  const duration = Math.max(16, Math.round(2200 / Math.max(velocity, 10)));
+  // Hitung durasi animasi: nilai detik lebih besar = gerakan lebih lambat & tenang
+  const animDuration =
+    duration ?? Math.max(30, Math.round(4200 / Math.max(velocity, 10)));
 
   return (
     <section className={`overflow-hidden select-none ${parallaxClassName}`} style={parallaxStyle}>
@@ -48,13 +51,13 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: marquee-left ${duration}s linear infinite;
+          animation: marquee-left ${animDuration}s linear infinite;
         }
         .animate-marquee-right {
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: marquee-right ${duration}s linear infinite;
+          animation: marquee-right ${animDuration}s linear infinite;
         }
         @media (prefers-reduced-motion: reduce) {
           .animate-marquee-left,
