@@ -266,7 +266,7 @@ export default function Intro() {
       <div className="absolute bottom-0 inset-x-0 z-40 w-full overflow-hidden pb-2 sm:pb-3 select-none pointer-events-auto">
         <ScrollVelocity
           texts={[
-            "Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer",
+            "Frontend Developer | Data Scientist | Data Analyst | AI Automation",
             t("intro.availableForWork"),
           ]}
           duration={55}

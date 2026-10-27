@@ -347,7 +347,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
       <section
         id="experience"
         ref={ref}
-        className="w-full scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 my-12 sm:my-16 lg:my-20"
+        className="w-full scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 mt-4 sm:mt-6 lg:mt-8 mb-16 sm:mb-20 lg:mb-24"
       >
         <div className="w-full max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr] xl:grid-cols-[430px_1fr] gap-10 lg:gap-16 items-start">
           {/* ── LEFT COLUMN ── */}

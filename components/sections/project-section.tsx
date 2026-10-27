@@ -507,7 +507,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       id="projects"
       className={
         variant === "preview"
-          ? "w-full bg-neutral-100 dark:bg-[#121212] border-y border-neutral-200 dark:border-neutral-800 py-16 sm:py-24 my-12 sm:my-16 relative overflow-hidden scroll-mt-28"
+          ? "w-full bg-neutral-100 dark:bg-[#121212] border-y border-neutral-200 dark:border-neutral-800 py-12 sm:py-16 my-6 sm:my-8 relative overflow-hidden scroll-mt-28"
           : "scroll-mt-28 mb-28"
       }
       initial={{ opacity: 0, y: 100 }}

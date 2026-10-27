@@ -846,7 +846,7 @@ export default function About({ variant = "full" }: AboutProps = {}) {
       <motion.section
         ref={ref}
         id="about"
-        className="w-full mb-28 sm:mb-32 lg:mb-40 xl:mb-48 scroll-mt-28"
+        className="w-full mb-8 sm:mb-12 lg:mb-14 scroll-mt-28"
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.175, duration: 0.5 }}

@@ -184,7 +184,11 @@ export default function Skills({
   return (
     <section
       id="skills"
-      className="w-full mb-28 sm:mb-32 lg:mb-40 xl:mb-48 overflow-hidden scroll-mt-28 text-center"
+      className={`w-full ${
+        variant === "preview"
+          ? "mb-6 sm:mb-8 lg:mb-10"
+          : "mb-20 sm:mb-24"
+      } overflow-hidden scroll-mt-28 text-center`}
     >
       <div className="flex flex-col gap-6 mt-8">
         {/* Baris 1: Ke kiri */}
