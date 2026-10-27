@@ -246,7 +246,7 @@ export default function Intro() {
           className="hero-photo-fade h-full w-auto flex items-end justify-center"
         >
           <Image
-            src="/images/new_profile.png"
+            src="/images/new_profile.webp"
             alt="Faliqul Ishbah"
             width={1792}
             height={2400}
