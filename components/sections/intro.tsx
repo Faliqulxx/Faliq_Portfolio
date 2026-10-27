@@ -11,7 +11,6 @@ import ScrollVelocity from "@/components/ui/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
 import WebThreads from "@/components/ui/WebThreads";
-import TechText from "@/components/ui/TechText";
 
 // Urutan animasi (detik)
 const T = {
@@ -105,6 +104,9 @@ export default function Intro() {
     },
   ];
 
+  const nameClass =
+    "whitespace-nowrap font-black tracking-[-0.05em] leading-[0.85] text-neutral-950 dark:text-white select-none";
+
   return (
     <section
       id="home"
@@ -159,66 +161,40 @@ export default function Intro() {
           style={{ gridTemplateColumns: "1fr calc(var(--photo-h) * 0.48) 1fr" }}
         >
           {/* Kiri: Faliqul, ikon di TENGAH nama */}
-          <div className="col-start-1 justify-self-end flex flex-col items-center w-full max-w-[460px]">
+          <div className="col-start-1 justify-self-end flex flex-col items-center">
             <motion.div
               {...slideIn("left", T.name1, reduce)}
-              className="w-full h-[clamp(4.5rem,10.5vw,9rem)] text-neutral-950 dark:text-white"
+              className={nameClass}
+              style={{ fontSize: "var(--name-font)" }}
               aria-hidden="true"
             >
-              <TechText
-                text="Faliqul"
-                fontWeight={900}
-                fontSize={160}
-                letterSpacing={-0.05}
-                align="center"
-                reveal="letter"
-                dashLength={4}
-                dashGap={2}
-                specks={15}
-                intro="none"
-                introDuration={2}
-                clickKick
-                guides={false}
-              />
+              Faliqul
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsLeft }}
             >
-              <SocialGroup items={leftSocials} className="mt-4 justify-center" />
+              <SocialGroup items={leftSocials} className="mt-6 justify-center" />
             </motion.div>
           </div>
 
           {/* Kanan: Ishbah., ikon di TENGAH nama */}
-          <div className="col-start-3 justify-self-start flex flex-col items-center w-full max-w-[460px]">
+          <div className="col-start-3 justify-self-start flex flex-col items-center">
             <motion.div
               {...slideIn("right", T.name2, reduce)}
-              className="w-full h-[clamp(4.5rem,10.5vw,9rem)] text-neutral-950 dark:text-white"
+              className={nameClass}
+              style={{ fontSize: "var(--name-font)" }}
               aria-hidden="true"
             >
-              <TechText
-                text="Ishbah."
-                fontWeight={900}
-                fontSize={160}
-                letterSpacing={-0.05}
-                align="center"
-                reveal="letter"
-                dashLength={4}
-                dashGap={2}
-                specks={15}
-                intro="none"
-                introDuration={2}
-                clickKick
-                guides={false}
-              />
+              Ishbah<span className="inline-block ml-[0.02em]">.</span>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: reduce ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: reduce ? 0 : T.iconsRight }}
             >
-              <SocialGroup items={rightSocials} className="mt-4 justify-center" />
+              <SocialGroup items={rightSocials} className="mt-6 justify-center" />
             </motion.div>
           </div>
         </div>
@@ -227,48 +203,17 @@ export default function Intro() {
       {/* ══════════════════════════════════════════════
           MOBILE & TABLET (< 1024px): nama ditumpuk di atas foto
           ══════════════════════════════════════════════ */}
-      <div className="relative z-10 flex lg:hidden flex-col items-center pt-24 px-4 text-center w-full">
+      <div className="relative z-10 flex lg:hidden flex-col items-center pt-24 px-4 text-center">
         <div
-          className="w-full max-w-[360px] flex flex-col items-center"
+          className="font-black tracking-[-0.05em] leading-[0.88] text-neutral-950 dark:text-white"
+          style={{ fontSize: "var(--stack-font)" }}
           aria-hidden="true"
         >
-          <motion.div
-            {...slideIn("left", T.name1, reduce)}
-            className="w-full h-[clamp(3.5rem,12vw,5.5rem)] text-neutral-950 dark:text-white"
-          >
-            <TechText
-              text="Faliqul"
-              fontWeight={900}
-              fontSize={130}
-              letterSpacing={-0.05}
-              align="center"
-              reveal="letter"
-              dashLength={4}
-              dashGap={2}
-              specks={12}
-              intro="none"
-              clickKick
-              guides={false}
-            />
+          <motion.div {...slideIn("left", T.name1, reduce)} className="block">
+            Faliqul
           </motion.div>
-          <motion.div
-            {...slideIn("right", T.name2, reduce)}
-            className="w-full h-[clamp(3.5rem,12vw,5.5rem)] text-neutral-950 dark:text-white -mt-1 sm:-mt-2"
-          >
-            <TechText
-              text="Ishbah."
-              fontWeight={900}
-              fontSize={130}
-              letterSpacing={-0.05}
-              align="center"
-              reveal="letter"
-              dashLength={4}
-              dashGap={2}
-              specks={12}
-              intro="none"
-              clickKick
-              guides={false}
-            />
+          <motion.div {...slideIn("right", T.name2, reduce)} className="block">
+            Ishbah<span className="inline-block ml-[0.02em]">.</span>
           </motion.div>
         </div>
 
@@ -321,7 +266,7 @@ export default function Intro() {
       <div className="absolute bottom-0 inset-x-0 z-40 w-full overflow-hidden pb-2 sm:pb-3 select-none pointer-events-auto">
         <ScrollVelocity
           texts={[
-            "| Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer | ",
+            "Frontend Developer | Data Scientist | Data Analyst | AI Automation | IoT Developer | ",
             t("intro.availableForWork"),
           ]}
           velocity={70}

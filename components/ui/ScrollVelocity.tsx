@@ -81,7 +81,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
                   className={`flex-shrink-0 inline-block whitespace-nowrap ${className}`}
                   aria-hidden={i > 0 ? "true" : undefined}
                 >
-                  {text}&nbsp;
+                  {text}
                 </span>
               ))}
             </div>
