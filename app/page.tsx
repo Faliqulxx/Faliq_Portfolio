@@ -1,10 +1,26 @@
-import About from "@/components/sections/about";
-import Experience from "@/components/sections/experience";
+import dynamic from "next/dynamic";
 import Intro from "@/components/sections/intro";
-import Skills from "@/components/sections/skills";
-import ProjectSection from "@/components/sections/project-section";
 import SectionDivider from "@/components/ui/section-divider";
 import MaintenanceMode from "@/components/providers/MaintenanceMode";
+
+const About = dynamic(() => import("@/components/sections/about"), {
+  loading: () => <div className="min-h-[400px] w-full" aria-hidden="true" />,
+});
+
+const ProjectSection = dynamic(
+  () => import("@/components/sections/project-section"),
+  {
+    loading: () => <div className="min-h-[500px] w-full" aria-hidden="true" />,
+  }
+);
+
+const Skills = dynamic(() => import("@/components/sections/skills"), {
+  loading: () => <div className="min-h-[300px] w-full" aria-hidden="true" />,
+});
+
+const Experience = dynamic(() => import("@/components/sections/experience"), {
+  loading: () => <div className="min-h-[400px] w-full" aria-hidden="true" />,
+});
 
 export default function Home() {
   const isMaintenanceMode = false;

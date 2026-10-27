@@ -37,6 +37,7 @@ import { useTheme } from "@/context/theme-context";
 const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
 });
 
 // ─── HANDWRITTEN SCRIBBLE COMPONENT ──────────────────────────────────────────

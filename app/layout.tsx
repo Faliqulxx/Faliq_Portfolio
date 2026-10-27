@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Header from "@/components/layout/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -10,11 +11,14 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import LoadingScreen from "@/components/loading/LoadingScreen";
 import { CVPreviewProvider } from "@/context/cv-preview-context";
-import CVPreviewModal from "@/components/cv/CVPreviewModal";
 import { LanguageProvider } from "@/context/language-context";
 import SoundEffectsProvider from "@/components/providers/SoundEffectsProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const CVPreviewModal = dynamic(() => import("@/components/cv/CVPreviewModal"), {
+  ssr: false,
+});
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faliq-portfolio.vercel.app"),
