@@ -51,7 +51,7 @@ html.dark,
     --photo-h: calc(100svh - 92px);
     --name-font: clamp(
       2.5rem,
-      min(9.5vw, calc((50vw - var(--photo-h) * 0.24 - 28px) / 3.5)),
+      min(9.5vw, calc((50vw - var(--photo-h) * 0.26 - 28px) / 3.5)),
       14rem
     );
     --hero-min-h: 100svh;

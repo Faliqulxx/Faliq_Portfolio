@@ -179,7 +179,7 @@ export default function Intro() {
         {/* Satu baris sejajar di bahu: Faliqul | ruang foto | Ishbah. */}
         <div
           className="grid w-full items-start"
-          style={{ gridTemplateColumns: "1fr calc(var(--photo-h) * 0.48) 1fr" }}
+          style={{ gridTemplateColumns: "1fr calc(var(--photo-h) * 0.52) 1fr" }}
         >
           {/* Kiri: Faliqul, ikon di TENGAH nama */}
           <div className="col-start-1 justify-self-end flex flex-col items-center">
@@ -252,7 +252,7 @@ export default function Intro() {
       </div>
 
       {/* LAYER 3: FOTO (z-30), dasar menempel ke bawah section */}
-      <div className="hero-photo-frame absolute bottom-0 left-1/2 -translate-x-1/2 z-30 pointer-events-none select-none flex items-end justify-center w-auto">
+      <div className="hero-photo-frame absolute bottom-0 left-1/2 -translate-x-[47.2%] z-30 pointer-events-none select-none flex items-end justify-center w-auto">
         <motion.div
           initial={
             reduce
@@ -273,7 +273,7 @@ export default function Intro() {
           className="hero-photo-fade h-full w-auto flex items-end justify-center"
         >
           <Image
-            src="/images/new_profile.webp"
+            src="/images/new_profile_v2.webp"
             alt="Faliqul Ishbah"
             width={1792}
             height={2400}
