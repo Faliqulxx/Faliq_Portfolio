@@ -10,7 +10,7 @@ import { useSectionInView } from "@/lib/hooks";
 import ScrollVelocity from "@/components/ui/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
-import WebThreads from "@/components/ui/WebThreads";
+import ShapeGrid from "@/components/ui/ShapeGrid";
 
 // Urutan animasi (detik)
 const T = {
@@ -124,31 +124,24 @@ export default function Intro() {
       <div id="hero" className="absolute top-0 pointer-events-none" />
 
       {/* LAYER 0: BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full opacity-75 dark:opacity-60">
-        <WebThreads
-          color1={isDark ? "#94a3b8" : "#64748b"}
-          color2={isDark ? "#64748b" : "#94a3b8"}
-          color3={isDark ? "#cbd5e1" : "#1e293b"}
-          speed={reduce ? 0 : 0.22}
-          threadCount={8}
-          frequency={3.6}
-          spread={0.65}
-          taper={1.8}
-          position={0.5}
-          fanMode="center"
-          glow={0.016}
-          falloff={0.6}
-          thickness={1.1}
-          brightness={isDark ? 0.4 : 0.45}
-          opacity={0.85}
-          mirror={true}
-          shimmer={!reduce}
-          grain={true}
-          grainIntensity={0.05}
-          mouseInteraction={!reduce}
-          mouseStrength={0.35}
-          lightMode={!isDark}
-          backgroundColor={isDark ? "#09090b" : "#ffffff"}
+      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full">
+        <ShapeGrid
+          shape="square"
+          direction="down"
+          lineColor={isDark ? "#2a2734" : "#e4e4e7"}
+          hoverColor={isDark ? "#ffffff" : "#18181b"}
+          hoverFillColor={isDark ? "#ffffff" : "#18181b"}
+          fillOpacity={0.15}
+          cellSize={44}
+          speed={reduce ? 0 : 0.6}
+          tiltX={58}
+          tiltY={0}
+          rainbow={false}
+          radius={2}
+          trail={0.9}
+          glow={0.45}
+          fade={1}
+          paused={!!reduce}
         />
       </div>
 
