@@ -22,6 +22,7 @@
     "@types/node": "20.4.8",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
+    "@types/three": "^0.186.0",
     "@vercel/analytics": "^1.0.2",
     "@vercel/speed-insights": "^1.0.2",
     "autoprefixer": "10.4.14",
@@ -37,6 +38,7 @@
     "react-intersection-observer": "^9.5.2",
     "resend": "^0.17.2",
     "tailwindcss": "3.3.3",
+    "three": "^0.186.1",
     "typescript": "5.1.6"
   },
   "devDependencies": {

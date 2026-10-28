@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { useSectionInView } from "@/lib/hooks";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +12,15 @@ import { useLanguage } from "@/context/language-context";
 import { MOTION_EASINGS } from "@/lib/motion";
 import ScrambleText from "@/components/motion/ScrambleText";
 import { useScroll, useTransform } from "framer-motion";
+
+const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[400px] flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-neutral-300 dark:border-neutral-700 border-t-black dark:border-t-white animate-spin" />
+    </div>
+  ),
+});
 
 interface ExperienceItem {
   id: string;
@@ -345,55 +355,78 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
   const activeExp = EXPERIENCES[selectedIndex] || EXPERIENCES[0];
   const currentImage = (activeExp.images && activeExp.images[selectedImageIndex]) || activeExp.image;
 
-  if (variant === "preview") {
+        if (variant === "preview") {
     return (
       <section
         id="experience"
         ref={ref}
-        className="w-full scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 mt-4 sm:mt-6 lg:mt-8 mb-16 sm:mb-20 lg:mb-24"
+        className="w-full scroll-mt-28 sm:scroll-mt-32 lg:scroll-mt-36 mt-4 sm:mt-6 lg:mt-8 mb-8 sm:mb-10 lg:mb-12"
       >
-        <div className="w-full max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr] xl:grid-cols-[430px_1fr] gap-10 lg:gap-16 items-start">
-          {/* ── LEFT COLUMN ── */}
-          <div className="flex flex-col items-start lg:sticky lg:top-28">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">
+        <div className="w-full max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[320px_280px_1fr] xl:grid-cols-[360px_320px_1fr] gap-8 lg:gap-10 xl:gap-12 items-start">
+          {/* ── COLUMN 1 (DESKTOP KIRI): LANYARD 3D ID CARD ── */}
+          <div className="order-3 lg:order-1 flex items-center justify-center w-full relative z-10 mt-6 lg:mt-0">
+            <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-none h-[340px] sm:h-[380px] lg:h-[420px] xl:h-[440px] flex items-center justify-center pointer-events-auto">
+              <Lanyard
+                frontImage="/images/Lanyard/card-front.webp"
+                backImage="/images/Lanyard/card-back.webp"
+                strapImage="/images/Lanyard/band.webp"
+                orientation="portrait"
+                finish="glossy"
+                interactive={true}
+                size={0.62}
+                strapLength={0.3}
+              />
+            </div>
+          </div>
+
+          {/* ── COLUMN 2 (DESKTOP TENGAH): HEADER & CTA ── */}
+          <div className="order-1 lg:order-2 flex flex-col items-start lg:sticky lg:top-32 relative z-20 pointer-events-auto">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-3 sm:mb-4">
               {t("experience.eyebrow")}
             </span>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-950 dark:text-white tracking-tight leading-[1.05] mb-5">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-950 dark:text-white tracking-tight leading-[1.08] mb-4 sm:mb-5">
               {t("experience.heading")}
             </h2>
 
-            <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8 max-w-[360px]">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6 sm:mb-8 max-w-[320px]">
               {t("experience.subtitle")}
             </p>
 
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-sm shadow-md hover:scale-105 active:scale-95 transition-all duration-200 group"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all duration-200 group"
             >
               <span>{t("experience.viewAll")}</span>
-              <BsArrowRight className="text-base group-hover:translate-x-1 transition-transform" />
+              <BsArrowRight className="text-sm sm:text-base group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          {/* ── RIGHT COLUMN: EXPERIENCE LIST (TOP 3) ── */}
-          <div className="flex flex-col border-t border-neutral-300 dark:border-neutral-800">
+          {/* ── COLUMN 3 (DESKTOP KANAN): EXPERIENCE LIST (TOP 3) ── */}
+          <div className="order-2 lg:order-3 flex flex-col border-t border-neutral-300 dark:border-neutral-800 relative z-20 pointer-events-auto">
             {EXPERIENCES.slice(0, 3).map((exp, idx) => {
               const numberStr = String(idx + 1).padStart(2, "0");
               return (
-                <motion.div key={exp.id} initial={{ opacity: 0, x: 24, filter: 'blur(6px)' }} whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.8, delay: idx * 0.1, ease: MOTION_EASINGS.entrance }}>
-                  <Link
-                  href="/experience"
-                  className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-7 sm:py-8 border-b border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100/60 dark:hover:bg-neutral-900/40 -mx-3 px-3 sm:-mx-4 sm:px-4 rounded-xl transition-all duration-200 cursor-pointer"
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, x: 24, filter: 'blur(6px)' }}
+                  whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.8, delay: idx * 0.1, ease: MOTION_EASINGS.entrance }}
+                  className="group border-b border-neutral-300 dark:border-neutral-800 transition-colors duration-200 hover:border-neutral-400 dark:hover:border-neutral-600"
                 >
-                  {/* Left part of row: number + title + company + LIVE */}
-                  <div className="flex items-start gap-5 sm:gap-7 flex-1 min-w-0">
-                    <span className="font-mono text-xs sm:text-sm font-semibold text-neutral-400 dark:text-neutral-500 pt-1 shrink-0 select-none">
+                  <Link
+                    href="/experience"
+                    className="grid grid-cols-[24px_1fr_auto] sm:grid-cols-[28px_1fr_auto] items-start gap-4 sm:gap-6 min-h-[96px] sm:min-h-[104px] py-5 sm:py-6 px-3 sm:px-4 rounded-xl hover:bg-neutral-100/60 dark:hover:bg-neutral-900/40 transition-all duration-200 cursor-pointer"
+                  >
+                    {/* Kolom 1: Nomor */}
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-neutral-400 dark:text-neutral-500 pt-0.5 shrink-0 select-none">
                       {numberStr}
                     </span>
 
-                    <div className="flex flex-col min-w-0">
-                      <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors leading-snug">
+                    {/* Kolom 2: Judul + Perusahaan + LIVE */}
+                    <div className="flex flex-col min-w-0 pr-2">
+                      <h3 className="text-base sm:text-lg font-bold text-neutral-950 dark:text-white tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors leading-snug">
                         {isIndo ? exp.role.id : exp.role.en}
                       </h3>
                       <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
@@ -408,16 +441,15 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                         </div>
                       )}
                     </div>
-                  </div>
 
-                  {/* Right part of row: period + arrow */}
-                  <div className="flex items-center gap-3 sm:gap-5 self-end sm:self-center shrink-0 pl-10 sm:pl-0">
-                    <span className="text-xs sm:text-sm font-mono text-neutral-500 dark:text-neutral-400">
-                      {isIndo ? exp.period.id : exp.period.en}
-                    </span>
-                    <BsArrowRight className="text-sm sm:text-base text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-1.5 transition-all" />
-                  </div>
-                </Link>
+                    {/* Kolom 3: Tanggal + Panah (Selalu sejajar ke atas dengan baris judul) */}
+                    <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 pt-0.5 whitespace-nowrap">
+                      <span className="font-mono text-[13px] font-medium text-neutral-700 dark:text-neutral-300 transition-colors">
+                        {isIndo ? exp.period.id : exp.period.en}
+                      </span>
+                      <BsArrowRight className="text-sm text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-1.5 transition-all duration-200" />
+                    </div>
+                  </Link>
                 </motion.div>
               );
             })}

@@ -232,7 +232,7 @@ export default function Skills({
           : "mb-20 sm:mb-24"
       } overflow-hidden scroll-mt-28 text-center`}
     >
-      <div className="flex flex-col gap-6 mt-8 overflow-hidden">
+      <div className="flex flex-col gap-6 mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         {/* Row 1: Kinetic slide from left */}
         <motion.div
           initial={{ opacity: 0, x: -60, filter: "blur(6px)" }}
