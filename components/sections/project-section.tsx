@@ -204,6 +204,7 @@ function MarqueeRow({
   const pausedRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const rafRef = useRef<number>();
+  const containerOffsetLeftRef = useRef<number>(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const items = [...projects, ...projects];
@@ -212,13 +213,31 @@ function MarqueeRow({
     const container = containerRef.current;
     if (!container) return;
 
+    let halfWidth = container.scrollWidth / 2;
+    const updateDimensions = () => {
+      if (container) halfWidth = container.scrollWidth / 2;
+    };
+
     if (direction === -1 && container.scrollLeft === 0) {
-      container.scrollLeft = container.scrollWidth / 2;
+      container.scrollLeft = halfWidth;
+    }
+
+    window.addEventListener("resize", updateDimensions, { passive: true });
+
+    let isVisible = true;
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry?.isIntersecting ?? true;
+        },
+        { rootMargin: "150px" }
+      );
+      observer.observe(container);
     }
 
     const step = () => {
-      if (!pausedRef.current && container) {
-        const halfWidth = container.scrollWidth / 2;
+      if (!pausedRef.current && container && isVisible && halfWidth > 0) {
         container.scrollLeft += direction * speed;
 
         if (direction === 1 && container.scrollLeft >= halfWidth) {
@@ -233,6 +252,8 @@ function MarqueeRow({
     rafRef.current = requestAnimationFrame(step);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("resize", updateDimensions);
+      if (observer) observer.disconnect();
     };
   }, [direction, speed]);
 
@@ -247,14 +268,15 @@ function MarqueeRow({
     pausedRef.current = true;
     setIsDragging(true);
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-    startXRef.current = getPageX(e) - container.offsetLeft;
+    containerOffsetLeftRef.current = container.offsetLeft;
+    startXRef.current = getPageX(e) - containerOffsetLeftRef.current;
     scrollLeftRef.current = container.scrollLeft;
   };
 
   const handlePointerMove = (e: React.MouseEvent | React.TouchEvent) => {
     const container = containerRef.current;
     if (!isPointerDownRef.current || !container) return;
-    const x = getPageX(e) - container.offsetLeft;
+    const x = getPageX(e) - containerOffsetLeftRef.current;
     const walk = x - startXRef.current;
     if (Math.abs(walk) > 5) hasMovedRef.current = true;
     container.scrollLeft = scrollLeftRef.current - walk;
@@ -985,12 +1007,14 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                               <>
                                 <button
                                   onClick={() => setActiveSlide((p) => (p === 0 ? list.length - 1 : p - 1))}
+                                  aria-label="Previous slide"
                                   className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
                                 >
                                   ‹
                                 </button>
                                 <button
                                   onClick={() => setActiveSlide((p) => (p === list.length - 1 ? 0 : p + 1))}
+                                  aria-label="Next slide"
                                   className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center transition z-10"
                                 >
                                   ›
@@ -1007,6 +1031,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                               <button
                                 key={i}
                                 onClick={() => setActiveSlide(i)}
+                                aria-label={`View screenshot ${i + 1}`}
                                 className={`relative flex-shrink-0 w-16 h-10 rounded-md overflow-hidden border-2 transition ${
                                   i === activeSlide
                                     ? "border-neutral-900 dark:border-white"

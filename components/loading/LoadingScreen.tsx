@@ -340,8 +340,8 @@ export default function LoadingScreen() {
             >
               {/* Active Progress Fill */}
               <div
-                className="h-full bg-neutral-950 dark:bg-white rounded-full transition-[width] duration-75 ease-out"
-                style={{ width: `${progress}%` }}
+                className="h-full w-full bg-neutral-950 dark:bg-white rounded-full transition-transform duration-75 ease-out origin-left"
+                style={{ transform: `scaleX(${progress / 100})` }}
               />
             </motion.div>
 

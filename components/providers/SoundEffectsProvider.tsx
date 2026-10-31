@@ -6,7 +6,6 @@ import React, { useEffect, useRef } from "react";
 export function playClickSound(volume: number = 0.4) {
   if (typeof window === "undefined") return;
   try {
-    // If Web Audio API is available, use global AudioContext instance
     const audioCtx = (window as unknown as { __soundAudioCtx?: AudioContext }).__soundAudioCtx;
     const audioBuffer = (window as unknown as { __soundAudioBuffer?: AudioBuffer }).__soundAudioBuffer;
 
@@ -39,30 +38,36 @@ export default function SoundEffectsProvider() {
   const audioBufferRef = useRef<AudioBuffer | null>(null);
 
   useEffect(() => {
-    // Preload audio using Web Audio API for zero latency
-    try {
-      const AudioContextClass =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    let timerId: ReturnType<typeof setTimeout> | null = null;
 
-      if (AudioContextClass) {
-        const ctx = new AudioContextClass();
-        audioCtxRef.current = ctx;
-        (window as unknown as { __soundAudioCtx?: AudioContext }).__soundAudioCtx = ctx;
+    const initAudio = () => {
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
 
-        fetch("/sound/button.wav")
-          .then((res) => res.arrayBuffer())
-          .then((arrayBuffer) => ctx.decodeAudioData(arrayBuffer))
-          .then((decodedBuffer) => {
-            audioBufferRef.current = decodedBuffer;
-            (window as unknown as { __soundAudioBuffer?: AudioBuffer }).__soundAudioBuffer = decodedBuffer;
-          })
-          .catch(() => {
-            // Audio loading fallback
-          });
-      }
-    } catch {
-      // Ignore initial setup errors
+        if (AudioContextClass) {
+          const ctx = new AudioContextClass();
+          audioCtxRef.current = ctx;
+          (window as unknown as { __soundAudioCtx?: AudioContext }).__soundAudioCtx = ctx;
+
+          fetch("/sound/button.wav")
+            .then((res) => res.arrayBuffer())
+            .then((arrayBuffer) => ctx.decodeAudioData(arrayBuffer))
+            .then((decodedBuffer) => {
+              audioBufferRef.current = decodedBuffer;
+              (window as unknown as { __soundAudioBuffer?: AudioBuffer }).__soundAudioBuffer = decodedBuffer;
+            })
+            .catch(() => {});
+        }
+      } catch {}
+    };
+
+    // Defer audio initialization until idle to not block main thread or LCP
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(initAudio, { timeout: 2000 });
+    } else {
+      timerId = setTimeout(initAudio, 1500);
     }
 
     // Global click listener
@@ -70,23 +75,21 @@ export default function SoundEffectsProvider() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // Check if target or its ancestor is interactive (button, link, or role=button)
       const interactiveEl = target.closest<HTMLElement>(
         'button, a, [role="button"], input[type="submit"], input[type="button"], input[type="reset"], summary, .cursor-pointer'
       );
 
       if (interactiveEl) {
-        // Skip elements with data-no-sound="true"
         if (interactiveEl.getAttribute("data-no-sound") === "true") return;
-
         playClickSound(0.4);
       }
     };
 
-    document.addEventListener("click", handleGlobalClick, { capture: true });
+    document.addEventListener("click", handleGlobalClick, { capture: true, passive: true });
 
     return () => {
-      document.removeEventListener("click", handleGlobalClick, { capture: true });
+      if (timerId) clearTimeout(timerId);
+      document.removeEventListener("click", handleGlobalClick, { capture: true } as any);
       if (audioCtxRef.current && audioCtxRef.current.state !== "closed") {
         audioCtxRef.current.close().catch(() => {});
       }

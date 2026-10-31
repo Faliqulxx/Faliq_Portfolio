@@ -47,10 +47,10 @@ function AnimatedSkillIcon({
       <Image
         src={skill.imgUrl}
         alt={`Skill ${skill.id}`}
-        width={192}
-        height={192}
-        quality={95}
-        priority={true}
+        width={80}
+        height={80}
+        unoptimized={skill.imgUrl.endsWith(".svg") || skill.imgUrl.startsWith("http")}
+        loading="lazy"
         draggable={false}
         className={`w-6 sm:w-8 md:w-12 lg:w-16 xl:w-20 transition-all duration-500 ${
           isHighlighted
@@ -71,6 +71,7 @@ function MarqueeSkillRow({
 }: MarqueeSkillRowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isPointerDownRef = useRef(false);
+  const containerOffsetLeftRef = useRef<number>(0);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
   const pausedRef = useRef(false);
@@ -85,13 +86,31 @@ function MarqueeSkillRow({
     const container = containerRef.current;
     if (!container) return;
 
+    let halfWidth = container.scrollWidth / 2;
+    const updateDimensions = () => {
+      if (container) halfWidth = container.scrollWidth / 2;
+    };
+
     if (direction === -1 && container.scrollLeft === 0) {
-      container.scrollLeft = container.scrollWidth / 2;
+      container.scrollLeft = halfWidth;
+    }
+
+    window.addEventListener("resize", updateDimensions, { passive: true });
+
+    let isVisible = true;
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry?.isIntersecting ?? true;
+        },
+        { rootMargin: "150px" }
+      );
+      observer.observe(container);
     }
 
     const step = () => {
-      if (!pausedRef.current && container) {
-        const halfWidth = container.scrollWidth / 2;
+      if (!pausedRef.current && container && isVisible && halfWidth > 0) {
         container.scrollLeft += direction * speed;
 
         if (direction === 1 && container.scrollLeft >= halfWidth) {
@@ -106,6 +125,8 @@ function MarqueeSkillRow({
     rafRef.current = requestAnimationFrame(step);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("resize", updateDimensions);
+      if (observer) observer.disconnect();
     };
   }, [direction, speed]);
 
@@ -119,14 +140,15 @@ function MarqueeSkillRow({
     pausedRef.current = true;
     setIsDragging(true);
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-    startXRef.current = getPageX(e) - container.offsetLeft;
+    containerOffsetLeftRef.current = container.offsetLeft;
+    startXRef.current = getPageX(e) - containerOffsetLeftRef.current;
     scrollLeftRef.current = container.scrollLeft;
   };
 
   const handlePointerMove = (e: React.MouseEvent | React.TouchEvent) => {
     const container = containerRef.current;
     if (!isPointerDownRef.current || !container) return;
-    const x = getPageX(e) - container.offsetLeft;
+    const x = getPageX(e) - containerOffsetLeftRef.current;
     const walk = x - startXRef.current;
     container.scrollLeft = scrollLeftRef.current - walk;
   };

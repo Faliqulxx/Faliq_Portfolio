@@ -114,13 +114,18 @@ function CertificatesSection({
   const [scrollProgress, setScrollProgress] = useState(0);
   const { t } = useLanguage();
 
+  const scrollRafRef = useRef<number | null>(null);
   const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-    const maxScroll = scrollWidth - clientWidth;
-    if (maxScroll > 0) {
-      setScrollProgress((scrollLeft / maxScroll) * 100);
-    }
+    if (scrollRafRef.current) return;
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      if (!scrollContainerRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      if (maxScroll > 0) {
+        setScrollProgress((scrollLeft / maxScroll) * 100);
+      }
+    });
   };
 
   const scroll = (direction: "left" | "right") => {
@@ -259,8 +264,8 @@ function AboutFullView({
             src="/images/about/footer-mountain.webp"
             alt="Mountain Journey"
             fill
-            priority
-            sizes="100vw"
+            loading="lazy"
+            sizes="(max-width: 1024px) 100vw, 1200px"
             className="object-cover object-center -scale-x-100 opacity-85 dark:opacity-65"
           />
           {/* Readability gradient for text on the left */}

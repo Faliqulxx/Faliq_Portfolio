@@ -111,7 +111,7 @@ export default function Header() {
       }
     };
     if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside, { passive: true });
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobileMenuOpen]);

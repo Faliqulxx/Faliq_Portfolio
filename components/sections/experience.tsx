@@ -381,7 +381,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
 
           {/* ── COLUMN 2 (DESKTOP TENGAH): HEADER & CTA ── */}
           <div className="order-1 lg:order-2 flex flex-col items-start lg:sticky lg:top-32 relative z-20 pointer-events-auto">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-3 sm:mb-4">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-600 dark:text-neutral-400 font-bold mb-3 sm:mb-4">
               {t("experience.eyebrow")}
             </span>
 
@@ -636,6 +636,7 @@ export default function Experience({ variant = "full" }: ExperienceProps = {}) {
                           key={imgSrc}
                           type="button"
                           onClick={() => setSelectedImageIndex(imgIdx)}
+                          aria-label={`View preview image ${imgIdx + 1}`}
                           className={`relative w-12 sm:w-20 h-8 sm:h-12 rounded-md sm:rounded-lg overflow-hidden border sm:border-2 transition-all shrink-0 cursor-pointer ${
                             isImgActive
                               ? "border-neutral-950 dark:border-white ring-2 ring-neutral-400/30 dark:ring-white/30 scale-105"

@@ -5,7 +5,6 @@ import Image from "next/image";
 import React, {
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -136,7 +135,7 @@ const DriftWall: React.FC<DriftWallProps> = ({
     });
   }, [columnItems, tileHeight, gap, containerHeight]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
       setContainerHeight(entry.contentRect.height || 600);

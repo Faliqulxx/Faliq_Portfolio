@@ -10,7 +10,12 @@ import { useSectionInView } from "@/lib/hooks";
 import ScrollVelocity from "@/components/ui/ScrollVelocity";
 import { useLanguage } from "@/context/language-context";
 import { useTheme } from "@/context/theme-context";
-import ShapeGrid from "@/components/ui/ShapeGrid";
+import dynamic from "next/dynamic";
+
+const ShapeGrid = dynamic(() => import("@/components/ui/ShapeGrid"), {
+  ssr: false,
+  loading: () => null,
+});
 
 // Urutan animasi (detik)
 const T = {
@@ -271,6 +276,7 @@ export default function Intro() {
             width={1792}
             height={2400}
             priority
+            sizes="(max-width: 640px) 340px, (max-width: 1024px) 520px, 650px"
             className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.16)] dark:drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
           />
         </motion.div>
