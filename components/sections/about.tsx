@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -806,8 +806,26 @@ interface AboutProps {
 export default function About({ variant = "full" }: AboutProps = {}) {
   const { ref } = useSectionInView("About");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { theme } = useTheme();
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setSelectedImage(null);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [selectedImage]);
 
   if (variant === "preview") {
     const latestEdu = [...educationData].reverse()[0];
@@ -1331,35 +1349,61 @@ export default function About({ variant = "full" }: AboutProps = {}) {
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[2000] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
           >
+            {/* Close button with high z-index and clear tap target */}
             <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-5 right-5 text-white text-3xl p-2 hover:rotate-90 hover:text-neutral-400 transition"
-              aria-label="Close"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[2010] p-2.5 sm:p-3 rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-white border border-neutral-700/80 backdrop-blur-md shadow-2xl flex items-center justify-center cursor-pointer active:scale-90 hover:scale-105 transition-all duration-200 group"
+              aria-label={t("about.close") || "Close"}
+              title={t("about.close") || "Close"}
             >
-              <IoClose />
+              <IoClose className="text-2xl sm:text-3xl group-hover:rotate-90 transition-transform duration-200" />
             </button>
+
+            {/* Certificate preview container - pointer-events-none on wrapper so clicking outside the image hits the backdrop */}
             <motion.div
-              initial={{ scale: 0.85, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-full max-w-4xl h-[75vh]"
-              onClick={(e) => e.stopPropagation()}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              className="relative max-w-4xl max-h-[82vh] flex items-center justify-center pointer-events-none"
             >
-              <Image
-                src={selectedImage}
-                alt="Certificate preview"
-                fill
-                sizes="100vw"
-                className="object-contain rounded-2xl shadow-2xl"
-              />
+              <div
+                className="relative pointer-events-auto rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-neutral-900"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={selectedImage}
+                  alt="Certificate preview"
+                  width={1200}
+                  height={900}
+                  priority
+                  className="max-w-[92vw] sm:max-w-[85vw] md:max-w-4xl max-h-[78vh] w-auto h-auto object-contain block select-none"
+                />
+              </div>
             </motion.div>
+
+            {/* Click outside hint */}
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.15 }}
+              className="mt-3 sm:mt-4 text-xs sm:text-sm text-neutral-400 font-medium select-none text-center pointer-events-none"
+            >
+              {language === "id"
+                ? "Ketuk di luar gambar atau tombol ✕ untuk menutup"
+                : "Click outside the image or ✕ to close"}
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
